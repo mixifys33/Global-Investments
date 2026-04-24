@@ -1,18 +1,18 @@
 [
   {
-    "name": "Eshop.auto-update.latest.apk",
-    "fileName": "Eshop uganda.auto-update.latest.version-2.6.0.apk.apk",
+    "name": "Eshop.auto-update.latest.version.2026.apk",
+    "fileName": "Eshop uganda.auto-update.latest.version-2.0.6.apk.apk",
     "version": "2.6.0",
-    "size": "76.1 MB",
+    "size": "69.6 MB",
     "downloadUrl": "https://github.com/mixifys33/eshop-app/releases/download/eshop/Eshop.auto-update.latest.apk",
     "uploadedAt": "2026-09-18T00:00:00.000Z",
     "available": true
   },
   {
-    "name": "Eshop UG v1.5.0 — Latest",
-    "fileName": "Eshop-ug.lastest.version-1.5.0.apk",
+    "name": "Eshop UG v1.5.0 — Latest 2025 version",
+    "fileName": "Eshop-ug.lastest.2025.version-1.5.0.apk",
     "version": "1.5.0",
-    "size": "76.1 MB",
+    "size": "79.1 MB",
     "downloadUrl": "https://github.com/mixifys33/easyshop-web/releases/download/easyshop/Eshop-ug.lastest.version-1.5.0.apk",
     "uploadedAt": "2026-04-18T00:00:00.000Z",
     "available": true
@@ -22,10 +22,10 @@
     "name": "Eshop UG v1.0.0",
     "fileName": "Eshop-ug-v1.0.0.apk",
     "version": "1.0.0",
-    "size": "73.1 MB",
+    "size": "70.1 MB",
     "downloadUrl": "https://github.com/mixifys33/easyshop-web/releases/download/easyshop/Eshop-ug.version.1.0.0.apk",
-    "note": "https://github.com/mixifys33/easyshop-web/releases/download/easyshop/Eshop-ug.version.1.0.0.apk",
-    "uploadedAt": "2026-04-18T00:00:00.000Z",
+     "note": "Good news Eshop is now avliableon googleplay store just search Eshop uganda to find the app",
+     "uploadedAt": "2026-04-18T00:00:00.000Z",
     "available": true
   },
   {
@@ -33,10 +33,11 @@
     "fileName": "Eshop-ug-seller.version.1.0.0.apk",
     "version": "1.0.0",
     "size": "73.1 MB",
-    "downloadUrl": "https://github.com/mixifys33/easyshop-web/releases/download/easyshop/Eshop-ug.version.1.0.0.apk",
-    "note": "https://github.com/mixifys33/easyshop-web/releases/download/easyshop/Eshop-ug.version.1.0.0.apk",
+    "downloadUrl": "https://github.com/mixifys33/eshop-app/releases/download/eshop/Eshop.seller.apk",
+    "note": "Good news Eshop is now avliableon googleplay store just search Eshop uganda to find the app",
     "uploadedAt": "2026-04-18T00:00:00.000Z",
-    "available": false
+    "available": true,
+    "locked": true
   }
 
 ]

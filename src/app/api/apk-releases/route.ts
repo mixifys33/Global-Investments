@@ -11,6 +11,7 @@ export interface ApkRelease {
   note?: string;
   uploadedAt: string;
   available: boolean;
+  locked?: boolean;
 }
 
 export async function GET() {

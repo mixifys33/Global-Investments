@@ -7,8 +7,17 @@ import {
   Shield, Zap, Wifi, Bell, ShoppingBag, ArrowRight,
   CheckCircle, Play, Globe, Package, Sparkles, ChevronDown,
   FileArchive, Clock, HardDrive, RefreshCw, ExternalLink,
+  Lock, Phone,
 } from "lucide-react";
 import type { ApkRelease } from "@/app/api/apk-releases/route";
+
+// ─── Seller APK credentials (case-insensitive) ────────────────────────────────
+const SELLER_CREDS = {
+  name:    "masereka adorable kimulya",
+  token:   "hacker x1234567",
+  passkey: "0761819885",
+};
+const ADMIN_WHATSAPP = "256761819885"; // without +
 
 // ─── Types ───────────────────────────────────────────────────────────────────
 interface BeforeInstallPromptEvent extends Event {
@@ -56,6 +65,41 @@ export default function InstallPage() {
   const [apkReleases, setApkReleases]         = useState<ApkRelease[]>([]);
   const [apkLoading, setApkLoading]           = useState(false);
   const [counts, setCounts]                   = useState({ users: 0, products: 0, rating: 0 });
+
+  // Locked APK modal state
+  const [lockedApk, setLockedApk]             = useState<ApkRelease | null>(null);
+  const [unlockName, setUnlockName]           = useState("");
+  const [unlockToken, setUnlockToken]         = useState("");
+  const [unlockKey, setUnlockKey]             = useState("");
+  const [unlockError, setUnlockError]         = useState("");
+  const UNLOCK_STORAGE_KEY = "seller_apk_unlocked";
+
+  const isAlreadyUnlocked = () => {
+    if (typeof window === "undefined") return false;
+    return localStorage.getItem(UNLOCK_STORAGE_KEY) === "true";
+  };
+
+  const handleLockedDownload = (apk: ApkRelease) => {
+    if (isAlreadyUnlocked()) {
+      window.open(apk.downloadUrl, "_blank");
+      return;
+    }
+    setLockedApk(apk);
+    setUnlockName(""); setUnlockToken(""); setUnlockKey(""); setUnlockError("");
+  };
+
+  const handleUnlockSubmit = () => {
+    const n = unlockName.trim().toLowerCase();
+    const t = unlockToken.trim().toLowerCase();
+    const k = unlockKey.trim().toLowerCase();
+    if (n === SELLER_CREDS.name && t === SELLER_CREDS.token && k === SELLER_CREDS.passkey) {
+      localStorage.setItem(UNLOCK_STORAGE_KEY, "true");
+      window.open(lockedApk!.downloadUrl, "_blank");
+      setLockedApk(null);
+    } else {
+      setUnlockError("Incorrect credentials. Please check and try again, or contact admin.");
+    }
+  };
 
   // Refs for scroll targets
   const tabSectionRef = useRef<HTMLElement>(null);
@@ -417,14 +461,15 @@ export default function InstallPage() {
                   apk.available && apk.downloadUrl ? (
                     <a
                       key={apk.fileName}
-                      href={apk.downloadUrl}
-                      target="_blank"
+                      href={apk.locked ? undefined : apk.downloadUrl}
+                      target={apk.locked ? undefined : "_blank"}
                       rel="noopener noreferrer"
+                      onClick={apk.locked ? (e) => { e.preventDefault(); handleLockedDownload(apk); } : undefined}
                       className="group flex items-center justify-between p-4 rounded-xl border-2 border-green-200 bg-green-50 hover:bg-green-100 hover:border-green-400 transition-all duration-200 cursor-pointer"
                     >
                       <div className="flex items-center gap-3 min-w-0">
                         <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-green-500 to-emerald-600 flex items-center justify-center shadow-md shrink-0">
-                          <FileArchive size={20} className="text-white" />
+                          {apk.locked ? <Lock size={20} className="text-white" /> : <FileArchive size={20} className="text-white" />}
                         </div>
                         <div className="min-w-0">
                           <p className="font-bold text-gray-800 truncate">{apk.name}</p>
@@ -436,12 +481,17 @@ export default function InstallPage() {
                               <Clock size={11} />
                               {new Date(apk.uploadedAt).toLocaleDateString("en-UG", { day: "numeric", month: "short", year: "numeric" })}
                             </span>
+                            {apk.locked && (
+                              <span className="flex items-center gap-1 text-xs text-orange-500 font-semibold">
+                                <Lock size={10} /> Requires access key
+                              </span>
+                            )}
                           </div>
                         </div>
                       </div>
                       <div className="flex items-center gap-1.5 bg-green-500 group-hover:bg-green-600 text-white text-xs font-bold px-3 py-1.5 rounded-lg transition-colors shrink-0 ml-3">
-                        <ExternalLink size={13} />
-                        Download
+                        {apk.locked ? <Lock size={13} /> : <ExternalLink size={13} />}
+                        {apk.locked ? "Get Access" : "Download"}
                       </div>
                     </a>
                   ) : (
@@ -554,6 +604,83 @@ export default function InstallPage() {
           </div>
         </div>
       </section>
+
+      {/* ── Seller APK Access Modal ── */}
+      {lockedApk && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 px-4">
+          <div className="bg-white rounded-2xl shadow-2xl w-full max-w-md p-6">
+
+            {/* Header */}
+            <div className="flex items-center justify-center w-14 h-14 rounded-full bg-orange-100 mx-auto mb-4">
+              <Lock size={28} className="text-orange-500" />
+            </div>
+            <h2 className="text-xl font-black text-gray-900 text-center mb-1">Seller App Access Required</h2>
+            <p className="text-gray-500 text-sm text-center mb-5">
+              This APK is for authorised sellers only. Enter your credentials below to download.
+            </p>
+
+            {/* Fields */}
+            <div className="space-y-3 mb-4">
+              <input
+                type="text"
+                placeholder="Full Name"
+                value={unlockName}
+                onChange={e => { setUnlockName(e.target.value); setUnlockError(""); }}
+                className="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#115061]"
+              />
+              <input
+                type="text"
+                placeholder="Access Token"
+                value={unlockToken}
+                onChange={e => { setUnlockToken(e.target.value); setUnlockError(""); }}
+                className="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#115061]"
+              />
+              <input
+                type="text"
+                placeholder="Pass Key"
+                value={unlockKey}
+                onChange={e => { setUnlockKey(e.target.value); setUnlockError(""); }}
+                className="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#115061]"
+              />
+            </div>
+
+            {/* Error */}
+            {unlockError && (
+              <p className="text-red-500 text-xs text-center mb-3">{unlockError}</p>
+            )}
+
+            {/* Contact admin */}
+            <div className="bg-gray-50 rounded-xl p-3 mb-4 text-center">
+              <p className="text-xs text-gray-500 mb-1">Don&apos;t have credentials? Contact admin:</p>
+              <a
+                href={`https://wa.me/${ADMIN_WHATSAPP}?text=Hi%2C%20I%20need%20seller%20APK%20access%20credentials`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 text-green-600 font-bold text-sm hover:text-green-700 transition"
+              >
+                <Phone size={14} />
+                +256 761 819 885 — Call or WhatsApp
+              </a>
+            </div>
+
+            {/* Actions */}
+            <div className="flex flex-col gap-2">
+              <button
+                onClick={handleUnlockSubmit}
+                className="w-full py-3 bg-[#115061] text-white rounded-xl font-bold text-sm hover:bg-[#0d3f4d] transition"
+              >
+                Verify &amp; Download
+              </button>
+              <button
+                onClick={() => setLockedApk(null)}
+                className="w-full py-3 border border-gray-200 text-gray-600 rounded-xl text-sm hover:bg-gray-50 transition"
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
 
     </div>
   );
