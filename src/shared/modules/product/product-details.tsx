@@ -62,7 +62,7 @@ const ProductDetails = ({
   
   // UI States
   const [activeImage, setActiveImage] = useState(0);
-  const [showVideo, setShowVideo] = useState(false);
+  const [showVideoModalModal, setShowVideoModalModal] = useState(false);
   const [showDescription, setShowDescription] = useState(false);
   const [showChat, setShowChat] = useState(false);
   const [selectedColor, setSelectedColor] = useState<string>("");
@@ -276,13 +276,25 @@ const ProductDetails = ({
     setActiveImage((prev) => (prev - 1 + images.length) % images.length);
   };
 
-  // Extract YouTube video ID
+  // Extract YouTube video ID — supports all common YouTube URL formats
   const getYouTubeId = (url: string) => {
-    const match = url?.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/)([^&\s]+)/);
+    if (!url) return null;
+    const match = url.match(
+      /(?:youtube\.com\/(?:watch\?(?:.*&)?v=|embed\/|shorts\/|v\/)|youtu\.be\/)([a-zA-Z0-9_-]{11})/
+    );
     return match ? match[1] : null;
   };
 
+  // For non-YouTube video URLs (mp4, etc.)
+  const isDirectVideo = (url: string) => {
+    if (!url) return false;
+    const lower = url.toLowerCase();
+    return lower.endsWith('.mp4') || lower.endsWith('.webm') || lower.endsWith('.mov');
+  };
+
   const youtubeId = video_url ? getYouTubeId(video_url) : null;
+  const isDirectVideoUrl = video_url ? isDirectVideo(video_url) : false;
+  const hasVideo = !!(youtubeId || isDirectVideoUrl);
 
   return (
     <div className="w-full bg-gray-50 min-h-screen pb-20 md:pb-0">
@@ -316,75 +328,56 @@ const ProductDetails = ({
             
             {/* Left: Images & Video */}
             <div className="p-4 md:p-6 lg:p-8 border-b lg:border-b-0 lg:border-r border-gray-100">
-              {/* Main Image/Video */}
+              {/* Main Image */}
               <div className="relative aspect-square bg-gray-100 rounded-xl overflow-hidden group">
-                {showVideo && youtubeId ? (
-                  <div className="absolute inset-0">
-                    <iframe
-                      src={`https://www.youtube.com/embed/${youtubeId}?autoplay=1`}
-                      className="w-full h-full"
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                      allowFullScreen
-                    />
-                    <button
-                      onClick={() => setShowVideo(false)}
-                      className="absolute top-4 right-4 p-2 bg-black/50 rounded-full text-white hover:bg-black/70 transition"
-                    >
-                      <X className="w-5 h-5" />
-                    </button>
-                  </div>
+                {images.length > 0 ? (
+                  <Image
+                    src={images[activeImage]?.url}
+                    alt={title}
+                    fill
+                    className={`object-contain transition-transform duration-300 ${isZoomed ? 'scale-150' : ''}`}
+                    onClick={() => setIsZoomed(!isZoomed)}
+                  />
                 ) : (
+                  <div className="w-full h-full flex items-center justify-center text-gray-400">
+                    No image available
+                  </div>
+                )}
+
+                {/* Navigation Arrows */}
+                {images.length > 1 && (
                   <>
-                    {images.length > 0 ? (
-                      <Image
-                        src={images[activeImage]?.url}
-                        alt={title}
-                        fill
-                        className={`object-contain transition-transform duration-300 ${isZoomed ? 'scale-150' : ''}`}
-                        onClick={() => setIsZoomed(!isZoomed)}
-                      />
-                    ) : (
-                      <div className="w-full h-full flex items-center justify-center text-gray-400">
-                        No image available
-                      </div>
-                    )}
-                    
-                    {/* Navigation Arrows */}
-                    {images.length > 1 && (
-                      <>
-                        <button
-                          onClick={prevImage}
-                          className="absolute left-2 top-1/2 -translate-y-1/2 p-2 bg-white/90 rounded-full shadow-lg opacity-0 group-hover:opacity-100 transition hover:bg-white"
-                        >
-                          <ChevronLeft className="w-5 h-5" />
-                        </button>
-                        <button
-                          onClick={nextImage}
-                          className="absolute right-2 top-1/2 -translate-y-1/2 p-2 bg-white/90 rounded-full shadow-lg opacity-0 group-hover:opacity-100 transition hover:bg-white"
-                        >
-                          <ChevronRight className="w-5 h-5" />
-                        </button>
-                      </>
-                    )}
-
-                    {/* Discount Badge */}
-                    {discount > 0 && (
-                      <div className="absolute top-4 left-4 bg-red-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
-                        -{discount}%
-                      </div>
-                    )}
-
-                    {/* Video Play Button */}
-                    {youtubeId && !showVideo && (
-                      <button
-                        onClick={() => setShowVideo(true)}
-                        className="absolute bottom-4 right-4 flex items-center gap-2 bg-black/70 text-white px-4 py-2 rounded-full hover:bg-black/90 transition"
-                      >
-                        <Play className="w-4 h-4 fill-white" />
-                        <span className="text-sm font-medium">Watch Video</span>
-                      </button>
-                    )}
+                    <button
+                      onClick={prevImage}
+                      className="absolute left-2 top-1/2 -translate-y-1/2 p-2 bg-white/90 rounded-full shadow-lg opacity-0 group-hover:opacity-100 transition hover:bg-white"
+                    >
+                      <ChevronLeft className="w-5 h-5" />
+                    </button>
+                    <button
+                      onClick={nextImage}
+                      className="absolute right-2 top-1/2 -translate-y-1/2 p-2 bg-white/90 rounded-full shadow-lg opacity-0 group-hover:opacity-100 transition hover:bg-white"
+                    >
+                      <ChevronRight className="w-5 h-5" />
+                    </button>
                   </>
+                )}
+
+                {/* Discount Badge */}
+                {discount > 0 && (
+                  <div className="absolute top-4 left-4 bg-red-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
+                    -{discount}%
+                  </div>
+                )}
+
+                {/* Watch Video button overlay */}
+                {hasVideo && (
+                  <button
+                    onClick={() => setShowVideoModal(true)}
+                    className="absolute bottom-4 right-4 flex items-center gap-2 bg-black/70 text-white px-4 py-2 rounded-full hover:bg-black/90 transition"
+                  >
+                    <Play className="w-4 h-4 fill-white" />
+                    <span className="text-sm font-medium">Watch Video</span>
+                  </button>
                 )}
               </div>
 
@@ -393,9 +386,9 @@ const ProductDetails = ({
                 {images.map((img: any, index: number) => (
                   <button
                     key={index}
-                    onClick={() => { setActiveImage(index); setShowVideo(false); }}
+                    onClick={() => { setActiveImage(index); setShowVideoModal(false); }}
                     className={`relative flex-shrink-0 w-16 h-16 md:w-20 md:h-20 rounded-lg overflow-hidden border-2 transition ${
-                      activeImage === index && !showVideo
+                      activeImage === index && !showVideoModal
                         ? 'border-blue-500 ring-2 ring-blue-200'
                         : 'border-gray-200 hover:border-gray-300'
                     }`}
@@ -409,15 +402,30 @@ const ProductDetails = ({
                   </button>
                 ))}
                 {/* Video Thumbnail */}
-                {youtubeId && (
+                {hasVideo && (
                   <button
-                    onClick={() => setShowVideo(true)}
+                    onClick={() => setShowVideoModal(true)}
                     className={`relative flex-shrink-0 w-16 h-16 md:w-20 md:h-20 rounded-lg overflow-hidden border-2 transition bg-gray-900 ${
-                      showVideo ? 'border-blue-500 ring-2 ring-blue-200' : 'border-gray-200 hover:border-gray-300'
+                      showVideoModal ? 'border-blue-500 ring-2 ring-blue-200' : 'border-gray-200 hover:border-gray-300'
                     }`}
                   >
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <Play className="w-6 h-6 text-white fill-white" />
+                    {youtubeId ? (
+                      // Show actual YouTube thumbnail
+                      <img
+                        src={`https://img.youtube.com/vi/${youtubeId}/mqdefault.jpg`}
+                        alt="Video thumbnail"
+                        className="w-full h-full object-cover"
+                      />
+                    ) : (
+                      <div className="absolute inset-0 bg-gray-800 flex items-center justify-center">
+                        <Play className="w-6 h-6 text-white fill-white" />
+                      </div>
+                    )}
+                    {/* Play overlay */}
+                    <div className="absolute inset-0 flex items-center justify-center bg-black/30">
+                      <div className="w-8 h-8 rounded-full bg-white/90 flex items-center justify-center">
+                        <Play className="w-4 h-4 text-gray-900 fill-gray-900 ml-0.5" />
+                      </div>
                     </div>
                   </button>
                 )}
@@ -819,6 +827,44 @@ const ProductDetails = ({
         isOpen={showChat}
         onClose={() => setShowChat(false)}
       />
+
+      {/* ── Fullscreen Video Modal ── */}
+      {showVideoModal && hasVideo && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/90"
+          onClick={() => setShowVideoModal(false)}
+        >
+          <div
+            className="relative w-full max-w-4xl mx-4 aspect-video"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {youtubeId ? (
+              <iframe
+                src={`https://www.youtube.com/embed/${youtubeId}?autoplay=1&rel=0`}
+                className="w-full h-full rounded-xl"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              />
+            ) : isDirectVideoUrl ? (
+              <video
+                src={video_url!}
+                className="w-full h-full rounded-xl object-contain bg-black"
+                controls
+                autoPlay
+              />
+            ) : null}
+
+            {/* Close button */}
+            <button
+              onClick={() => setShowVideoModal(false)}
+              className="absolute -top-12 right-0 flex items-center gap-2 text-white/80 hover:text-white transition text-sm"
+            >
+              <X className="w-5 h-5" />
+              Close
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   )
 }
