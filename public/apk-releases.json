@@ -27,5 +27,16 @@
     "note": "https://github.com/mixifys33/easyshop-web/releases/download/easyshop/Eshop-ug.version.1.0.0.apk",
     "uploadedAt": "2026-04-18T00:00:00.000Z",
     "available": true
+  },
+  {
+    "name": "Eshop UG v1.0.0 — Latest seller apk",
+    "fileName": "Eshop-ug-seller.version.1.0.0.apk",
+    "version": "1.0.0",
+    "size": "73.1 MB",
+    "downloadUrl": "https://github.com/mixifys33/easyshop-web/releases/download/easyshop/Eshop-ug.version.1.0.0.apk",
+    "note": "https://github.com/mixifys33/easyshop-web/releases/download/easyshop/Eshop-ug.version.1.0.0.apk",
+    "uploadedAt": "2026-04-18T00:00:00.000Z",
+    "available": false
   }
+
 ]
