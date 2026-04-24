@@ -62,7 +62,7 @@ const ProductDetails = ({
   
   // UI States
   const [activeImage, setActiveImage] = useState(0);
-  const [showVideoModalModal, setShowVideoModalModal] = useState(false);
+  const [showVideoModal, setShowVideoModal] = useState(false);
   const [showDescription, setShowDescription] = useState(false);
   const [showChat, setShowChat] = useState(false);
   const [selectedColor, setSelectedColor] = useState<string>("");
