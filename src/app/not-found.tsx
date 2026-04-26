@@ -2,12 +2,12 @@
 
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
-import { ShoppingBag, Home, Search, ArrowLeft, RefreshCw, Tag, Headphones } from "lucide-react";
+import { TrendingUp, Home, Search, ArrowLeft, RefreshCw, BarChart3, Headphones } from "lucide-react";
 
 const QUICK_LINKS = [
   { href: "/", label: "Home", icon: Home, desc: "Back to the main page" },
-  { href: "/products", label: "Browse Products", icon: ShoppingBag, desc: "Explore all products" },
-  { href: "/offers", label: "Offers & Deals", icon: Tag, desc: "See today's best deals" },
+  { href: "/investments", label: "Browse Investments", icon: TrendingUp, desc: "Explore investment opportunities" },
+  { href: "/portfolio", label: "Portfolio & Analytics", icon: BarChart3, desc: "View your investment portfolio" },
   { href: "/contact", label: "Contact Support", icon: Headphones, desc: "We're here to help" },
 ];
 
@@ -33,7 +33,7 @@ export default function NotFound() {
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
     if (searchQuery.trim()) {
-      window.location.href = `/products?search=${encodeURIComponent(searchQuery.trim())}`;
+      window.location.href = `/investments?search=${encodeURIComponent(searchQuery.trim())}`;
     }
   };
 
@@ -71,12 +71,12 @@ export default function NotFound() {
             >
               404
             </span>
-            {/* Shopping bag icon floating over the 4 */}
+            {/* Investment chart icon floating over the 4 */}
             <div
               className="absolute -top-4 -right-4 w-14 h-14 bg-white/10 backdrop-blur-sm rounded-2xl flex items-center justify-center border border-white/20 shadow-xl"
               style={{ animation: "float 3s ease-in-out infinite" }}
             >
-              <ShoppingBag className="w-7 h-7 text-yellow-400" />
+              <TrendingUp className="w-7 h-7 text-yellow-400" />
             </div>
           </div>
         </div>
@@ -86,10 +86,10 @@ export default function NotFound() {
           className={`text-center mb-8 transition-all duration-700 delay-150 ${mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}
         >
           <h1 className="text-2xl sm:text-3xl font-bold text-white mb-3">
-            Oops! This page went shopping 
+            Oops! This investment opportunity moved 
           </h1>
           <p className="text-white/70 text-base sm:text-lg max-w-md mx-auto leading-relaxed">
-            The page you're looking for doesn't exist or was moved to another section. But don't worry — there's plenty more to explore or contact support at (+256761819885) for help.
+            The page you're looking for doesn't exist or was moved to another section. But don't worry — there are plenty of investment opportunities to explore or contact our support team for assistance.
           </p>
         </div>
 
@@ -104,7 +104,7 @@ export default function NotFound() {
                 type="text"
                 value={searchQuery}
                 onChange={e => setSearchQuery(e.target.value)}
-                placeholder={`Search products${dots}`}
+                placeholder={`Search investments${dots}`}
                 className="w-full pl-12 pr-4 py-4 bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl text-white placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-yellow-400/50 focus:border-yellow-400/50 transition-all text-sm"
               />
             </div>
@@ -169,7 +169,7 @@ export default function NotFound() {
         <p
           className={`text-center text-white/30 text-xs mt-8 transition-all duration-700 delay-500 ${mounted ? "opacity-100" : "opacity-0"}`}
         >
-          Error 404 · EasyShop Uganda
+          Error 404 · Global Investments
         </p>
       </div>
 

@@ -1,6 +1,6 @@
 "use client";
 
-import { Search, ShoppingBag, Shield, Truck, Star, Zap, ArrowRight, Sparkles, Tag, Percent, Gift, ChevronRight, TrendingUp, PieChart, Home, Sparkle } from "lucide-react";
+import { Search, ShoppingBag, Shield, Truck, Star, Zap, ArrowRight, Sparkles, Tag, Percent, Gift, ChevronRight, TrendingUp, PieChart, Home, Sparkle, Building2, Banknote } from "lucide-react";
 import { useRouter } from "next/navigation";
 import React, { useState, useEffect } from "react";
 
@@ -14,10 +14,10 @@ const PROMO_BADGES = [
 ];
 
 const CATEGORY_CARDS = [
-  { label: "Stocks", icon: Smartphone, color: "from-blue-500 to-indigo-600", deal: "Growth Potential" },
-  { label: "Bonds", icon: Shirt, color: "from-green-500 to-emerald-600", deal: "Stable Returns" },
+  { label: "Stocks", icon: TrendingUp, color: "from-blue-500 to-indigo-600", deal: "Growth Potential" },
+  { label: "Bonds", icon: Banknote, color: "from-green-500 to-emerald-600", deal: "Stable Returns" },
   { label: "Real Estate", icon: Home, color: "from-orange-500 to-amber-600", deal: "Long-term Value" },
-  { label: "Mutual Funds", icon: Sparkle, color: "from-purple-500 to-violet-600", deal: "Diversified" },
+  { label: "Mutual Funds", icon: PieChart, color: "from-purple-500 to-violet-600", deal: "Diversified" },
 ];
 
 export const Hero = () => {
