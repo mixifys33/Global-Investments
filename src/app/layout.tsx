@@ -6,53 +6,53 @@ import ProductComparisonBar from "../shared/components/product-comparison/Produc
 import ServiceWorkerRegistrar from "../shared/components/ServiceWorkerRegistrar";
 import type { Metadata } from "next";
 
-const BASE_URL = "https://eshopug.vercel.app";
+const BASE_URL = "https://globalinvestments.vercel.app";
 
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
   title: {
-    default: "EshopUG — Uganda's #1 Online Marketplace | Shop Electronics, Fashion & More",
-    template: "%s | Eshop Uganda",
+    default: "Global Investments — Your Trusted Investment Partner | Secure Financial Growth",
+    template: "%s | Global Investments",
   },
   description:
-    "Eshop is Uganda's leading online shopping marketplace. Buy and sell electronics, fashion, home goods, beauty products, groceries and more. Fast delivery, secure payments, best prices in Uganda.",
+    "Global Investments is your premier investment platform offering comprehensive financial solutions, portfolio management, market analysis, and expert investment guidance for secure financial growth.",
   keywords: [
-    "online shopping Uganda",
-    "Uganda marketplace",
-    "buy online Uganda",
-    "sell online Uganda",
-    "Uganda ecommerce",
-    "shopping Uganda",
-    "online store Uganda",
-    "Uganda products",
-    "electronics Uganda",
-    "fashion Uganda",
-    "home goods Uganda",
-    "groceries Uganda",
-    "online trading Uganda",
-    "online selling Uganda",
-    "online marketing Uganda",
-    "best prices Uganda",
-    "Uganda online market",
-    "buy and sell Uganda",
-    "Uganda shop",
-    "eshop Uganda",
-    "easyshop Uganda",
-    "eshopug",
-    "kampala online shopping",
-    "Uganda delivery",
-    "affordable products Uganda",
-    "Uganda deals",
-    "Uganda offers",
-    "product marketplace Africa",
-    "African ecommerce",
-    "online shopping Africa",
+    "investment platform",
+    "financial planning",
+    "portfolio management",
+    "investment advisory",
+    "wealth management",
+    "financial growth",
+    "investment opportunities",
+    "market analysis",
+    "financial security",
+    "investment solutions",
+    "asset management",
+    "financial consulting",
+    "investment strategies",
+    "retirement planning",
+    "financial advisor",
+    "investment portfolio",
+    "capital growth",
+    "financial services",
+    "investment guidance",
+    "wealth building",
+    "financial planning services",
+    "investment management",
+    "financial investment",
+    "investment firm",
+    "financial advisor services",
+    "investment consulting",
+    "portfolio optimization",
+    "financial planning advisor",
+    "investment planning",
+    "wealth creation",
   ],
-  authors: [{ name: "EshopUG", url: BASE_URL }],
-  creator: "EshopUG",
-  publisher: "EshopUG",
-  category: "shopping",
-  classification: "Shopping, Marketplace, Ecommerce",
+  authors: [{ name: "Global Investments", url: BASE_URL }],
+  creator: "Global Investments",
+  publisher: "Global Investments",
+  category: "finance",
+  classification: "Finance, Investment, Wealth Management",
   manifest: "/manifest.json",
   robots: {
     index: true,
@@ -67,28 +67,28 @@ export const metadata: Metadata = {
   },
   openGraph: {
     type: "website",
-    locale: "en_UG",
+    locale: "en_US",
     url: BASE_URL,
-    siteName: "EshopUG",
-    title: "EshopUG — Uganda's #1 Online Marketplace",
+    siteName: "Global Investments",
+    title: "Global Investments — Your Trusted Investment Partner",
     description:
-      "Shop electronics, fashion, home goods, beauty, groceries and more on EshopUG — Uganda's leading online marketplace. Best prices, fast delivery, secure payments.",
+      "Secure your financial future with comprehensive investment solutions, expert portfolio management, and personalized financial guidance from Global Investments.",
     images: [
       {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "EshopUG — Uganda's #1 Online Marketplace",
+        alt: "Global Investments — Your Trusted Investment Partner",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    site: "@eshopug",
-    creator: "@eshopug",
-    title: "EshopUG — Uganda's #1 Online Marketplace",
+    site: "@globalinvestments",
+    creator: "@globalinvestments",
+    title: "Global Investments — Your Trusted Investment Partner",
     description:
-      "Buy and sell online in Uganda. Electronics, fashion, home goods, beauty & more. Fast delivery, secure payments.",
+      "Secure financial growth with expert investment guidance, portfolio management, and comprehensive financial solutions.",
     images: ["/og-image.png"],
   },
   alternates: {
@@ -97,11 +97,9 @@ export const metadata: Metadata = {
   appleWebApp: {
     capable: true,
     statusBarStyle: "default",
-    title: "EshopUG",
+    title: "Global Investments",
   },
-  verification: {
-    google: "uyQ0T2p-Td4LjPOJviJiIx-WMe51mXmhklau6-sBhWM",
-  },
+
 };
 
 
@@ -132,11 +130,11 @@ const inter = Inter({
 
 const organizationSchema = {
   "@context": "https://schema.org",
-  "@type": "Organization",
-  name: "EshopUG",
+  "@type": "FinancialService",
+  name: "Global Investments",
   url: BASE_URL,
   logo: `${BASE_URL}/icon-512.png`,
-  description: "Uganda's leading online marketplace for electronics, fashion, home goods, beauty, groceries and more.",
+  description: "Premier investment platform offering comprehensive financial solutions, portfolio management, and expert investment guidance for secure financial growth.",
   sameAs: [],
   contactPoint: {
     "@type": "ContactPoint",
@@ -148,9 +146,9 @@ const organizationSchema = {
 const websiteSchema = {
   "@context": "https://schema.org",
   "@type": "WebSite",
-  name: "EshopUG",
+  name: "Global Investments",
   url: BASE_URL,
-  description: "Uganda's #1 online marketplace — buy and sell electronics, fashion, home goods, beauty, groceries and more.",
+  description: "Your trusted investment partner — comprehensive financial solutions, portfolio management, and expert investment guidance for secure financial growth.",
   potentialAction: {
     "@type": "SearchAction",
     target: {

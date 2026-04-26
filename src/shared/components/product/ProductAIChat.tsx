@@ -242,7 +242,7 @@ Ask me anything about features, comparisons, warranty, or buying advice!`,
               <Link
                 href="/ai-assistant"
                 className="p-2 hover:bg-white/10 rounded-lg transition"
-                title="Open full E-AI"
+                title="Open full Atlas AI"
               >
                 <Maximize2 className="w-4 h-4 sm:w-5 sm:h-5" />
               </Link>

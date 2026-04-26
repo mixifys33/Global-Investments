@@ -12,12 +12,12 @@ import {
 import type { ApkRelease } from "@/app/api/apk-releases/route";
 
 // ─── Seller APK credentials (case-insensitive) ────────────────────────────────
-const SELLER_CREDS = {
-  name:    "masereka adorable kimulya",
-  token:   "hacker x1234567",
-  passkey: "0761819885",
+const ADVISOR_CREDS = {
+  name:    "global investments admin",
+  token:   "invest2024",
+  passkey: "5551234567",
 };
-const ADMIN_WHATSAPP = "256761819885"; // without +
+const ADMIN_WHATSAPP = "15551234567"; // without +
 
 // ─── Types ───────────────────────────────────────────────────────────────────
 interface BeforeInstallPromptEvent extends Event {
@@ -92,7 +92,7 @@ export default function InstallPage() {
     const n = unlockName.trim().toLowerCase();
     const t = unlockToken.trim().toLowerCase();
     const k = unlockKey.trim().toLowerCase();
-    if (n === SELLER_CREDS.name && t === SELLER_CREDS.token && k === SELLER_CREDS.passkey) {
+    if (n === ADVISOR_CREDS.name && t === ADVISOR_CREDS.token && k === ADVISOR_CREDS.passkey) {
       localStorage.setItem(UNLOCK_STORAGE_KEY, "true");
       window.open(lockedApk!.downloadUrl, "_blank");
       setLockedApk(null);

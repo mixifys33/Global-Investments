@@ -553,8 +553,8 @@ const EasyAIPage = () => {
                 <Sparkles className="w-5 h-5 text-white" />
               </div>
               <div>
-                <h1 className="font-bold">E-AI</h1>
-                <p className="text-xs text-gray-400">Shopping Assistant</p>
+                <h1 className="font-bold">Atlas AI</h1>
+                <p className="text-xs text-gray-400">Investment Assistant</p>
               </div>
             </div>
             <button 
@@ -631,14 +631,14 @@ const EasyAIPage = () => {
             className="flex items-center justify-center gap-2 px-3 py-2 text-sm text-gray-300 hover:text-white hover:bg-gray-800 rounded-lg transition"
           >
             <ShoppingBag className="w-4 h-4" />
-            Back to Shop
+            Back to Investments
           </Link>
           <Link 
             href="/compare" 
             className="flex items-center justify-center gap-2 px-3 py-2 text-sm text-gray-300 hover:text-white hover:bg-gray-800 rounded-lg transition"
           >
             <Package className="w-4 h-4" />
-            Compare Products
+            Portfolio Analysis
           </Link>
         </div>
       </aside>
@@ -664,8 +664,8 @@ const EasyAIPage = () => {
               <Sparkles className="w-4 h-4 text-white" />
             </div>
             <div className="min-w-0">
-              <h2 className="font-semibold text-gray-900 text-sm sm:text-base">E-AI Assistant</h2>
-              <p className="text-xs text-gray-500 hidden sm:block">Search, compare, support</p>
+              <h2 className="font-semibold text-gray-900 text-sm sm:text-base">Atlas AI Assistant</h2>
+              <p className="text-xs text-gray-500 hidden sm:block">Investment guidance & analysis</p>
             </div>
           </div>
           
@@ -694,10 +694,10 @@ const EasyAIPage = () => {
                 </div>
 
                 <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">
-                  Welcome to <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">E-AI</span>
+                  Welcome to <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Atlas AI</span>
                 </h1>
                 <p className="text-gray-600 mb-6 text-sm sm:text-base">
-                  Your intelligent shopping assistant for Easy Shop Uganda
+                  Your intelligent investment assistant for Global Investments
                 </p>
 
                 {/* Features Grid */}
@@ -708,7 +708,7 @@ const EasyAIPage = () => {
                       label: "Search",
                       color: "text-blue-600",
                       hoverBorder: "hover:border-blue-200",
-                      prompt: "Help me search for a product. What are you looking for?",
+                      prompt: "Help me find investment opportunities. What type of investments are you interested in?",
                     },
                     {
                       icon: <Package className="w-5 h-5" />,
@@ -722,7 +722,7 @@ const EasyAIPage = () => {
                       label: "Trending",
                       color: "text-orange-600",
                       hoverBorder: "hover:border-orange-200",
-                      prompt: "What products are trending on EasyShop right now?",
+                      prompt: "What investment opportunities are trending on Global Investments right now?",
                     },
                     {
                       icon: <Headphones className="w-5 h-5" />,
@@ -1031,7 +1031,7 @@ const EasyAIPage = () => {
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
                   onKeyDown={handleKeyDown}
-                  placeholder={selectedImage ? "Add a message about this image..." : "Ask E-AI anything..."}
+                  placeholder={selectedImage ? "Add a message about this image..." : "Ask Atlas AI anything..."}
                   disabled={isLoading}
                   rows={1}
                   className="w-full px-3 sm:px-4 py-2.5 sm:py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none disabled:bg-gray-50 text-sm"
@@ -1052,7 +1052,7 @@ const EasyAIPage = () => {
               </button>
             </div>
             <p className="text-[10px] sm:text-xs text-gray-400 mt-2 text-center">
-              Upload images to find similar products • E-AI uses web search for current info
+              Upload images for investment analysis • Atlas AI uses real-time market data
             </p>
           </div>
         </div>

@@ -1,14 +1,14 @@
 {
-  "name": "Eshop — Uganda's #1 Marketplace",
-  "short_name": "Eshop ug",
-  "description": "Shop smarter, live better. Discover amazing products at unbeatable prices.",
+  "name": "Global Investments — Your Investment Partner",
+  "short_name": "Global Investments",
+  "description": "Secure your financial future with our comprehensive investment solutions and expert guidance.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#0d3f4d",
   "theme_color": "#0d3f4d",
   "orientation": "portrait-primary",
   "scope": "/",
-  "categories": ["shopping", "lifestyle"],
+  "categories": ["finance", "investment", "business"],
   "icons": [
     {
       "src": "/icon-192.png",
@@ -37,17 +37,17 @@
   ],
   "shortcuts": [
     {
-      "name": "Shop Now",
-      "short_name": "Shop",
-      "description": "Browse all products",
-      "url": "/products",
+      "name": "Investment Portfolio",
+      "short_name": "Portfolio",
+      "description": "View your investment portfolio",
+      "url": "/portfolio",
       "icons": [{ "src": "/icon-192.png", "sizes": "192x192", "type": "image/png" }]
     },
     {
-      "name": "My Cart",
-      "short_name": "Cart",
-      "description": "View your shopping cart",
-      "url": "/cart",
+      "name": "Market Analysis",
+      "short_name": "Markets",
+      "description": "View market trends and analysis",
+      "url": "/markets",
       "icons": [{ "src": "/icon-192.png", "sizes": "192x192", "type": "image/png" }]
     }
   ]

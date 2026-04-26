@@ -96,7 +96,7 @@ const Login = () => {
       <div className="w-full flex justify-center">
         <div className="md:w-[480px] p-8 bg-white shadow rounded-lg">
           <h3 className="text-[1.3rem] sm:text-2.5xl md:text-[1.7rem] lg:text-3xl font-Poppins font-semibold text-center mb-2 bg-gradient-to-r from-purple-500 via-pink-500 to-red-500 bg-clip-text text-transparent animate-gradient bg-[length:200%_200%]">
-            Login to Easy Shop
+            Login to Global Investments
           </h3>
 
 
@@ -139,7 +139,7 @@ const Login = () => {
             <label className="block text-gray-700 mb-1">Email</label>
             <input
               type="email"
-              placeholder="adorablemasereka85@gmail.com"
+              placeholder="investor@globalinvestments.com"
               className="w-full p-2 border border-gray-300 outline-0 rounded mb-1"
               {...register("email", {
                 required: "Email is required",

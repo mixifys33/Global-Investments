@@ -408,8 +408,8 @@ const OrderDetailPage = () => {
               {showHelp && (
                 <div className="bg-blue-50 border border-blue-200 rounded-xl p-4 space-y-2.5 text-sm">
                   <p className="font-semibold text-blue-800">Contact Support</p>
-                  <a href="mailto:dwightkim12@gmail.com" className="flex items-center gap-2 text-blue-700 hover:underline">
-                    <Mail className="w-4 h-4 flex-shrink-0" />dwightkim12@gmail.com
+                  <a href="mailto:support@globalinvestments.com" className="flex items-center gap-2 text-blue-700 hover:underline">
+                    <Mail className="w-4 h-4 flex-shrink-0" />support@globalinvestments.com
                   </a>
                   <a href="mailto:shopeasy352@gmail.com" className="flex items-center gap-2 text-blue-700 hover:underline">
                     <Mail className="w-4 h-4 flex-shrink-0" />shopeasy352@gmail.com

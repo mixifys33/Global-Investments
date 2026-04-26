@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 
 // Simple GET test endpoint
 export async function GET() {
-  console.log("[E-AI Test] GET /api/ai-assistant/test HIT!");
+  console.log("[Atlas AI Test] GET /api/ai-assistant/test HIT!");
   
   return NextResponse.json({
     success: true,

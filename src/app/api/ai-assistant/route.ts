@@ -56,7 +56,7 @@ export async function POST(req: NextRequest) {
 
     if (!backendRes.ok) {
       const err = await backendRes.text();
-      console.error("[ai-assistant] backend error:", backendRes.status, err.slice(0, 200));
+      console.error("[atlas-ai] backend error:", backendRes.status, err.slice(0, 200));
       return NextResponse.json(
         { success: false, message: "AI service temporarily unavailable. Please try again." },
         { status: 502 }
@@ -86,7 +86,7 @@ export async function POST(req: NextRequest) {
       suggestions: data.suggestions || [],
     });
   } catch (error: any) {
-    console.error("[ai-assistant] error:", error?.message);
+    console.error("[atlas-ai] error:", error?.message);
     return NextResponse.json(
       { success: false, message: "Something went wrong. Please try again." },
       { status: 500 }

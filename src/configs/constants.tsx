@@ -5,24 +5,24 @@
         href:  "/",
     },
     {
-        title: "Products",
-        href:  "/products", 
+        title: "Investments",
+        href:  "/investments", 
     },
     {
-        title: "Offers",
-        href:  "/offers",
+        title: "Portfolio",
+        href:  "/portfolio",
     },
     {
-        title: "Shops",
-        href:  "/shops",
+        title: "Markets",
+        href:  "/markets",
     },
      {
-        title: "Events",
-        href:  "/events",
+        title: "Advisory",
+        href:  "/advisory",
     },
      {
-        title: "Product comparsion",
-        href:  "/compare",
+        title: "Analysis",
+        href:  "/analysis",
     },
     {
         title: "About Us",
@@ -30,7 +30,7 @@
     }
     /*
     {
-        title: "Become A seller",
-        href:  "/become-seller",
+        title: "Become An Advisor",
+        href:  "/become-advisor",
     }*/
     ]

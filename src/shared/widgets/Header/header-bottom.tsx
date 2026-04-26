@@ -165,7 +165,7 @@ const HeaderBottom = () => {
           </span>
         )}
       </Link>
-      <Link href="/cart" className="relative p-1">
+      <Link href="/portfolio" className="relative p-1">
         <ShoppingCart className="w-5 h-5 text-white/80 hover:text-white transition-colors" />
         {cart?.length > 0 && (
           <span className="absolute -top-0.5 -right-0.5 min-w-[16px] h-4 flex items-center justify-center rounded-full bg-amber-400 text-[9px] font-bold text-teal-900 px-0.5">
@@ -281,10 +281,10 @@ const HeaderBottom = () => {
           {isSticky && (
             <Link href="/" className="flex-shrink-0 flex items-center gap-1.5 mr-1">
               <div className="w-7 h-7 bg-amber-400 rounded-lg flex items-center justify-center shadow-sm">
-                <span className="text-teal-800 font-black text-xs leading-none" style={{ fontFamily: 'var(--font-space)' }}>ES</span>
+                <span className="text-teal-800 font-black text-xs leading-none" style={{ fontFamily: 'var(--font-space)' }}>GI</span>
               </div>
               <span className="hidden sm:block text-white font-black text-sm" style={{ fontFamily: 'var(--font-space)' }}>
-                Easy<span className="text-amber-400">Shop</span>
+                Global<span className="text-amber-400">Investments</span>
               </span>
             </Link>
           )}
@@ -297,7 +297,7 @@ const HeaderBottom = () => {
               style={{ background: 'linear-gradient(135deg, #fcd34d, #f59e0b)', color: '#0f2744', fontFamily: "'Plus Jakarta Sans', sans-serif" }}
             >
               <AlignLeft className="w-4 h-4" />
-              <span className="hidden sm:inline">All Categories</span>
+              <span className="hidden sm:inline">Investment Categories</span>
               <ChevronDown className={`w-3 h-3 transition-transform duration-200 ${showCats ? 'rotate-180' : ''}`} />
             </button>
             {showCats && <CatDropdown />}
@@ -326,11 +326,11 @@ const HeaderBottom = () => {
           {/* ── Right side ── */}
           <div className="flex items-center gap-2 flex-shrink-0 ml-auto">
 
-            {/* E-AI pill */}
+            {/* Atlas AI pill */}
             <Link href="/ai-assistant"
               className="hidden md:flex items-center gap-1.5 px-3 py-1.5 bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white text-xs font-semibold rounded-full transition-all shadow-md flex-shrink-0">
               <Sparkles className="w-3.5 h-3.5" />
-              Eshop AI
+              Atlas AI
             </Link>
 
             {/* Install pill */}
@@ -350,7 +350,7 @@ const HeaderBottom = () => {
                       onClick={() => setSearchOpen(true)}
                       className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/10 hover:bg-white/20 text-white text-xs font-semibold transition-all border border-white/20">
                       <Search className="w-3.5 h-3.5" />
-                      <span className="hidden lg:inline">Search products</span>
+                      <span className="hidden lg:inline">Search investments</span>
                     </button>
                   ) : (
                     <div className="flex items-center bg-white rounded-xl overflow-hidden shadow-lg ring-2 ring-amber-400/60 transition-all w-56 lg:w-72">
@@ -358,7 +358,7 @@ const HeaderBottom = () => {
                       <input
                         ref={inputRef}
                         type="text"
-                        placeholder="Search products…"
+                        placeholder="Search investments…"
                         value={searchQuery}
                         onChange={handleInputChange}
                         onKeyDown={(e) => e.key === 'Enter' && handleSearch()}
@@ -399,10 +399,10 @@ const HeaderBottom = () => {
           <div className="flex items-center justify-around py-1.5 px-2">
             {[
               { href: '/', icon: Home, label: 'Home', activeColor: 'text-teal-700', activeBg: 'bg-teal-50' },
-              { href: '/ai-assistant', icon: Sparkles, label: 'Eshop AI', gradient: true },
+              { href: '/ai-assistant', icon: Sparkles, label: 'Atlas AI', gradient: true },
            { href: '/install', icon: Download, label: 'Install', activeColor: 'text-orange-500', activeBg: 'bg-orange-50' },
-              { href: '/wishlist', icon: Heart, label: 'Wishlist', activeColor: 'text-red-500', activeBg: 'bg-red-50', badge: wishlist?.length, badgeColor: 'bg-red-500 text-white' },
-              { href: '/cart', icon: ShoppingCart, label: 'Cart', activeColor: 'text-teal-700', activeBg: 'bg-teal-50', badge: cart?.length, badgeColor: 'bg-amber-400 text-teal-900' },
+              { href: '/watchlist', icon: Heart, label: 'Watchlist', activeColor: 'text-red-500', activeBg: 'bg-red-50', badge: wishlist?.length, badgeColor: 'bg-red-500 text-white' },
+              { href: '/portfolio', icon: ShoppingCart, label: 'Portfolio', activeColor: 'text-teal-700', activeBg: 'bg-teal-50', badge: cart?.length, badgeColor: 'bg-amber-400 text-teal-900' },
             ].map(({ href, icon: Icon, label, activeColor, activeBg, gradient, badge, badgeColor }: any) => {              const active = pathname === href;
               return (
                 <Link key={href} href={href} className="flex flex-col items-center gap-0.5 p-1 min-w-[52px]">

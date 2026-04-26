@@ -117,8 +117,8 @@ const Signup = () => {
     let dotIndex = 0;
     let currentText = "";
 
-    const firstMessage = "Creating your Easy Shop account";
-    const secondMessage = "Sending your OTP to your email";
+            const firstMessage = "Creating your Global Investments account";
+            const secondMessage = "Sending your OTP to your email";
 
     if (signupMutation.isPending) {
       // Step 1: show spinner for 1.5 seconds
@@ -207,13 +207,13 @@ const handleOtpKeyDown  = (index:number, e:React.KeyboardEvent<HTMLInputElement>
 
       <div className="w-full flex justify-center">
         <div className="md:w-[480px] p-8 bg-white shadow rounded-lg">
-        <h3
+          <h3
             className="text-[1.3rem] sm:text-2.5xl md:text-[1.7rem] lg:text-3xl font-Poppins font-semibold text-center mb-2
                       bg-gradient-to-r from-purple-500 via-pink-500 to-red-500
                       bg-clip-text text-transparent
                       animate-gradient bg-[length:200%_200%]"
           >
-            Sign Up for Easy Shop
+            Sign Up for Global Investments
 
           </h3>
 
@@ -266,7 +266,7 @@ const handleOtpKeyDown  = (index:number, e:React.KeyboardEvent<HTMLInputElement>
            <label className="block text-gray-700 mb-1">Name</label>
             <input
               type="text"
-              placeholder="eg. Masereka Adorable"
+              placeholder="e.g. John Smith"
               className="w-full p-2 border border-gray-300 outline-0 rounded mb-1"
               {...register("name", {
                 required: "Name is required",
@@ -287,7 +287,7 @@ const handleOtpKeyDown  = (index:number, e:React.KeyboardEvent<HTMLInputElement>
             <label className="block text-gray-700 mb-1">Email</label>
             <input
               type="email"
-              placeholder="eg. adorablemasereka85@gmail.com"
+              placeholder="e.g. investor@globalinvestments.com"
               className="w-full p-2 border border-gray-300 outline-0 rounded mb-1"
               {...register("email", {
                 required: "Email is required",

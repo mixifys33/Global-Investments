@@ -1,24 +1,23 @@
 "use client";
 
-import { Search, ShoppingBag, Shield, Truck, Star, Zap, ArrowRight, Sparkles, Tag, Percent, Gift, ChevronRight, Smartphone, Shirt, Home, Sparkle } from "lucide-react";
+import { Search, ShoppingBag, Shield, Truck, Star, Zap, ArrowRight, Sparkles, Tag, Percent, Gift, ChevronRight, TrendingUp, PieChart, Home, Sparkle } from "lucide-react";
 import { useRouter } from "next/navigation";
 import React, { useState, useEffect } from "react";
 
-const ROTATING_WORDS = ["Electronics", "Fashion products", "Beauty", "Home & Living products", "Sports equipments", "deals","Gadgets"];
+const ROTATING_WORDS = ["Stocks", "Bonds", "Real Estate", "Mutual Funds", "ETFs", "Portfolios", "Commodities"];
 
 const PROMO_BADGES = [
-  { icon: Zap, label: "Flash Deals", color: "from-amber-400 to-orange-500" },
-  { icon: Percent, label: "Up to 90% Off", color: "from-rose-500 to-pink-600" },
-  { icon: Gift, label: "Free Gifts", color: "from-violet-500 to-purple-600" },
-  { icon: Truck, label: "Free Delivery", color: "from-teal-500 to-cyan-600" },
+  { icon: Zap, label: "Market Insights", color: "from-amber-400 to-orange-500" },
+  { icon: Percent, label: "Low Fees", color: "from-rose-500 to-pink-600" },
+  { icon: Gift, label: "Expert Guidance", color: "from-violet-500 to-purple-600" },
+  { icon: Truck, label: "24/7 Support", color: "from-teal-500 to-cyan-600" },
 ];
 
 const CATEGORY_CARDS = [
-  
-  { label: "Electronics", icon: Smartphone, color: "from-blue-500 to-indigo-600", deal: "Up to 89% off" },
-  { label: "Fashion", icon: Shirt, color: "from-pink-500 to-rose-600", deal: "New Collection" },
-  { label: "Home & Living", icon: Home, color: "from-emerald-500 to-teal-600", deal: "Best Deals" },
-  { label: "Beauty", icon: Sparkle, color: "from-purple-500 to-violet-600", deal: "Trending Now" },
+  { label: "Stocks", icon: Smartphone, color: "from-blue-500 to-indigo-600", deal: "Growth Potential" },
+  { label: "Bonds", icon: Shirt, color: "from-green-500 to-emerald-600", deal: "Stable Returns" },
+  { label: "Real Estate", icon: Home, color: "from-orange-500 to-amber-600", deal: "Long-term Value" },
+  { label: "Mutual Funds", icon: Sparkle, color: "from-purple-500 to-violet-600", deal: "Diversified" },
 ];
 
 export const Hero = () => {
@@ -86,31 +85,31 @@ export const Hero = () => {
             {/* Badge */}
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-bold text-amber-300 border border-amber-400/30 glass">
               <Sparkles className="w-3.5 h-3.5 animate-pulse" />
-              Uganda&apos;s #1 Trusted Online Marketplace
+              Your Trusted Investment Partner
               <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
             </div>
 
             {/* Headline */}
             <div>
               <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-white leading-[1.05] tracking-tight" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
-                Shop
+                Invest
                 <span className="block" style={{ background: "linear-gradient(135deg, #fcd34d 0%, #f59e0b 40%, #fb923c 100%)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>
                   Smarter.
                 </span>
-                <span className="block text-white/90">Live Better.</span>
+                <span className="block text-white/90">Grow Wealth.</span>
               </h1>
             </div>
 
             {/* Rotating category */}
             <p className="text-lg sm:text-xl text-white/70 font-medium max-w-lg mx-auto lg:mx-0">
-              Discover amazing{" "}
+              Discover profitable{" "}
               <span
                 className="font-bold text-teal-300 inline-block transition-all duration-300"
                 style={{ opacity: fade ? 1 : 0, transform: fade ? "translateY(0)" : "translateY(-8px)" }}
               >
                 {ROTATING_WORDS[wordIndex]}
               </span>{" "}
-              at unbeatable prices.
+              with expert guidance.
             </p>
 
             {/* Search bar */}
@@ -121,7 +120,7 @@ export const Hero = () => {
                   type="text"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  placeholder="Search products, brands, categories..."
+                  placeholder="Search investments, markets, analysis..."
                   className="w-full pl-12 pr-4 py-4 text-gray-800 text-sm sm:text-base placeholder-gray-400 outline-none bg-transparent font-medium"
                 />
                 <button
@@ -135,7 +134,7 @@ export const Hero = () => {
                 </button>
               </div>
               <div className="flex flex-wrap gap-2 mt-3 justify-center lg:justify-start">
-                {["Samsung","iPhone","Furniture","Nike", "Xiaomi","Beauty","Techno"].map((t) => (
+                {["Stocks","Bonds","ETFs","Real Estate", "Mutual Funds","Commodities","Portfolio"].map((t) => (
                   <button key={t} type="button"
                     onClick={() => router.push(`/search?q=${t}`)}
                     className="text-xs text-white/60 hover:text-white border border-white/20 hover:border-white/40 px-3 py-1 rounded-full transition-all duration-200 hover:bg-white/10">
@@ -148,28 +147,28 @@ export const Hero = () => {
             {/* CTA buttons */}
             <div className="flex flex-col sm:flex-row gap-3 justify-center lg:justify-start">
               <button
-                onClick={() => router.push("/products")}
+                onClick={() => router.push("/investments")}
                 className="group relative px-7 py-3.5 rounded-2xl font-bold text-gray-900 text-sm sm:text-base overflow-hidden shadow-xl transition-all duration-300 hover:scale-105 active:scale-95 flex items-center justify-center gap-2"
                 style={{ background: "linear-gradient(135deg, #fcd34d, #f59e0b)" }}
               >
-                <ShoppingBag className="w-5 h-5" />
-                Shop Now
+                <TrendingUp className="w-5 h-5" />
+                Start Investing
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </button>
               <button
-                onClick={() => router.push("/become-seller")}
+                onClick={() => router.push("/become-advisor")}
                 className="px-7 py-3.5 rounded-2xl font-bold text-white text-sm sm:text-base border-2 border-white/25 hover:border-white/50 hover:bg-white/10 transition-all duration-300 hover:scale-105 active:scale-95 flex items-center justify-center gap-2 glass"
               >
                 <Tag className="w-4 h-4" />
-                Start Selling
+                Become Advisor
               </button>
             </div>
 
             {/* Trust row */}
             <div className="flex flex-wrap items-center gap-4 justify-center lg:justify-start pt-2">
               {[
-                { icon: Shield, text: "Secure Payments" },
-                { icon: Truck, text: "Fast Delivery" },
+                { icon: Shield, text: "Secure Investments" },
+                { icon: TrendingUp, text: "Expert Analysis" },
                 { icon: Star, text: "4.9★ Rated" },
               ].map(({ icon: Icon, text }) => (
                 <div key={text} className="flex items-center gap-1.5 text-white/60 text-xs font-medium">
@@ -190,7 +189,7 @@ export const Hero = () => {
                 {CATEGORY_CARDS.map((cat, i) => (
                   <button
                     key={cat.label}
-                    onClick={() => router.push(`/products?category=${encodeURIComponent(cat.label)}`)}
+                    onClick={() => router.push(`/investments?category=${encodeURIComponent(cat.label)}`)}
                     className={`group relative rounded-2xl p-6 text-left overflow-hidden shadow-xl transition-all duration-300 hover:scale-105 hover:shadow-2xl animate-fade-in-up`}
                     style={{ animationDelay: `${0.3 + i * 0.1}s`, background: `linear-gradient(135deg, var(--tw-gradient-stops))` }}
                   >
@@ -215,8 +214,8 @@ export const Hero = () => {
                     <Zap className="w-4 h-4 text-white" />
                   </div>
                   <div>
-                    <p className="text-white text-xs font-black">Flash Sale</p>
-                    <p className="text-amber-300 text-[10px] font-bold">Ends in 2h 30m</p>
+                    <p className="text-white text-xs font-black">Market Alert</p>
+                    <p className="text-amber-300 text-[10px] font-bold">Live Updates</p>
                   </div>
                 </div>
               </div>
@@ -227,7 +226,7 @@ export const Hero = () => {
                   <div className="flex">
                     {[1,2,3,4,5].map(s => <Star key={s} className="w-3 h-3 fill-amber-400 text-amber-400" />)}
                   </div>
-                  <p className="text-white text-xs font-bold">10K+ Happy Buyers</p>
+                  <p className="text-white text-xs font-bold">10K+ Investors</p>
                 </div>
               </div>
             </div>
@@ -237,10 +236,10 @@ export const Hero = () => {
         {/* Stats bar */}
         <div className="mt-14 grid grid-cols-2 sm:grid-cols-4 gap-px bg-white/10 rounded-2xl overflow-hidden">
           {[
-            { value: "50K+", label: "Products" },
-            { value: "10K+", label: "Happy Customers" },
-            { value: "500+", label: "Trusted Brands" },
-            { value: "24/7", label: "Support" },
+            { value: "$2.5B+", label: "Assets Managed" },
+            { value: "10K+", label: "Active Investors" },
+            { value: "500+", label: "Investment Options" },
+            { value: "24/7", label: "Expert Support" },
           ].map((stat, i) => (
             <div key={stat.label} className="flex flex-col items-center py-5 px-4 animate-count-up" style={{ animationDelay: `${0.5 + i * 0.1}s`, background: "rgba(255,255,255,0.04)" }}>
               <span className="text-2xl sm:text-3xl font-black text-white" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>{stat.value}</span>

@@ -31,45 +31,45 @@ interface FooterContent {
 }
 
 const defaultContent: FooterContent = {
-  companyName: "EASY SHOP",
-  tagline: "Your Trusted Marketplace",
-  description: "Uganda's leading online marketplace connecting buyers and sellers. Shop with confidence, sell with ease.",
-  email: "dwightkim12@gmail.com",
-  phone: "+256 761 818 885",
-  address: "Kampala, Uganda",
+  companyName: "GLOBAL INVESTMENTS",
+  tagline: "Your Trusted Investment Partner",
+  description: "Premier investment platform offering comprehensive financial solutions, portfolio management, and expert investment guidance for secure financial growth.",
+  email: "info@globalinvestments.com",
+  phone: "+1 (555) 123-4567",
+  address: "New York, NY, USA",
   socialLinks: {
-    facebook: "https://facebook.com/easyshopug",
-    twitter: "https://twitter.com/easyshopug",
-    instagram: "https://instagram.com/easyshopug",
-    youtube: "https://youtube.com/easyshopug",
+    facebook: "https://facebook.com/globalinvestments",
+    twitter: "https://twitter.com/globalinvestments",
+    instagram: "https://instagram.com/globalinvestments",
+    linkedin: "https://linkedin.com/company/globalinvestments",
   },
   quickLinks: [
     { label: "Home", href: "/" },
-    { label: "Products", href: "/products" },
-    { label: "Events", href: "/events" },
-    { label: "Offers", href: "/offers" },
-    { label: "Shops", href: "/shops" },
+    { label: "Investments", href: "/investments" },
+    { label: "Portfolio", href: "/portfolio" },
+    { label: "Market Analysis", href: "/markets" },
+    { label: "Advisory", href: "/advisory" },
   ],
   customerService: [
     { label: "Contact Us", href: "/contact" },
     { label: "FAQs", href: "/faqs" },
-    { label: "Shipping Info", href: "/shipping" },
-    { label: "Returns Policy", href: "/returns" },
-    { label: "Track Order", href: "/orders" },
+    { label: "Investment Guide", href: "/guide" },
+    { label: "Risk Disclosure", href: "/risk-disclosure" },
+    { label: "Account Support", href: "/support" },
   ],
   sellerLinks: [
-    { label: "Become a Seller", href: "/become-seller" },
-    { label: "Seller Dashboard", href: "/seller-dashboard" },
-    { label: "Seller Guidelines", href: "/seller-guidelines" },
+    { label: "Become an Advisor", href: "/become-advisor" },
+    { label: "Advisor Dashboard", href: "/advisor-dashboard" },
+    { label: "Advisory Guidelines", href: "/advisor-guidelines" },
     { label: "Success Stories", href: "/success-stories" },
   ],
-  paymentMethods: ["Visa", "Mastercard", "MTN Mobile Money", "Airtel Money", "PesaPal"],
-  copyrightText: "© 2025 EASY SHOP. All rights reserved.",
+  paymentMethods: ["Visa", "Mastercard", "Bank Transfer", "Wire Transfer", "ACH"],
+  copyrightText: "© 2025 GLOBAL INVESTMENTS. All rights reserved.",
   trustBadges: [
-    { icon: "shield", title: "Secure Shopping", description: "100% secure payments" },
-    { icon: "truck", title: "Fast Delivery", description: "Nationwide shipping" },
+    { icon: "shield", title: "Secure Investments", description: "Bank-level security" },
     { icon: "clock", title: "24/7 Support", description: "Always here to help" },
-    { icon: "creditCard", title: "Easy Payments", description: "Multiple options" },
+    { icon: "creditCard", title: "Easy Transactions", description: "Multiple options" },
+    { icon: "truck", title: "Expert Guidance", description: "Professional advice" },
   ],
 };
 
@@ -234,9 +234,8 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Seller Links */}
           <div>
-            <h3 className="font-semibold text-lg mb-4">For Sellers</h3>
+            <h3 className="font-semibold text-lg mb-4">For Advisors</h3>
             <ul className="space-y-2">
               {content.sellerLinks.map((link, index) => (
                 <li key={index}>
@@ -314,7 +313,7 @@ export default function Footer() {
       {/* Made with Love */}
       <div className="bg-gray-950 py-3">
         <p className="text-center text-gray-600 text-xs flex items-center justify-center gap-1">
-          Made with <Heart className="w-3 h-3 text-red-500 fill-red-500" /> in Uganda
+          Made with <Heart className="w-3 h-3 text-red-500 fill-red-500" /> for your financial success
         </p>
       </div>
     </footer>

@@ -2,8 +2,8 @@ User-agent: *
 Allow: /
 
 # Block private/user-specific pages from indexing
-Disallow: /cart
-Disallow: /checkout
+Disallow: /portfolio
+Disallow: /watchlist
 Disallow: /payment
 Disallow: /order-success
 Disallow: /orders
@@ -15,22 +15,20 @@ Disallow: /forgot-password
 
 # Allow all search engines to crawl public content
 User-agent: Googlebot
-Allow: /products
-Allow: /product/
-Allow: /shops
-Allow: /shop/
-Allow: /events
-Allow: /offers
-Allow: /become-seller
+Allow: /investments
+Allow: /investment/
+Allow: /markets
+Allow: /advisory
+Allow: /analysis
+Allow: /become-advisor
 Allow: /search
 
 User-agent: Bingbot
-Allow: /products
-Allow: /product/
-Allow: /shops
-Allow: /shop/
-Allow: /events
-Allow: /offers
+Allow: /investments
+Allow: /investment/
+Allow: /markets
+Allow: /advisory
+Allow: /analysis
 
 # Sitemap location
-Sitemap: https://eshopug.vercel.app/sitemap.xml
+Sitemap: https://globalinvestments.vercel.app/sitemap.xml

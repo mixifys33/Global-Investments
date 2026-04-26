@@ -106,14 +106,14 @@ const Header = () => {
           <div className="relative w-9 h-9 md:w-11 md:h-11 flex-shrink-0">
             <div className="absolute inset-0 bg-amber-400 rounded-xl rotate-3 group-hover:rotate-6 transition-transform duration-300" />
             <div className="relative w-full h-full bg-amber-400 rounded-xl flex items-center justify-center shadow-md">
-              <span className="text-teal-800 font-black text-sm md:text-base leading-none select-none" style={{ fontFamily: "var(--font-space)" }}>ES</span>
+              <span className="text-teal-800 font-black text-sm md:text-base leading-none select-none" style={{ fontFamily: "var(--font-space)" }}>GI</span>
             </div>
           </div>
           <div className="hidden md:flex flex-col leading-none">
             <span className="text-white font-black text-xl tracking-tight" style={{ fontFamily: "var(--font-space)" }}>
-              Easy<span className="text-amber-400">Shop</span>
+              Global<span className="text-amber-400">Investments</span>
             </span>
-            <span className="text-teal-300/70 text-[9px] tracking-[0.2em] uppercase font-medium">Marketplace</span>
+            <span className="text-teal-300/70 text-[9px] tracking-[0.2em] uppercase font-medium">Investment Platform</span>
           </div>
         </Link>
 
@@ -123,7 +123,7 @@ const Header = () => {
             <Search className="ml-3 md:ml-4 w-4 h-4 text-teal-600 flex-shrink-0" />
             <input
               type="text"
-              placeholder="Search products, brands, categories..."
+              placeholder="Search investments, markets, analysis..."
               value={searchQuery}
               onChange={handleInputChange}
               onFocus={() => searchQuery.trim().length >= 2 && setShowDropdown(true)}
@@ -216,8 +216,8 @@ const Header = () => {
 
           <div className="w-px h-8 bg-white/15" />
 
-          {/* Wishlist */}
-          <Link href="/wishlist" className="relative flex flex-col items-center gap-0.5 group">
+          {/* Watchlist */}
+          <Link href="/watchlist" className="relative flex flex-col items-center gap-0.5 group">
             <div className="relative p-1.5 rounded-xl group-hover:bg-white/10 transition-colors">
               <HeartIcon size={22} isActive={wishlist?.length > 0} />
               {wishlist?.length > 0 && (
@@ -226,11 +226,11 @@ const Header = () => {
                 </span>
               )}
             </div>
-            <span className="text-teal-300/60 text-[9px] font-medium group-hover:text-white transition-colors">Wishlist</span>
+            <span className="text-teal-300/60 text-[9px] font-medium group-hover:text-white transition-colors">Watchlist</span>
           </Link>
 
-          {/* Cart */}
-          <Link href="/cart" className="relative flex flex-col items-center gap-0.5 group">
+          {/* Portfolio */}
+          <Link href="/portfolio" className="relative flex flex-col items-center gap-0.5 group">
             <div className="relative p-1.5 rounded-xl group-hover:bg-white/10 transition-colors">
               <CartIcon size={22} isActive={cart?.length > 0} />
               {cart?.length > 0 && (
@@ -239,7 +239,7 @@ const Header = () => {
                 </span>
               )}
             </div>
-            <span className="text-teal-300/60 text-[9px] font-medium group-hover:text-white transition-colors">Cart</span>
+            <span className="text-teal-300/60 text-[9px] font-medium group-hover:text-white transition-colors">Portfolio</span>
           </Link>
         </div>
       </div>
