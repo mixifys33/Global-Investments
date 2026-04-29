@@ -45,11 +45,13 @@ export const Hero = () => {
     if (q) router.push(`/search?q=${encodeURIComponent(q)}`);
   };
 
+  const gradientStyle = {
+    background: "linear-gradient(135deg, #ff0080 0%, #ff8c00 15%, #ffd700 30%, #00ff00 45%, #00ffff 60%, #0080ff 75%, #8000ff 90%, #ff0080 100%)",
+    backgroundSize: "400% 400%"
+  };
+
   return (
-    <section className="relative overflow-hidden animate-gradient" style={{ 
-      background: "linear-gradient(135deg, #ff0080 0%, #ff8c00 15%, #ffd700 30%, #00ff00 45%, #00ffff 60%, #0080ff 75%, #8000ff 90%, #ff0080 100%)",
-      backgroundSize: "400% 400%"
-    }}>
+    <section className="relative overflow-hidden animate-gradient" style={gradientStyle}>
 
       {/* CRAZY Animated money orbs */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
