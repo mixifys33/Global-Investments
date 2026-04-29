@@ -1,6 +1,6 @@
 "use client";
 
-import { Search, ShoppingBag, Shield, Truck, Star, Zap, ArrowRight, Sparkles, Tag, Percent, Gift, ChevronRight, TrendingUp, PieChart, Home, Sparkle, Building2, Banknote, DollarSign, Coins, Wallet, CreditCard, TrendingDown, Rocket, Crown, Gem, BadgeDollarSign } from "lucide-react";
+import { Search, ShoppingBag, Shield, Truck, Star, Zap, ArrowRight, Sparkles, Tag, Percent, Gift, ChevronRight, TrendingUp, PieChart, Home, Sparkle, Building2, Banknote, DollarSign, Coins, Wallet, CreditCard, TrendingDown, Rocket, Crown, Gem, BadgeDollarSign, Flame } from "lucide-react";
 import { useRouter } from "next/navigation";
 import React, { useState, useEffect } from "react";
 
