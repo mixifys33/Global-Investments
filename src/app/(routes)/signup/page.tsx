@@ -191,30 +191,44 @@ const handleOtpKeyDown  = (index:number, e:React.KeyboardEvent<HTMLInputElement>
  };
 
   return (
-    <div className="w-full py-10 min-h-[85vh] bg-[#f1f1f1]">
-     <h1
-            className="text-3xl sm:text-3.4xl md:text-3.6xl lg:text-6xl font-Poppins font-semibold text-center
-                      bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500
-                      bg-clip-text text-transparent
-                      animate-gradient bg-[length:200%_200%]"
-          >
-            Sign Up
+    <div className="w-full py-10 min-h-[85vh] relative overflow-hidden" style={{ background: "linear-gradient(135deg, #f8fafc, #fff1f2, #fffbeb)" }}>
+      {/* Subtle floating money emojis */}
+      <div className="absolute inset-0 pointer-events-none opacity-5">
+        <div className="absolute top-20 left-10 text-6xl animate-float">💰</div>
+        <div className="absolute top-40 right-20 text-5xl animate-float animation-delay-2000">💎</div>
+        <div className="absolute bottom-20 left-1/4 text-4xl animate-float animation-delay-4000">💸</div>
+      </div>
+
+      <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-center mb-2 animate-gradient" style={{ 
+        fontFamily: "'Plus Jakarta Sans', sans-serif",
+        background: "linear-gradient(135deg, #0f766e, #14b8a6, #06b6d4)",
+        backgroundSize: "200% auto",
+        WebkitBackgroundClip: "text",
+        WebkitTextFillColor: "transparent",
+        backgroundClip: "text"
+      }}>
+        💰 Join Global Investments
       </h1>
 
-      <p className="text-center text-lg font-medium py-3 text-[#00000099]">
-        Home . Sign Up
+      <p className="text-center text-lg font-medium py-3 text-gray-600">
+        Home • Sign Up • Start Your Journey
       </p>
 
       <div className="w-full flex justify-center">
-        <div className="md:w-[480px] p-8 bg-white shadow rounded-lg">
-          <h3
-            className="text-[1.3rem] sm:text-2.5xl md:text-[1.7rem] lg:text-3xl font-Poppins font-semibold text-center mb-2
-                      bg-gradient-to-r from-purple-500 via-pink-500 to-red-500
-                      bg-clip-text text-transparent
-                      animate-gradient bg-[length:200%_200%]"
-          >
-            Sign Up for Global Investments
+        <div className="md:w-[480px] p-8 bg-white shadow-xl rounded-2xl border-2 border-teal-100 relative overflow-hidden">
+          {/* Subtle sparkles */}
+          <div className="absolute top-4 right-4 w-2 h-2 bg-yellow-400 rounded-full animate-ping opacity-60" />
+          <div className="absolute bottom-6 left-6 w-1.5 h-1.5 bg-teal-400 rounded-full animate-ping animation-delay-2000 opacity-50" />
 
+          <h3 className="text-xl sm:text-2xl md:text-3xl font-black text-center mb-2 animate-gradient" style={{ 
+            fontFamily: "'Plus Jakarta Sans', sans-serif",
+            background: "linear-gradient(135deg, #059669, #0891b2, #7c3aed)",
+            backgroundSize: "200% auto",
+            WebkitBackgroundClip: "text",
+            WebkitTextFillColor: "transparent",
+            backgroundClip: "text"
+          }}>
+            Sign Up for Global Investments
           </h3>
 
 
@@ -340,28 +354,15 @@ const handleOtpKeyDown  = (index:number, e:React.KeyboardEvent<HTMLInputElement>
             <button
             type="submit"
             disabled={signupMutation.isPending}
-            className="
-              w-full
-              text-base sm:text-lg md:text-xl lg:text-1.5xl mt-4
-              font-semibold
-              bg-gradient-to-r from-blue-500 to-purple-600
-              text-white
-              py-1.5 sm:py-2 md:py-2.6
-              rounded-lg
-              shadow-md
-              transition-all duration-300 ease-in-out
-              hover:from-purple-600 hover:to-blue-500
-              hover:scale-105
-              flex justify-center items-center
-              gap-2
-            "
+            className="w-full text-base sm:text-lg font-black py-3 rounded-2xl shadow-xl transition-all duration-300 ease-in-out hover:scale-105 disabled:opacity-70 disabled:cursor-not-allowed border-2 border-teal-200 flex justify-center items-center gap-2"
+            style={{ background: "linear-gradient(135deg, #0f766e, #14b8a6, #06b6d4)" }}
           >
             {showSpinner ? (
-              // Gradient spinner
-              <span className="w-6 h-6 border-4 border-t-transparent border-white rounded-full animate-spin
-                bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500"></span>
+              <div className="w-6 h-6 border-4 border-t-transparent border-white rounded-full animate-spin"></div>
             ) : (
-              signupButtonText
+              <span className="text-white flex items-center gap-2">
+                💰 {signupButtonText || "Sign Up & Start Investing"}
+              </span>
             )}
           </button>
 

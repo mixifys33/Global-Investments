@@ -521,7 +521,13 @@ const EasyAIPage = () => {
   }
 
   return (
-    <div className="fixed inset-0 z-[100] flex bg-gray-50">
+    <div className="fixed inset-0 z-[100] flex" style={{ background: "linear-gradient(135deg, #f8fafc, #fff1f2, #fffbeb)" }}>
+      {/* Subtle floating money emojis */}
+      <div className="absolute inset-0 pointer-events-none opacity-3">
+        <div className="absolute top-20 left-10 text-4xl animate-float">💰</div>
+        <div className="absolute top-40 right-20 text-3xl animate-float animation-delay-2000">💎</div>
+        <div className="absolute bottom-20 left-1/4 text-2xl animate-float animation-delay-4000">💸</div>
+      </div>
       {/* Action Notification */}
       {actionNotification && (
         <div className="fixed top-4 left-1/2 -translate-x-1/2 z-[110] bg-green-600 text-white px-4 py-2.5 rounded-lg shadow-lg text-sm font-medium animate-in slide-in-from-top">
@@ -540,21 +546,21 @@ const EasyAIPage = () => {
       {/* Sidebar */}
       <aside className={`
         fixed lg:relative inset-y-0 left-0 z-[102]
-        w-72 bg-gray-900 text-white flex flex-col
+        w-72 flex flex-col
         transform transition-transform duration-300 ease-in-out
         ${mobileSidebarOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}
         ${!sidebarOpen && 'lg:w-0 lg:overflow-hidden'}
-      `}>
+      `} style={{ background: "linear-gradient(135deg, #1f2937, #374151, #4b5563)" }}>
         {/* Sidebar Header */}
-        <div className="flex-shrink-0 p-4 border-b border-gray-700">
+        <div className="flex-shrink-0 p-4 border-b border-gray-600">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
-              <div className="w-9 h-9 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center">
+              <div className="w-9 h-9 rounded-xl flex items-center justify-center shadow-lg" style={{ background: "linear-gradient(135deg, #0f766e, #14b8a6)" }}>
                 <Sparkles className="w-5 h-5 text-white" />
               </div>
               <div>
-                <h1 className="font-bold">Atlas AI</h1>
-                <p className="text-xs text-gray-400">Investment Assistant</p>
+                <h1 className="font-black text-white">💰 Atlas AI</h1>
+                <p className="text-xs text-gray-300 font-medium">Investment Assistant</p>
               </div>
             </div>
             <button 
@@ -570,16 +576,17 @@ const EasyAIPage = () => {
         <div className="flex-shrink-0 p-3">
           <button
             onClick={createNewSession}
-            className="w-full flex items-center gap-2 px-4 py-2.5 bg-blue-600 hover:bg-blue-700 rounded-xl transition font-medium text-sm"
+            className="w-full flex items-center gap-2 px-4 py-2.5 rounded-xl transition font-black text-sm text-white shadow-lg hover:scale-105"
+            style={{ background: "linear-gradient(135deg, #0f766e, #14b8a6)" }}
           >
             <Plus className="w-4 h-4" />
-            New Chat
+            💰 New Investment Chat
           </button>
         </div>
 
         {/* Chat Sessions - Scrollable */}
-        <div className="flex-1 overflow-y-auto px-3 min-h-0">
-          <p className="text-xs text-gray-500 px-2 py-2 font-medium sticky top-0 bg-gray-900">Recent</p>
+        <div className="flex-1 overflow-y-auto px-3 min-h-0" style={{ background: "rgba(0,0,0,0.1)" }}>
+          <p className="text-xs text-gray-300 px-2 py-2 font-bold sticky top-0" style={{ background: "linear-gradient(135deg, #1f2937, #374151)" }}>💎 Recent Chats</p>
           <div className="space-y-1 pb-3">
             {sessions.map(session => (
               <div
@@ -689,15 +696,21 @@ const EasyAIPage = () => {
             /* Welcome Screen */
             <div className="h-full flex flex-col items-center justify-center p-4 sm:p-6">
               <div className="max-w-xl w-full text-center">
-                <div className="w-16 h-16 sm:w-20 sm:h-20 mx-auto mb-4 sm:mb-6 bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 rounded-2xl sm:rounded-3xl flex items-center justify-center shadow-lg">
-                  <Sparkles className="w-8 h-8 sm:w-10 sm:h-10 text-white" />
+                <div className="w-16 h-16 sm:w-20 sm:h-20 mx-auto mb-4 sm:mb-6 rounded-2xl sm:rounded-3xl flex items-center justify-center shadow-2xl border-4 border-yellow-400" style={{ background: "linear-gradient(135deg, #0f766e, #14b8a6, #06b6d4)" }}>
+                  <Sparkles className="w-8 h-8 sm:w-10 sm:h-10 text-white animate-pulse" />
                 </div>
 
-                <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">
-                  Welcome to <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Atlas AI</span>
+                <h1 className="text-2xl sm:text-3xl font-black text-gray-900 mb-2">
+                  Welcome to <span className="animate-gradient" style={{ 
+                    background: "linear-gradient(135deg, #0f766e, #14b8a6, #06b6d4)",
+                    backgroundSize: "200% auto",
+                    WebkitBackgroundClip: "text",
+                    WebkitTextFillColor: "transparent",
+                    backgroundClip: "text"
+                  }}>💰 Atlas AI</span>
                 </h1>
-                <p className="text-gray-600 mb-6 text-sm sm:text-base">
-                  Your intelligent investment assistant for Global Investments
+                <p className="text-gray-600 mb-6 text-sm sm:text-base font-medium">
+                  Your intelligent investment assistant for Global Investments 💎
                 </p>
 
                 {/* Features Grid */}
