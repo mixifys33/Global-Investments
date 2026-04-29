@@ -1,6 +1,6 @@
 "use client";
 
-import { Eye, Heart, ShoppingBag, Star, Zap, GitCompare } from "lucide-react";
+import { Eye, Heart, ShoppingBag, Star, Zap, GitCompare, Flame, Crown, Gem, DollarSign, TrendingUp } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
@@ -106,180 +106,234 @@ const ProductCard = ({ product, isEvent }: { product: any; isEvent?: boolean }) 
 
   return (
     <>
-      <div className="group relative bg-white rounded-2xl overflow-hidden border border-gray-100 hover:border-teal-200 shadow-sm hover:shadow-2xl transition-all duration-300 flex flex-col card-hover">
+      <div className="group relative rounded-3xl overflow-hidden border-4 border-yellow-400 shadow-2xl hover:shadow-pink-500/50 transition-all duration-300 flex flex-col animate-glow-pulse" style={{ background: "linear-gradient(135deg, #ffffff, #fff5f5, #fffbeb)" }}>
 
-        {/* Image */}
-        <div className="relative overflow-hidden bg-gradient-to-br from-gray-50 to-gray-100 aspect-square">
-          <Link href={`/product/${product?.slug || product?.id}`}>
-            {safeImgSrc ? (
-              <Image
-                src={safeImgSrc}
-                alt={product?.title || "Product"}
-                fill
-                className="object-cover group-hover:scale-110 transition-transform duration-500"
-                sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 20vw"
-                unoptimized={!isImageKit}
-                onError={() => setImgError(true)}
-              />
-            ) : (
-              <div className="w-full h-full flex items-center justify-center">
-                <ShoppingBag className="w-12 h-12 text-gray-300" />
-              </div>
-            )}
-          </Link>
+        {/* Image - COLORFUL FRAME */}
+        <div className="relative overflow-hidden aspect-square" style={{ background: "linear-gradient(135deg, #ff0080, #ff8c00, #ffd700, #00ff00)" }}>
+          <div className="absolute inset-1 rounded-2xl overflow-hidden bg-white">
+            <Link href={`/product/${product?.slug || product?.id}`}>
+              {safeImgSrc ? (
+                <Image
+                  src={safeImgSrc}
+                  alt={product?.title || "Product"}
+                  fill
+                  className="object-cover group-hover:scale-110 transition-transform duration-500"
+                  sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 20vw"
+                  unoptimized={!isImageKit}
+                  onError={() => setImgError(true)}
+                />
+              ) : (
+                <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100">
+                  <ShoppingBag className="w-12 h-12 text-gray-300" />
+                </div>
+              )}
+            </Link>
 
-          {/* Gradient overlay on hover */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+            {/* Gradient overlay on hover - COLORFUL */}
+            <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" style={{ background: "linear-gradient(135deg, rgba(255,0,128,0.3), rgba(255,140,0,0.3), rgba(255,215,0,0.3))" }} />
+          </div>
 
-          {/* Badges */}
-          <div className="absolute top-2 left-2 flex flex-col gap-1 z-10">
+          {/* Floating money emojis */}
+          <div className="absolute top-2 left-2 text-lg opacity-60 animate-float pointer-events-none">💰</div>
+          <div className="absolute top-3 right-3 text-base opacity-50 animate-float animation-delay-2000 pointer-events-none">💎</div>
+
+          {/* FLASHY Badges */}
+          <div className="absolute top-3 left-3 flex flex-col gap-1 z-10">
             {discount >= 10 && (
-              <span className="flex items-center gap-0.5 bg-gradient-to-r from-rose-500 to-pink-600 text-white text-[10px] font-black px-2 py-0.5 rounded-lg shadow-md">
-                <Zap className="w-2.5 h-2.5" />-{discount}%
+              <span className="flex items-center gap-1 text-white text-xs font-black px-2 py-1 rounded-xl shadow-xl animate-bounce border-2 border-white" style={{ background: "linear-gradient(135deg, #ff0080, #ff00ff)" }}>
+                <Flame className="w-3 h-3 animate-pulse" />💸 -{discount}%
               </span>
             )}
             {isEvent && (
-              <span className="bg-gradient-to-r from-amber-500 to-orange-500 text-white text-[10px] font-black px-2 py-0.5 rounded-lg shadow-md">
-                OFFER
+              <span className="text-white text-xs font-black px-2 py-1 rounded-xl shadow-xl animate-wiggle border-2 border-white" style={{ background: "linear-gradient(135deg, #ffd700, #ff8c00)" }}>
+                🔥 HOT DEAL
               </span>
             )}
             {product?.stock === 0 && (
-              <span className="bg-gray-700 text-white text-[10px] font-bold px-2 py-0.5 rounded-lg">
-                SOLD OUT
+              <span className="bg-gray-700 text-white text-xs font-black px-2 py-1 rounded-xl border-2 border-white">
+                😭 SOLD OUT
               </span>
             )}
             {product?.stock > 0 && product?.stock <= 5 && (
-              <span className="bg-gradient-to-r from-amber-400 to-yellow-500 text-gray-900 text-[10px] font-black px-2 py-0.5 rounded-lg shadow-md">
-                ONLY {product.stock} LEFT
+              <span className="text-gray-900 text-xs font-black px-2 py-1 rounded-xl shadow-xl animate-pulse border-2 border-white" style={{ background: "linear-gradient(135deg, #ffd700, #ffff00)" }}>
+                ⚡ ONLY {product.stock} LEFT!
               </span>
             )}
           </div>
 
-          {/* Quick actions */}
-          <div className="absolute top-2 right-2 flex flex-col gap-1.5 z-10 opacity-0 group-hover:opacity-100 translate-x-3 group-hover:translate-x-0 transition-all duration-300">
+          {/* Quick actions - COLORFUL */}
+          <div className="absolute top-3 right-3 flex flex-col gap-2 z-10 opacity-0 group-hover:opacity-100 translate-x-3 group-hover:translate-x-0 transition-all duration-300">
             <button
               onClick={() => isWishListed
                 ? removeFromWishlist(product.id, user, location, deviceInfo)
                 : addToWishlist({ ...product, quantity: 1 }, user, location, deviceInfo)}
-              className={`w-8 h-8 rounded-xl shadow-lg flex items-center justify-center transition-all duration-200 hover:scale-110 active:scale-95 ${
+              className={`w-10 h-10 rounded-2xl shadow-2xl flex items-center justify-center transition-all duration-200 hover:scale-125 active:scale-95 border-2 border-white animate-bounce ${
                 isWishListed
-                  ? 'bg-gradient-to-br from-rose-500 to-pink-600 text-white'
-                  : 'bg-white/95 text-gray-500 hover:text-rose-500'
+                  ? 'text-white'
+                  : 'text-gray-600 hover:text-white'
               }`}
+              style={{ background: isWishListed ? "linear-gradient(135deg, #ff0080, #ff00ff)" : "linear-gradient(135deg, #ffffff, #fff5f5)" }}
             >
-              <Heart className={`w-3.5 h-3.5 ${isWishListed ? 'fill-current' : ''}`} />
+              <Heart className={`w-4 h-4 ${isWishListed ? 'fill-current animate-pulse' : ''}`} />
             </button>
             <button
               onClick={handleCompare}
               title={isCompared ? "Remove from compare" : !canAddMore ? "Compare list full (max 4)" : "Add to compare"}
-              className={`w-8 h-8 rounded-xl shadow-lg flex items-center justify-center transition-all duration-200 hover:scale-110 active:scale-95 ${
+              className={`w-10 h-10 rounded-2xl shadow-2xl flex items-center justify-center transition-all duration-200 hover:scale-125 active:scale-95 border-2 border-white ${
                 isCompared
-                  ? 'bg-gradient-to-br from-purple-500 to-violet-600 text-white'
+                  ? 'text-white'
                   : !canAddMore
-                  ? 'bg-white/95 text-gray-300 cursor-not-allowed'
-                  : 'bg-white/95 text-gray-500 hover:text-purple-600'
+                  ? 'text-gray-300 cursor-not-allowed'
+                  : 'text-gray-600 hover:text-white'
               }`}
+              style={{ background: isCompared ? "linear-gradient(135deg, #8000ff, #0080ff)" : !canAddMore ? "#f3f4f6" : "linear-gradient(135deg, #ffffff, #f0f9ff)" }}
             >
-              <GitCompare className="w-3.5 h-3.5" />
+              <GitCompare className="w-4 h-4" />
             </button>
             <button
               onClick={() => setOpen(true)}
-              className="w-8 h-8 rounded-xl bg-white/95 shadow-lg flex items-center justify-center text-gray-500 hover:text-teal-600 hover:scale-110 active:scale-95 transition-all duration-200"
+              className="w-10 h-10 rounded-2xl shadow-2xl flex items-center justify-center text-gray-600 hover:text-white hover:scale-125 active:scale-95 transition-all duration-200 border-2 border-white"
+              style={{ background: "linear-gradient(135deg, #ffffff, #f0fdf4)" }}
             >
-              <Eye className="w-3.5 h-3.5" />
+              <Eye className="w-4 h-4" />
             </button>
           </div>
 
-          {/* Event timer */}
+          {/* Event timer - FLASHY */}
           {isEvent && timeLeft && (
-            <div className="absolute bottom-2 left-2 right-2 glass-dark text-white text-[10px] font-bold text-center py-1.5 rounded-xl">
-              ⏱ {timeLeft} left
+            <div className="absolute bottom-3 left-3 right-3 text-white text-xs font-black text-center py-2 rounded-2xl shadow-xl border-2 border-white animate-pulse" style={{ background: "linear-gradient(135deg, #ff0080, #8000ff)" }}>
+              ⏱ {timeLeft} left! 🔥
             </div>
           )}
         </div>
 
-        {/* Info */}
-        <div className="flex flex-col flex-1 p-3">
-          {/* Shop name */}
+        {/* Info - COLORFUL */}
+        <div className="flex flex-col flex-1 p-4 relative overflow-hidden" style={{ background: "linear-gradient(135deg, #ffffff, #fff5f5, #fffbeb)" }}>
+          {/* Sparkle effects */}
+          <div className="absolute top-2 right-2 w-2 h-2 bg-yellow-400 rounded-full animate-ping opacity-60" />
+          <div className="absolute bottom-4 left-3 w-1.5 h-1.5 bg-pink-400 rounded-full animate-ping animation-delay-2000 opacity-50" />
+
+          {/* Shop name - FLASHY */}
           {product?.Shop?.name && (
             <Link href={`/shop/${product?.Shop?.id}`}
-              className="text-[10px] text-teal-600 font-bold hover:text-teal-800 truncate mb-1 uppercase tracking-wide transition-colors">
+              className="inline-flex items-center gap-1 text-xs font-black hover:scale-105 truncate mb-2 uppercase tracking-wide transition-all px-2 py-1 rounded-full shadow-md border-2 border-purple-200" style={{ background: "linear-gradient(135deg, #8000ff, #0080ff)", color: "white" }}>
+              <Crown className="w-3 h-3 animate-bounce" />
               {product.Shop.name}
             </Link>
           )}
 
-          {/* Title */}
+          {/* Title - COLORFUL */}
           <Link href={`/product/${product?.slug || product?.id}`}>
-            <h3 className="text-sm font-semibold text-gray-800 line-clamp-2 leading-snug hover:text-teal-700 transition-colors mb-2" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
+            <h3 className="text-sm font-black line-clamp-2 leading-snug hover:scale-105 transition-all mb-3 drop-shadow-sm animate-gradient" style={{ 
+              fontFamily: "'Plus Jakarta Sans', sans-serif",
+              background: "linear-gradient(135deg, #ff0080, #ff8c00, #ffd700)",
+              backgroundSize: "200% auto",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              backgroundClip: "text"
+            }}>
               {product?.title}
             </h3>
           </Link>
 
-          {/* Stars */}
+          {/* Stars - GOLDEN */}
           {rating > 0 && (
-            <div className="flex items-center gap-1 mb-2">
+            <div className="flex items-center gap-2 mb-3">
               <div className="flex">
                 {[1,2,3,4,5].map((s) => (
-                  <Star key={s} className={`w-3 h-3 ${s <= fullStars ? 'fill-amber-400 text-amber-400' : 'text-gray-200 fill-gray-200'}`} />
+                  <Star key={s} className={`w-4 h-4 ${s <= fullStars ? 'fill-yellow-400 text-yellow-400 animate-pulse' : 'text-gray-200 fill-gray-200'}`} />
                 ))}
               </div>
-              <span className="text-[10px] text-gray-400 font-medium">({rating.toFixed(1)})</span>
+              <span className="text-xs text-gray-600 font-bold bg-yellow-100 px-2 py-0.5 rounded-full">⭐ {rating.toFixed(1)}</span>
             </div>
           )}
 
-          {/* Price */}
-          <div className="flex items-center justify-between mt-auto mb-3">
-            <div className="flex items-baseline gap-1.5">
-              <span className="text-base font-black text-gray-900" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
-                {formatPrice(product?.sale_price)}
-              </span>
-              {discount > 0 && (
-                <span className="text-xs text-gray-400 line-through font-medium">
-                  {formatPrice(product?.regular_price)}
+          {/* Price - MEGA FLASHY */}
+          <div className="flex items-center justify-between mt-auto mb-4">
+            <div className="flex flex-col gap-1">
+              <div className="flex items-baseline gap-2">
+                <span className="text-lg font-black animate-gradient" style={{ 
+                  fontFamily: "'Space Grotesk', sans-serif",
+                  background: "linear-gradient(135deg, #00ff00, #00ffff, #0080ff)",
+                  backgroundSize: "200% auto",
+                  WebkitBackgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                  backgroundClip: "text"
+                }}>
+                  💰 {formatPrice(product?.sale_price)}
                 </span>
+                {discount > 0 && (
+                  <span className="text-xs text-gray-400 line-through font-medium bg-gray-100 px-1 py-0.5 rounded">
+                    {formatPrice(product?.regular_price)}
+                  </span>
+                )}
+              </div>
+              {discount > 0 && (
+                <span className="text-xs font-black text-green-600 animate-pulse">💸 You save {formatPrice(product?.regular_price - product?.sale_price)}!</span>
               )}
             </div>
             {product?.totalSales > 0 && (
-              <span className="text-[10px] text-emerald-600 font-bold bg-emerald-50 px-1.5 py-0.5 rounded-full">
-                {product.totalSales} sold
+              <span className="text-xs text-white font-black px-2 py-1 rounded-full shadow-md animate-bounce" style={{ background: "linear-gradient(135deg, #00ff00, #00ffff)" }}>
+                🔥 {product.totalSales} sold
               </span>
             )}
           </div>
 
-          {/* Add to cart */}
+          {/* Add to cart - MEGA BUTTON */}
           <button
             onClick={() => isInCart
               ? removeFromCart(product.id, user, location, deviceInfo)
               : addToCart({ ...product, quantity: 1 }, user, location, deviceInfo)}
             disabled={product?.stock === 0}
-            className={`w-full flex items-center justify-center gap-1.5 py-2.5 rounded-xl text-xs font-bold transition-all duration-200 active:scale-95 ${
+            className={`w-full flex items-center justify-center gap-2 py-3 rounded-2xl text-sm font-black transition-all duration-200 active:scale-95 shadow-xl border-3 ${
               product?.stock === 0
-                ? 'bg-gray-100 text-gray-400 cursor-not-allowed'
+                ? 'bg-gray-100 text-gray-400 cursor-not-allowed border-gray-200'
                 : isInCart
-                ? 'bg-rose-50 text-rose-600 border border-rose-200 hover:bg-rose-500 hover:text-white hover:border-rose-500'
-                : 'text-white shadow-md hover:shadow-lg hover:scale-[1.02]'
+                ? 'text-white border-white animate-pulse'
+                : 'text-white border-white hover:scale-105 animate-glow-pulse'
             }`}
-            style={product?.stock !== 0 && !isInCart ? { background: "linear-gradient(135deg, #0f766e, #14b8a6)" } : {}}
+            style={product?.stock !== 0 ? { 
+              background: isInCart 
+                ? "linear-gradient(135deg, #ff0080, #ff00ff)" 
+                : "linear-gradient(135deg, #00ff00, #00ffff, #0080ff)" 
+            } : {}}
           >
-            <ShoppingBag className="w-3.5 h-3.5" />
-            {product?.stock === 0 ? 'Out of Stock' : isInCart ? 'Remove' : 'Add to Cart'}
+            {product?.stock === 0 ? (
+              <>😭 Out of Stock</>
+            ) : isInCart ? (
+              <>
+                <Zap className="w-4 h-4 animate-bounce" />
+                💸 Remove from Cart
+              </>
+            ) : (
+              <>
+                <ShoppingBag className="w-4 h-4 animate-bounce" />
+                💰 Add to Cart NOW!
+              </>
+            )}
           </button>
 
-          {/* Compare button */}
+          {/* Compare button - COLORFUL */}
           <button
             onClick={handleCompare}
             disabled={!isCompared && !canAddMore}
             title={!isCompared && !canAddMore ? "Compare list full — remove a product first" : ""}
-            className={`w-full flex items-center justify-center gap-1.5 py-2 rounded-xl text-xs font-semibold transition-all duration-200 active:scale-95 mt-1.5 ${
+            className={`w-full flex items-center justify-center gap-2 py-2.5 rounded-2xl text-xs font-black transition-all duration-200 active:scale-95 mt-2 shadow-lg border-2 ${
               isCompared
-                ? 'bg-purple-50 text-purple-700 border border-purple-200 hover:bg-purple-100'
+                ? 'text-white border-white animate-pulse'
                 : !canAddMore
-                ? 'bg-gray-50 text-gray-300 border border-gray-100 cursor-not-allowed'
-                : 'bg-gray-50 text-gray-500 border border-gray-200 hover:bg-purple-50 hover:text-purple-600 hover:border-purple-200'
+                ? 'bg-gray-50 text-gray-300 border-gray-100 cursor-not-allowed'
+                : 'text-white border-white hover:scale-105'
             }`}
+            style={isCompared 
+              ? { background: "linear-gradient(135deg, #8000ff, #0080ff)" }
+              : !canAddMore 
+              ? {} 
+              : { background: "linear-gradient(135deg, #ff8c00, #ffd700)" }
+            }
           >
-            <GitCompare className="w-3.5 h-3.5" />
-            {isCompared ? 'Comparing ✓' : !canAddMore ? 'Compare Full (4/4)' : 'Compare'}
+            <GitCompare className="w-4 h-4" />
+            {isCompared ? '✅ Comparing!' : !canAddMore ? 'Compare Full (4/4)' : '⚡ Compare Now'}
           </button>
         </div>
       </div>

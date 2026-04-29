@@ -227,7 +227,7 @@ export const Hero = () => {
             </div>
           </div>
 
-          {/* Right — category cards - WILD COLORS */}
+          {/* Right — category cards - WILD COLORS (Desktop) */}
           <div className="hidden lg:block relative animate-fade-in-up delay-300">
             <div className="relative">
               {/* Floating ring - COLORFUL */}
@@ -287,6 +287,67 @@ export const Hero = () => {
             </div>
           </div>
         </div>
+
+        {/* Mobile-only MEGA category showcase - BETTER THAN DESKTOP! */}
+        <div className="lg:hidden mt-10 animate-fade-in-up delay-300">
+          <div className="relative">
+            {/* Mobile floating rings */}
+            <div className="absolute inset-0 rounded-3xl border-4 border-yellow-400 animate-spin-slow shadow-2xl" style={{ margin: "-15px" }} />
+            <div className="absolute inset-0 rounded-3xl border-4 border-pink-500 animate-spin-slow animation-delay-2000 shadow-2xl" style={{ margin: "-25px" }} />
+
+            <div className="grid grid-cols-2 gap-4">
+              {CATEGORY_CARDS.map((cat, i) => (
+                <button
+                  key={cat.label}
+                  onClick={() => router.push(`/investments?category=${encodeURIComponent(cat.label)}`)}
+                  className={`group relative rounded-3xl p-5 text-left overflow-hidden shadow-2xl transition-all duration-300 hover:scale-105 hover:shadow-pink-500/50 animate-fade-in-up border-4 border-white`}
+                  style={{ animationDelay: `${0.3 + i * 0.1}s` }}
+                >
+                  <div className={`absolute inset-0 bg-gradient-to-br ${cat.color} opacity-95 animate-gradient`} style={{ backgroundSize: "200% 200%" }} />
+                  <div className="absolute inset-0 opacity-0 group-hover:opacity-40 transition-opacity duration-300 animate-pulse" style={{ background: "radial-gradient(circle at 50% 50%, white, transparent 60%)" }} />
+                  
+                  {/* Mobile money rain effect - MORE INTENSE */}
+                  <div className="absolute top-0 left-1/4 text-xl opacity-70 animate-float">💰</div>
+                  <div className="absolute top-1/4 right-1/4 text-lg opacity-60 animate-float animation-delay-2000">💎</div>
+                  <div className="absolute bottom-1/4 left-1/3 text-base opacity-50 animate-float animation-delay-4000">💸</div>
+                  <div className="absolute top-1/2 right-1/2 text-sm opacity-40 animate-float">🪙</div>
+                  
+                  <div className="relative z-10">
+                    <div className="w-14 h-14 rounded-2xl bg-white/30 flex items-center justify-center mb-3 group-hover:scale-125 group-hover:rotate-12 transition-all duration-300 shadow-xl border-2 border-yellow-300">
+                      <cat.icon className="w-7 h-7 text-white drop-shadow-lg" />
+                    </div>
+                    <p className="text-white font-black text-lg drop-shadow-lg">{cat.label}</p>
+                    <p className="text-yellow-300 text-xs mt-1 font-black drop-shadow-md animate-pulse">{cat.deal}</p>
+                    <ChevronRight className="w-5 h-5 text-white mt-2 group-hover:translate-x-2 transition-transform animate-bounce" />
+                  </div>
+                </button>
+              ))}
+            </div>
+
+            {/* Mobile floating badges - BIGGER AND FLASHIER */}
+            <div className="absolute -top-4 -right-4 rounded-2xl px-4 py-3 shadow-2xl animate-float border-3 border-yellow-400" style={{ background: "linear-gradient(135deg, #ff0080, #ff00ff)" }}>
+              <div className="flex items-center gap-2">
+                <div className="w-8 h-8 rounded-full bg-gradient-to-br from-yellow-400 to-orange-500 flex items-center justify-center animate-spin-slow shadow-xl">
+                  <Zap className="w-5 h-5 text-white" />
+                </div>
+                <div>
+                  <p className="text-white text-xs font-black drop-shadow-lg">🔥 MOBILE</p>
+                  <p className="text-yellow-300 text-[10px] font-black drop-shadow-md">EXCLUSIVE!</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="absolute -bottom-4 -left-4 rounded-2xl px-4 py-3 shadow-2xl animate-float animation-delay-2000 border-3 border-pink-400" style={{ background: "linear-gradient(135deg, #00ff00, #00ffff)" }}>
+              <div className="flex items-center gap-2">
+                <div className="flex">
+                  {[1,2,3,4,5].map(s => <Star key={s} className="w-3 h-3 fill-yellow-400 text-yellow-400 animate-pulse" />)}
+                </div>
+                <p className="text-gray-900 text-xs font-black drop-shadow-lg">📱 BEST APP!</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
         {/* Stats bar - SUPER COLORFUL */}
         <div className="mt-16 grid grid-cols-2 sm:grid-cols-4 gap-1 rounded-3xl overflow-hidden shadow-2xl border-4 border-yellow-400">

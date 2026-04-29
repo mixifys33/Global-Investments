@@ -175,24 +175,27 @@ export default function Page() {
       <EventsSection minEventsToShow={5} />
       <OffersSection minOffersToShow={5} />
 
-      {/* Category pills - SUPER COLORFUL */}
+      {/* Category pills - SUPER COLORFUL with MOBILE ENHANCEMENTS */}
       <section className="w-full px-4 sm:px-6 lg:px-8 py-10 relative overflow-hidden" style={{ background: "linear-gradient(135deg, #fff5f5, #fffbeb, #f0fdf4, #eff6ff, #faf5ff)" }}>
-        {/* Floating money background */}
-        <div className="absolute inset-0 pointer-events-none opacity-10">
-          <div className="absolute top-10 left-10 text-6xl animate-float">💰</div>
-          <div className="absolute top-20 right-20 text-5xl animate-float animation-delay-2000">💎</div>
-          <div className="absolute bottom-10 left-1/3 text-4xl animate-float animation-delay-4000">💸</div>
-          <div className="absolute top-1/2 right-1/4 text-5xl animate-float">🪙</div>
+        {/* Mobile-specific floating money background - MORE INTENSE */}
+        <div className="absolute inset-0 pointer-events-none opacity-15 lg:opacity-10">
+          <div className="absolute top-5 left-5 text-4xl lg:text-6xl animate-float">💰</div>
+          <div className="absolute top-10 right-10 text-3xl lg:text-5xl animate-float animation-delay-2000">💎</div>
+          <div className="absolute bottom-5 left-1/4 text-2xl lg:text-4xl animate-float animation-delay-4000">💸</div>
+          <div className="absolute top-1/3 right-1/4 text-3xl lg:text-5xl animate-float">🪙</div>
+          {/* Mobile-only extra emojis */}
+          <div className="lg:hidden absolute top-1/2 left-10 text-2xl animate-float animation-delay-2000">🚀</div>
+          <div className="lg:hidden absolute bottom-10 right-10 text-xl animate-float animation-delay-4000">⚡</div>
         </div>
         
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="flex items-center justify-between mb-6">
             <div className="flex items-center gap-3">
-              <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-pink-500 to-purple-600 flex items-center justify-center shadow-xl animate-bounce">
+              <div className="w-12 h-12 lg:w-12 lg:h-12 rounded-2xl bg-gradient-to-br from-pink-500 to-purple-600 flex items-center justify-center shadow-xl animate-bounce">
                 <Tag className="w-6 h-6 text-white" />
               </div>
               <div>
-                <h2 className="text-2xl sm:text-3xl font-black animate-gradient" style={{ 
+                <h2 className="text-xl sm:text-2xl lg:text-3xl font-black animate-gradient" style={{ 
                   background: "linear-gradient(135deg, #ff0080, #ff8c00, #ffd700)",
                   backgroundSize: "200% auto",
                   WebkitBackgroundClip: "text",
@@ -201,19 +204,23 @@ export default function Page() {
                 }}>
                   💰 Investment Categories
                 </h2>
-                <p className="text-sm font-bold text-purple-600">Pick your money maker! 🚀</p>
+                <p className="text-xs sm:text-sm font-bold text-purple-600">Pick your money maker! 🚀</p>
               </div>
             </div>
           </div>
-          <div className="grid grid-cols-4 sm:grid-cols-8 gap-4">
+          
+          {/* Mobile gets BIGGER, more colorful cards */}
+          <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-3 sm:gap-4">
             {INVESTMENT_CATEGORIES.map((cat, i) => (
               <Link key={cat.label} href={cat.href}
                 className="group flex flex-col items-center gap-2 animate-fade-in-up hover:scale-110 transition-all duration-300"
                 style={{ animationDelay: `${i * 0.05}s` }}>
-                <div className={`w-16 h-16 sm:w-20 sm:h-20 rounded-3xl bg-gradient-to-br ${cat.color} flex items-center justify-center shadow-xl group-hover:shadow-2xl group-hover:rotate-12 transition-all duration-300 border-4 border-white animate-glow-pulse`}>
-                  <cat.icon className="w-8 h-8 sm:w-10 sm:h-10 text-white drop-shadow-lg" />
+                <div className={`w-20 h-20 sm:w-16 sm:h-16 lg:w-20 lg:h-20 rounded-3xl bg-gradient-to-br ${cat.color} flex items-center justify-center shadow-xl group-hover:shadow-2xl group-hover:rotate-12 transition-all duration-300 border-4 border-white animate-glow-pulse relative overflow-hidden`}>
+                  {/* Mobile gets extra sparkles */}
+                  <div className="sm:hidden absolute top-1 right-1 w-2 h-2 bg-yellow-300 rounded-full animate-ping" />
+                  <cat.icon className="w-10 h-10 sm:w-8 sm:h-8 lg:w-10 lg:h-10 text-white drop-shadow-lg" />
                 </div>
-                <span className="text-xs sm:text-sm font-black text-gray-800 group-hover:text-purple-700 text-center transition-colors leading-tight drop-shadow-sm">{cat.label}</span>
+                <span className="text-xs sm:text-xs lg:text-sm font-black text-gray-800 group-hover:text-purple-700 text-center transition-colors leading-tight drop-shadow-sm">{cat.label}</span>
               </Link>
             ))}
           </div>
@@ -256,7 +263,7 @@ export default function Page() {
           )}
 
           {!isLoading && !isError && products?.length > 0 && (
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 sm:gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 sm:gap-4">
               {products.map((product: any) => (
                 <ProductCard key={product.id} product={product} />
               ))}
@@ -329,7 +336,7 @@ export default function Page() {
               </h2>
               <p className="text-xl font-bold text-orange-700 drop-shadow-sm">Everyone's buying these! 💸</p>
             </div>
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 sm:gap-4">
               {trendingProducts.map((product: any) => (
                 <ProductCard key={product.id} product={product} />
               ))}
@@ -366,7 +373,7 @@ export default function Page() {
               </h2>
               <p className="text-xl font-bold text-blue-700 drop-shadow-sm">Fresh deals just for you! 💎</p>
             </div>
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 sm:gap-4">
               {latestProducts.map((product: any) => (
                 <ProductCard key={product.id} product={product} />
               ))}

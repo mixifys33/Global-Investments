@@ -232,6 +232,29 @@ button { cursor: pointer; font-family: inherit; }
 .marquee-wrap { overflow: hidden; }
 .marquee-track { display: flex; width: max-content; }
 
+/* ── Mobile-first enhancements ── */
+@media (max-width: 640px) {
+  .mobile-money-rain {
+    animation: money-rain 3s linear infinite;
+  }
+  .mobile-extra-glow {
+    box-shadow: 0 0 30px rgba(255,215,0,0.6), 0 0 60px rgba(255,0,128,0.4);
+  }
+  .mobile-bounce {
+    animation: bounce 1s ease-in-out infinite;
+  }
+  .mobile-pulse-intense {
+    animation: pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+}
+
+/* ── Enhanced mobile animations ── */
+@keyframes mobile-sparkle {
+  0%, 100% { transform: scale(0) rotate(0deg); opacity: 0; }
+  50% { transform: scale(1) rotate(180deg); opacity: 1; }
+}
+.animate-mobile-sparkle { animation: mobile-sparkle 2s ease-in-out infinite; }
+
 /* ── Misc ── */
 .safe-area-bottom { padding-bottom: env(safe-area-inset-bottom, 0px); }
 .skeleton {
