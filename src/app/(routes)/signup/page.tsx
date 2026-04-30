@@ -11,8 +11,10 @@ import axios, { AxiosError } from "axios";
 
 type FormData = {
   name: string;
-  email: string;
+  email?: string;
+  phone?: string;
   password: string;
+  registrationType: 'email' | 'phone';
 };
 
 const Signup = () => {
@@ -27,6 +29,7 @@ const Signup = () => {
   const [showSpinner, setShowSpinner] = useState(false);
   const [googleError, setGoogleError] = useState<string | null>(null);
   const [googleSuccess, setGoogleSuccess] = useState<string | null>(null);
+  const [registrationType, setRegistrationType] = useState<'email' | 'phone'>('email');
 
   const router = useRouter();
 
@@ -50,20 +53,36 @@ const Signup = () => {
   }
 
   const signupMutation = useMutation({
-    mutationFn: async (data:FormData) => {
+    mutationFn: async (data: FormData) => {
+      const payload = {
+        name: data.name,
+        password: data.password,
+        registrationType: data.registrationType,
+        ...(data.registrationType === 'email' ? { email: data.email } : { phone: data.phone })
+      };
+      
       const response = await axios.post(
         `${process.env.NEXT_PUBLIC_SERVER_URL}/api/user-registration`,
-        data
+        payload
       );
       return response.data;
     },
     onSuccess: (data, formData) => {
-      const successMessage = data.message || "Registration successful! OTP sent to your email.";
-      setUserData(formData);
-      setShowOtp(true);
-      setCanResend(false);
-      setTimer(60);
-      startResendTimer();
+      if (formData.registrationType === 'phone') {
+        // Phone registration - no OTP required, redirect directly to login
+        const successMessage = data.message || "Registration successful! You can now login.";
+        setTimeout(() => {
+          router.push("/login");
+        }, 1500);
+      } else {
+        // Email registration - requires OTP verification
+        const successMessage = data.message || "Registration successful! OTP sent to your email.";
+        setUserData(formData);
+        setShowOtp(true);
+        setCanResend(false);
+        setTimer(60);
+        startResendTimer();
+      }
     },
     onError: (error: AxiosError) => {
       console.error("Signup error:", error);
@@ -93,7 +112,11 @@ const Signup = () => {
   });
 
   const onSubmit = (data: FormData) => {
-    signupMutation.mutate(data);
+    const formDataWithType = {
+      ...data,
+      registrationType
+    };
+    signupMutation.mutate(formDataWithType);
   };
 
   useEffect(() => {
@@ -288,8 +311,55 @@ const Signup = () => {
 
               <div className="flex items-center my-6 text-blue-200 text-sm">
                 <div className="flex-1 border-t border-white/20" />
-                <span className="px-4 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent font-medium">or continue with email</span>
+                <span className="px-4 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent font-medium">
+                  or continue with {registrationType}
+                </span>
                 <div className="flex-1 border-t border-white/20" />
+              </div>
+
+              {/* Registration Type Toggle */}
+              <div className="mb-6">
+                <div className="flex items-center justify-center gap-2 p-1 bg-white/10 rounded-xl backdrop-blur-sm">
+                  <button
+                    type="button"
+                    onClick={() => setRegistrationType('email')}
+                    className={`flex-1 flex items-center justify-center gap-2 py-3 px-4 rounded-lg text-sm font-medium transition-all ${
+                      registrationType === 'email' 
+                        ? 'bg-blue-500 text-white shadow-lg' 
+                        : 'text-blue-200 hover:text-white hover:bg-white/10'
+                    }`}
+                  >
+                    <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                      <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
+                      <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
+                    </svg>
+                    📧 Email
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setRegistrationType('phone')}
+                    className={`flex-1 flex items-center justify-center gap-2 py-3 px-4 rounded-lg text-sm font-medium transition-all ${
+                      registrationType === 'phone' 
+                        ? 'bg-green-500 text-white shadow-lg' 
+                        : 'text-blue-200 hover:text-white hover:bg-white/10'
+                    }`}
+                  >
+                    <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                      <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
+                    </svg>
+                    📱 Phone
+                  </button>
+                </div>
+                {registrationType === 'phone' && (
+                  <div className="mt-3 p-3 bg-green-500/20 border border-green-400/50 rounded-xl backdrop-blur-sm">
+                    <p className="text-green-300 text-sm font-medium flex items-center gap-2">
+                      <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                      </svg>
+                      ✨ Quick Registration! No email verification required with phone number.
+                    </p>
+                  </div>
+                )}
               </div>
 
               {!showOtp ? (
@@ -317,32 +387,66 @@ const Signup = () => {
                     </p>
                   )}
 
-                  <label className="block text-blue-200 mb-2 font-medium flex items-center gap-2">
-                    <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                      <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
-                      <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
-                    </svg>
-                    Email Address
-                  </label>
-                  <input
-                    type="email"
-                    placeholder="Enter your email address"
-                    className="w-full p-4 border border-white/20 bg-white/5 text-white placeholder-gray-300 outline-0 rounded-xl focus:border-blue-400 focus:ring-2 focus:ring-blue-400/30 transition-all duration-300 mb-4 backdrop-blur-sm"
-                    {...register("email", {
-                      required: "Email is required",
-                      pattern: {
-                        value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/,
-                        message: "Invalid email address",
-                      },
-                    })}
-                  />
-                  {errors.email && (
-                    <p className="text-red-400 text-sm mb-4 flex items-center gap-2">
-                      <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                        <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
-                      </svg>
-                      {String(errors.email.message)}
-                    </p>
+                  {/* Conditional Email/Phone Field */}
+                  {registrationType === 'email' ? (
+                    <>
+                      <label className="block text-blue-200 mb-2 font-medium flex items-center gap-2">
+                        <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                          <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
+                          <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
+                        </svg>
+                        📧 Email Address
+                      </label>
+                      <input
+                        type="email"
+                        placeholder="Enter your email address"
+                        className="w-full p-4 border border-white/20 bg-white/5 text-white placeholder-gray-300 outline-0 rounded-xl focus:border-blue-400 focus:ring-2 focus:ring-blue-400/30 transition-all duration-300 mb-4 backdrop-blur-sm"
+                        {...register("email", {
+                          required: registrationType === 'email' ? "Email is required" : false,
+                          pattern: registrationType === 'email' ? {
+                            value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/,
+                            message: "Invalid email address",
+                          } : undefined,
+                        })}
+                      />
+                      {errors.email && (
+                        <p className="text-red-400 text-sm mb-4 flex items-center gap-2">
+                          <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                            <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
+                          </svg>
+                          {String(errors.email.message)}
+                        </p>
+                      )}
+                    </>
+                  ) : (
+                    <>
+                      <label className="block text-blue-200 mb-2 font-medium flex items-center gap-2">
+                        <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                          <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
+                        </svg>
+                        📱 Phone Number
+                      </label>
+                      <input
+                        type="tel"
+                        placeholder="Enter your phone number (e.g., +256700000000)"
+                        className="w-full p-4 border border-white/20 bg-white/5 text-white placeholder-gray-300 outline-0 rounded-xl focus:border-green-400 focus:ring-2 focus:ring-green-400/30 transition-all duration-300 mb-4 backdrop-blur-sm"
+                        {...register("phone", {
+                          required: registrationType === 'phone' ? "Phone number is required" : false,
+                          pattern: registrationType === 'phone' ? {
+                            value: /^(\+256|0)[0-9]{9}$/,
+                            message: "Invalid phone number format (use +256XXXXXXXXX or 07XXXXXXXX)",
+                          } : undefined,
+                        })}
+                      />
+                      {errors.phone && (
+                        <p className="text-red-400 text-sm mb-4 flex items-center gap-2">
+                          <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                            <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
+                          </svg>
+                          {String(errors.phone.message)}
+                        </p>
+                      )}
+                    </>
                   )}
 
                   <label className="block text-blue-200 mb-2 font-medium flex items-center gap-2">
@@ -395,7 +499,7 @@ const Signup = () => {
                         <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                           <path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd" />
                         </svg>
-                        {signupButtonText || "Create Account"}
+                        {signupButtonText || (registrationType === 'phone' ? "Create Account (No Verification)" : "Create Account")}
                       </span>
                     )}
                   </button>

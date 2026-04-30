@@ -10,7 +10,7 @@ import { useMutation } from "@tanstack/react-query";
 import axios, { AxiosError } from "axios";
 
 type FormData = {
-  email: string;
+  emailOrPhone: string;
   password: string;
 };
 
@@ -20,6 +20,7 @@ const Login = () => {
   const [serverSuccess, setServerSuccess] = useState<string | null>(null);
   const [rememberMe, setRememberMe] = useState(false);
   const [googleError, setGoogleError] = useState<string | null>(null);
+  const [loginType, setLoginType] = useState<'email' | 'phone'>('email');
   const router = useRouter();
 
   const {
@@ -30,9 +31,16 @@ const Login = () => {
 
   const loginMutation = useMutation({
     mutationFn: async (data: FormData) => {
+      // Determine if input is email or phone
+      const isEmail = data.emailOrPhone.includes('@');
+      const payload = {
+        password: data.password,
+        ...(isEmail ? { email: data.emailOrPhone } : { phone: data.emailOrPhone })
+      };
+      
       const response = await axios.post(
         `${process.env.NEXT_PUBLIC_SERVER_URL}/api/login-user`,
-        data,
+        payload,
         { withCredentials: true}
       );
         return response.data;
@@ -201,30 +209,75 @@ const Login = () => {
 
               <form onSubmit={handleSubmit(onSubmit)}>
                 <label className="block text-blue-200 mb-2 font-medium flex items-center gap-2">
-                  <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                    <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
-                    <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
-                  </svg>
-                  Email Address
+                  {loginType === 'email' ? (
+                    <>
+                      <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
+                        <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
+                      </svg>
+                      📧 Email Address
+                    </>
+                  ) : (
+                    <>
+                      <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
+                      </svg>
+                      📱 Phone Number
+                    </>
+                  )}
                 </label>
+                
+                {/* Login Type Toggle */}
+                <div className="mb-4">
+                  <div className="flex items-center gap-2 p-1 bg-white/10 rounded-xl backdrop-blur-sm mb-3">
+                    <button
+                      type="button"
+                      onClick={() => setLoginType('email')}
+                      className={`flex-1 flex items-center justify-center gap-2 py-2 px-3 rounded-lg text-sm font-medium transition-all ${
+                        loginType === 'email' 
+                          ? 'bg-blue-500 text-white shadow-lg' 
+                          : 'text-blue-200 hover:text-white hover:bg-white/10'
+                      }`}
+                    >
+                      📧 Email
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setLoginType('phone')}
+                      className={`flex-1 flex items-center justify-center gap-2 py-2 px-3 rounded-lg text-sm font-medium transition-all ${
+                        loginType === 'phone' 
+                          ? 'bg-green-500 text-white shadow-lg' 
+                          : 'text-blue-200 hover:text-white hover:bg-white/10'
+                      }`}
+                    >
+                      📱 Phone
+                    </button>
+                  </div>
+                </div>
+
                 <input
-                  type="email"
-                  placeholder="Enter your email address"
+                  type={loginType === 'email' ? 'email' : 'tel'}
+                  placeholder={loginType === 'email' ? 'Enter your email address' : 'Enter your phone number'}
                   className="w-full p-4 border border-white/20 bg-white/5 text-white placeholder-gray-300 outline-0 rounded-xl focus:border-blue-400 focus:ring-2 focus:ring-blue-400/30 transition-all duration-300 mb-4 backdrop-blur-sm"
-                  {...register("email", {
-                    required: "Email is required",
-                    pattern: {
-                      value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/,
-                      message: "Invalid email address",
-                    },
+                  {...register("emailOrPhone", {
+                    required: `${loginType === 'email' ? 'Email' : 'Phone number'} is required`,
+                    validate: (value) => {
+                      if (loginType === 'email') {
+                        const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+                        return emailPattern.test(value) || "Invalid email address";
+                      } else {
+                        const phonePattern = /^(\+256|0)[0-9]{9}$/;
+                        return phonePattern.test(value) || "Invalid phone number format";
+                      }
+                    }
                   })}
                 />
-                {errors.email && (
+                {errors.emailOrPhone && (
                   <p className="text-red-400 text-sm mb-4 flex items-center gap-2">
                     <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
                       <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
                     </svg>
-                    {String(errors.email.message)}
+                    {String(errors.emailOrPhone.message)}
                   </p>
                 )}
 
