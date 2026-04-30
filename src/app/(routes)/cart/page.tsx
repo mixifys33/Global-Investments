@@ -8,12 +8,14 @@ import Link from "next/link";
 import { useStore } from "@/store";
 import Image from "next/image";
 import axiosInstance from "@/utils/axiosInstance";
+import StunningLayout from "@/shared/components/layouts/StunningLayout";
+import StunningCard from "@/shared/components/cards/StunningCard";
 import { 
   Loader2, Minus, Plus, Trash2, ShoppingBag, MapPin, 
   CreditCard, Smartphone, Truck, Tag, ChevronDown, 
   CheckCircle, AlertCircle, Percent, X, Plus as PlusIcon,
   Heart, Share2, ExternalLink, Save, ShoppingCart, Info,
-  Package, Navigation
+  Package, Navigation, Sparkles, DollarSign, Zap
 } from "lucide-react";
 
 interface Address {
@@ -572,34 +574,66 @@ const CartPage = () => {
   };
 
   return (
-    <div className="w-full bg-gray-50 min-h-screen pb-20 md:pb-0">
-      <div className="w-[95%] md:w-[90%] lg:w-[85%] xl:w-[80%] mx-auto py-6 md:py-10">
+    <StunningLayout variant="cosmic" showWaves={true} showOrbs={true} showParticles={true}>
+      <div className="w-full min-h-screen pb-20 md:pb-0 relative">
+        <div className="w-[95%] md:w-[90%] lg:w-[85%] xl:w-[80%] mx-auto py-6 md:py-10 relative z-10">
         {/* Header */}
-        <div className="mb-6 md:mb-8">
-          <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-3">
-            Shopping Cart
-          </h1>
-          <div className="flex items-center gap-2 text-sm text-gray-600">
-            <Link href="/" className="hover:text-blue-600">Home</Link>
-            <span>/</span>
-            <span className="text-gray-900">Cart ({cart.length} items)</span>
+        <StunningCard variant="premium" size="lg" animated={true} glowing={true} className="mb-6 md:mb-8">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-4">
+              <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-yellow-400 via-orange-400 to-red-400 flex items-center justify-center shadow-xl animate-floating-orb">
+                <ShoppingCart className="w-8 h-8 text-white animate-sparkle-dance" />
+              </div>
+              <div>
+                <h1 className="text-3xl sm:text-4xl md:text-5xl font-black bg-gradient-to-r from-yellow-400 via-orange-400 to-red-400 bg-clip-text text-transparent animate-text-glow">
+                  Investment Portfolio 💰
+                </h1>
+                <div className="flex items-center gap-2 text-sm text-orange-600 font-bold">
+                  <Link href="/" className="hover:text-yellow-500 transition-colors">🏠 Home</Link>
+                  <span>/</span>
+                  <span className="text-purple-700 animate-pulse">🛒 Cart ({cart.length} investments)</span>
+                </div>
+              </div>
+            </div>
+            <div className="hidden md:flex items-center gap-3">
+              <div className="text-right">
+                <p className="text-sm text-gray-600 font-medium">Total Value</p>
+                <p className="text-2xl font-black bg-gradient-to-r from-green-500 to-emerald-600 bg-clip-text text-transparent">
+                  {formatPrice(finalTotal)}
+                </p>
+              </div>
+              <Zap className="w-8 h-8 text-yellow-500 animate-pulse" />
+            </div>
           </div>
-        </div>
+        </StunningCard>
 
         {/* Empty Cart */}
         {cart.length === 0 ? (
-          <div className="flex flex-col items-center justify-center py-16 md:py-24 bg-white rounded-xl shadow-sm">
-            <ShoppingBag className="w-16 h-16 md:w-24 md:h-24 text-gray-300 mb-4" />
-            <p className="text-center text-gray-600 text-lg md:text-xl mb-6">
-              Your cart is empty!
-            </p>
-            <Link
-              href="/"
-              className="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-all"
-            >
-              Continue Shopping
-            </Link>
-          </div>
+          <StunningCard variant="cosmic" size="xl" animated={true} glowing={true} floating={true} className="text-center">
+            <div className="flex flex-col items-center justify-center py-16 md:py-24">
+              <div className="relative mb-6">
+                <div className="w-24 h-24 md:w-32 md:h-32 rounded-3xl bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 flex items-center justify-center shadow-2xl animate-morph-blob">
+                  <ShoppingBag className="w-12 h-12 md:w-16 md:h-16 text-white animate-sparkle-dance" />
+                </div>
+                <div className="absolute -top-2 -right-2 w-8 h-8 bg-gradient-to-r from-yellow-400 to-orange-400 rounded-full animate-ping"></div>
+              </div>
+              <h2 className="text-2xl md:text-3xl font-black bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent animate-text-glow mb-4">
+                Your Investment Cart is Empty! 💰
+              </h2>
+              <p className="text-white/80 text-lg md:text-xl mb-8 font-medium animate-pulse">
+                Start building your wealth portfolio today! ✨
+              </p>
+              <Link
+                href="/"
+                className="inline-flex items-center gap-3 px-8 py-4 rounded-2xl font-black text-purple-900 text-lg shadow-2xl hover:scale-110 active:scale-95 transition-all duration-300 animate-glow-pulse"
+                style={{ background: "linear-gradient(135deg, #ffd700, #ff8c00, #ff0080)" }}
+              >
+                <Sparkles className="w-6 h-6 animate-bounce" />
+                Explore Investments
+                <DollarSign className="w-6 h-6 animate-pulse" />
+              </Link>
+            </div>
+          </StunningCard>
         ) : (
           <div className="flex flex-col lg:flex-row gap-6 lg:gap-8">
             {/* Cart Items */}
@@ -611,7 +645,7 @@ const CartPage = () => {
                 const supportsCOD = item.cash_on_delivery === "Yes" || item.cash_on_delivery === true;
                 
                 return (
-                  <div key={item.id} className="bg-white rounded-xl shadow-sm p-4 md:p-6 hover:shadow-md transition-shadow">
+                  <StunningCard key={item.id} variant="glass" size="lg" animated={true} className="hover:shadow-2xl transition-all duration-300 transform hover:scale-[1.02]">
                     <div className="flex gap-4">
                       {/* Product Image - Clickable */}
                       <Link 
@@ -825,15 +859,22 @@ const CartPage = () => {
                         ))}
                       </div>
                     )}
-                  </div>
+                  </StunningCard>
                 );
               })}
             </div>
 
             {/* Order Summary */}
             <div className="w-full lg:w-[35%]">
-              <div className="bg-white rounded-xl shadow-sm p-6 sticky top-4 space-y-6">
-                <h2 className="text-xl font-bold text-gray-900">Order Summary</h2>
+              <StunningCard variant="premium" size="lg" animated={true} glowing={true} className="sticky top-4 space-y-6">
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-green-500 to-emerald-600 flex items-center justify-center shadow-lg animate-floating-orb">
+                    <DollarSign className="w-6 h-6 text-white animate-sparkle-dance" />
+                  </div>
+                  <h2 className="text-2xl font-black bg-gradient-to-r from-green-500 to-emerald-600 bg-clip-text text-transparent animate-text-glow">
+                    💰 Investment Summary
+                  </h2>
+                </div>
 
                 {/* Cart-wide Coupon */}
                 <div>
@@ -1245,7 +1286,7 @@ const CartPage = () => {
                     Fast Delivery
                   </div>
                 </div>
-              </div>
+              </StunningCard>
             </div>
           </div>
         )}
@@ -1293,7 +1334,8 @@ const CartPage = () => {
           </div>
         </div>
       )}
-    </div>
+      </div>
+    </StunningLayout>
   );
 };
 export default CartPage;

@@ -420,6 +420,6 @@ export default function Page() {
       )}
 
       <Footer />
-    </div>
+    </StunningLayout>
   );
 }

@@ -3,6 +3,8 @@
 import React, { useEffect, useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
+import StunningLayout from "@/shared/components/layouts/StunningLayout"
+import StunningCard from "@/shared/components/cards/StunningCard"
 import { 
   Heart, 
   ShoppingCart, 
@@ -22,7 +24,10 @@ import {
   Check,
   Eye,
   Clock,
-  GitCompare
+  GitCompare,
+  Sparkles,
+  DollarSign,
+  Zap
 } from "lucide-react"
 import { useStore } from "@/store"
 import useUser from "@/hooks/useUser"

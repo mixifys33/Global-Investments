@@ -3,6 +3,8 @@
 import React, { useState, useRef, useEffect, useCallback } from "react"
 import Image from "next/image"
 import Link from "next/link"
+import StunningLayout from "@/shared/components/layouts/StunningLayout"
+import StunningCard from "@/shared/components/cards/StunningCard"
 import { 
   Send, 
   User, 
@@ -28,7 +30,9 @@ import {
   Headphones,
   ImageIcon,
   Camera,
-  Loader2
+  Loader2,
+  Zap,
+  DollarSign
 } from "lucide-react"
 import useUser from "@/hooks/useUser"
 import { useStore } from "@/store"
@@ -521,13 +525,15 @@ const EasyAIPage = () => {
   }
 
   return (
-    <div className="fixed inset-0 z-[100] flex bg-slate-50">
-      {/* Subtle background pattern */}
-      <div className="absolute inset-0 pointer-events-none opacity-[0.01]">
-        <div className="absolute top-20 left-10 text-2xl">💰</div>
-        <div className="absolute top-40 right-20 text-xl">💎</div>
-        <div className="absolute bottom-20 left-1/4 text-lg">📈</div>
-      </div>
+    <StunningLayout variant="cosmic" showWaves={true} showOrbs={true} showParticles={true}>
+      <div className="fixed inset-0 z-[100] flex">
+        {/* Subtle background pattern */}
+        <div className="absolute inset-0 pointer-events-none opacity-[0.02]">
+          <div className="absolute top-20 left-10 text-4xl animate-float">🤖</div>
+          <div className="absolute top-40 right-20 text-3xl animate-float animation-delay-2000">💎</div>
+          <div className="absolute bottom-20 left-1/4 text-2xl animate-float animation-delay-4000">📈</div>
+          <div className="absolute top-1/2 right-1/3 text-3xl animate-float">💰</div>
+        </div>
       {/* Action Notification */}
       {actionNotification && (
         <div className="fixed top-4 left-1/2 -translate-x-1/2 z-[110] bg-green-600 text-white px-4 py-2.5 rounded-lg shadow-lg text-sm font-medium animate-in slide-in-from-top">
@@ -555,12 +561,15 @@ const EasyAIPage = () => {
         <div className="flex-shrink-0 p-4 border-b border-slate-600">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <div className="w-9 h-9 rounded-lg flex items-center justify-center bg-blue-600 shadow-sm">
-                <Sparkles className="w-5 h-5 text-white" />
+              <div className="relative">
+                <div className="w-10 h-10 rounded-xl flex items-center justify-center bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 shadow-xl animate-morph-blob">
+                  <Sparkles className="w-5 h-5 text-white animate-sparkle-dance" />
+                </div>
+                <div className="absolute -top-1 -right-1 w-3 h-3 bg-gradient-to-r from-yellow-400 to-orange-400 rounded-full animate-ping"></div>
               </div>
               <div>
-                <h1 className="font-semibold text-white">Atlas AI</h1>
-                <p className="text-xs text-slate-300">Investment Assistant</p>
+                <h1 className="font-black text-white text-lg bg-gradient-to-r from-white to-blue-200 bg-clip-text text-transparent animate-text-glow">Atlas AI</h1>
+                <p className="text-xs text-cyan-300 font-bold animate-pulse">💰 Investment Assistant</p>
               </div>
             </div>
             <button 
@@ -666,12 +675,15 @@ const EasyAIPage = () => {
             {sidebarOpen ? <ChevronLeft className="w-5 h-5" /> : <ChevronRight className="w-5 h-5" />}
           </button>
           <div className="flex items-center gap-3 flex-1 min-w-0">
-            <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-lg flex items-center justify-center flex-shrink-0">
-              <Sparkles className="w-4 h-4 text-white" />
+            <div className="relative">
+              <div className="w-10 h-10 bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 rounded-xl flex items-center justify-center flex-shrink-0 shadow-xl animate-floating-orb">
+                <Sparkles className="w-5 h-5 text-white animate-sparkle-dance" />
+              </div>
+              <div className="absolute -top-1 -right-1 w-3 h-3 bg-gradient-to-r from-yellow-400 to-orange-400 rounded-full animate-ping"></div>
             </div>
             <div className="min-w-0">
-              <h2 className="font-semibold text-slate-900 text-sm sm:text-base">Atlas AI Assistant</h2>
-              <p className="text-xs text-slate-500 hidden sm:block">Investment guidance & analysis</p>
+              <h2 className="font-black text-slate-900 text-lg sm:text-xl bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent animate-text-glow">Atlas AI Assistant</h2>
+              <p className="text-xs text-slate-500 hidden sm:block font-bold animate-pulse">💎 Investment guidance & analysis</p>
             </div>
           </div>
           
@@ -694,16 +706,19 @@ const EasyAIPage = () => {
           {!activeSession || activeSession.messages.length === 0 ? (
             /* Welcome Screen */
             <div className="h-full flex flex-col items-center justify-center p-4 sm:p-6">
-              <div className="max-w-xl w-full text-center">
-                <div className="w-16 h-16 sm:w-20 sm:h-20 mx-auto mb-4 sm:mb-6 rounded-xl bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center shadow-lg">
-                  <Sparkles className="w-8 h-8 sm:w-10 sm:h-10 text-white" />
+              <StunningCard variant="cosmic" size="xl" animated={true} glowing={true} floating={true} className="max-w-xl w-full text-center">
+                <div className="relative mb-6">
+                  <div className="w-20 h-20 sm:w-24 sm:h-24 mx-auto rounded-3xl bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 flex items-center justify-center shadow-2xl animate-morph-blob">
+                    <Sparkles className="w-10 h-10 sm:w-12 sm:h-12 text-white animate-sparkle-dance" />
+                  </div>
+                  <div className="absolute -top-2 -right-2 w-8 h-8 bg-gradient-to-r from-yellow-400 to-orange-400 rounded-full animate-ping"></div>
                 </div>
 
-                <h1 className="text-2xl sm:text-3xl font-bold text-slate-900 mb-2">
-                  Welcome to <span className="text-blue-600">Atlas AI</span>
+                <h1 className="text-3xl sm:text-4xl font-black text-white mb-4 animate-text-glow">
+                  Welcome to <span className="bg-gradient-to-r from-yellow-400 via-orange-400 to-red-400 bg-clip-text text-transparent animate-gradient">Atlas AI</span> 🤖
                 </h1>
-                <p className="text-slate-600 mb-6 text-sm sm:text-base">
-                  Your intelligent investment assistant for Global Investments
+                <p className="text-white/80 mb-8 text-base sm:text-lg font-medium animate-pulse">
+                  Your intelligent investment assistant for Global Investments 💰✨
                 </p>
 
                 {/* Features Grid */}
@@ -793,7 +808,7 @@ const EasyAIPage = () => {
                     ))}
                   </div>
                 </div>
-              </div>
+              </StunningCard>
             </div>
           ) : (
             /* Chat Messages */
@@ -1063,7 +1078,7 @@ const EasyAIPage = () => {
           </div>
         </div>
       </main>
-    </div>
+    </StunningLayout>
   )
 }
 

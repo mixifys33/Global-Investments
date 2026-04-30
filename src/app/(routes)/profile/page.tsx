@@ -7,12 +7,15 @@ import axiosInstance from "@/utils/axiosInstance";
 import Image from "next/image";
 import Link from "next/link";
 import { useStore } from "@/store";
+import StunningLayout from "@/shared/components/layouts/StunningLayout";
+import StunningCard from "@/shared/components/cards/StunningCard";
 import {
   User, ShoppingBag, Heart, MapPin, Wallet, Shield, Bell, LogOut,
   Loader2, Clock, Truck, CheckCircle, Package, ChevronRight, Edit3, Camera,
   Plus, Trash2, CreditCard, Smartphone, Eye, EyeOff, Monitor, Globe,
   X, Map, Store, Menu, Home, Building, ShoppingCart,
-  Phone, AlertCircle, Check, MapPinned, Crosshair, Search, Users, ExternalLink, RefreshCw
+  Phone, AlertCircle, Check, MapPinned, Crosshair, Search, Users, ExternalLink, RefreshCw,
+  Sparkles, DollarSign, Zap
 } from "lucide-react";
 
 type TabType = "profile" | "orders" | "wishlist" | "addresses" | "wallet" | "security" | "notifications" | "following";
