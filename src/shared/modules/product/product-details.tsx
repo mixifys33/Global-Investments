@@ -297,39 +297,66 @@ const ProductDetails = ({
   const hasVideo = !!(youtubeId || isDirectVideoUrl);
 
   return (
-    <div className="w-full bg-gray-50 min-h-screen pb-20 md:pb-0">
+    <div className="w-full bg-gradient-to-br from-purple-900 via-blue-900 to-green-900 min-h-screen pb-20 md:pb-0 relative overflow-hidden animate-gradient-x">
+      {/* CRAZY Money Background Effects */}
+      <div className="absolute inset-0 pointer-events-none">
+        {/* Floating money symbols */}
+        <div className="absolute top-10 left-10 text-6xl animate-money-bounce text-yellow-400 drop-shadow-lg">💰</div>
+        <div className="absolute top-20 right-20 text-5xl animate-pulse text-green-400 drop-shadow-lg">💎</div>
+        <div className="absolute bottom-20 left-1/4 text-4xl animate-crazy-spin text-blue-400 drop-shadow-lg">📈</div>
+        <div className="absolute top-1/3 right-1/3 text-3xl animate-bounce text-yellow-300 drop-shadow-lg delay-300">💵</div>
+        <div className="absolute bottom-1/3 right-10 text-5xl animate-pulse text-green-300 drop-shadow-lg delay-500">🤑</div>
+        <div className="absolute top-1/2 left-20 text-4xl animate-spin text-purple-400 drop-shadow-lg delay-700">💸</div>
+        
+        {/* Moving gradient orbs */}
+        <div className="absolute top-0 left-0 w-96 h-96 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full opacity-20 animate-float"></div>
+        <div className="absolute bottom-0 right-0 w-80 h-80 bg-gradient-to-r from-green-400 to-blue-500 rounded-full opacity-20 animate-float-reverse"></div>
+        <div className="absolute top-1/2 left-1/2 w-64 h-64 bg-gradient-to-r from-purple-400 to-pink-500 rounded-full opacity-20 animate-pulse"></div>
+        
+        {/* Sparkle effects */}
+        <div className="absolute top-1/4 left-1/4 w-2 h-2 bg-yellow-300 rounded-full animate-ping"></div>
+        <div className="absolute top-3/4 right-1/4 w-3 h-3 bg-green-300 rounded-full animate-ping delay-300"></div>
+        <div className="absolute bottom-1/4 left-3/4 w-2 h-2 bg-blue-300 rounded-full animate-ping delay-500"></div>
+      </div>
       {/* Breadcrumb */}
-      <div className="bg-white border-b">
+      <div className="bg-gradient-to-r from-black/80 to-purple-900/80 backdrop-blur-lg border-b-2 border-yellow-400/50 relative z-10">
         <div className="max-w-7xl mx-auto px-4 py-3">
-          <nav className="flex items-center gap-2 text-sm text-gray-500 overflow-x-auto whitespace-nowrap">
-            <Link href="/" className="hover:text-blue-600">Home</Link>
-            <ChevronRight className="w-4 h-4 flex-shrink-0" />
+          <nav className="flex items-center gap-2 text-sm text-yellow-300 overflow-x-auto whitespace-nowrap">
+            <Link href="/" className="hover:text-yellow-400 font-bold animate-pulse">🏠 Home</Link>
+            <ChevronRight className="w-4 h-4 flex-shrink-0 text-green-400" />
             {category && (
               <>
-                <Link href={`/category/${category}`} className="hover:text-blue-600">{category}</Link>
-                <ChevronRight className="w-4 h-4 flex-shrink-0" />
+                <Link href={`/category/${category}`} className="hover:text-green-400 font-bold animate-pulse">{category}</Link>
+                <ChevronRight className="w-4 h-4 flex-shrink-0 text-blue-400" />
               </>
             )}
             {subCategory && (
               <>
-                <span className="hover:text-blue-600">{subCategory}</span>
-                <ChevronRight className="w-4 h-4 flex-shrink-0" />
+                <span className="hover:text-blue-400 font-bold animate-pulse">{subCategory}</span>
+                <ChevronRight className="w-4 h-4 flex-shrink-0 text-purple-400" />
               </>
             )}
-            <span className="text-gray-800 font-medium truncate max-w-[200px]">{title}</span>
+            <span className="text-yellow-400 font-bold truncate max-w-[200px] animate-bounce">💰 {title}</span>
           </nav>
         </div>
       </div>
 
       {/* Main Product Section */}
-      <div className="max-w-7xl mx-auto px-4 py-6">
-        <div className="bg-white rounded-2xl shadow-sm overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4 py-6 relative z-10">
+        <div className="bg-gradient-to-br from-black/80 via-purple-900/80 to-blue-900/80 backdrop-blur-lg rounded-2xl shadow-2xl overflow-hidden border-2 border-yellow-400/50 animate-glow">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
             
             {/* Left: Images & Video */}
-            <div className="p-4 md:p-6 lg:p-8 border-b lg:border-b-0 lg:border-r border-gray-100">
+            <div className="p-4 md:p-6 lg:p-8 border-b lg:border-b-0 lg:border-r border-yellow-400/30 relative">
+              {/* Money rain effect */}
+              <div className="absolute inset-0 pointer-events-none">
+                <div className="absolute top-2 left-10 text-2xl animate-bounce text-yellow-400">💰</div>
+                <div className="absolute top-4 right-12 text-xl animate-pulse text-green-400">💵</div>
+                <div className="absolute top-6 left-1/2 text-lg animate-spin text-blue-400">💎</div>
+              </div>
+              
               {/* Main Image */}
-              <div className="relative aspect-square bg-gray-100 rounded-xl overflow-hidden group">
+              <div className="relative aspect-square bg-gradient-to-br from-yellow-400/20 to-green-400/20 rounded-xl overflow-hidden group border-2 border-yellow-400/50 animate-glow">
                 {images.length > 0 ? (
                   <Image
                     src={images[activeImage]?.url}
@@ -339,8 +366,8 @@ const ProductDetails = ({
                     onClick={() => setIsZoomed(!isZoomed)}
                   />
                 ) : (
-                  <div className="w-full h-full flex items-center justify-center text-gray-400">
-                    No image available
+                  <div className="w-full h-full flex items-center justify-center text-yellow-400 font-bold text-xl animate-pulse">
+                    💰 No image available 💰
                   </div>
                 )}
 
@@ -349,13 +376,13 @@ const ProductDetails = ({
                   <>
                     <button
                       onClick={prevImage}
-                      className="absolute left-2 top-1/2 -translate-y-1/2 p-2 bg-white/90 rounded-full shadow-lg opacity-0 group-hover:opacity-100 transition hover:bg-white"
+                      className="absolute left-2 top-1/2 -translate-y-1/2 p-2 bg-yellow-400/90 text-black rounded-full shadow-lg opacity-0 group-hover:opacity-100 transition hover:bg-yellow-300 animate-pulse"
                     >
                       <ChevronLeft className="w-5 h-5" />
                     </button>
                     <button
                       onClick={nextImage}
-                      className="absolute right-2 top-1/2 -translate-y-1/2 p-2 bg-white/90 rounded-full shadow-lg opacity-0 group-hover:opacity-100 transition hover:bg-white"
+                      className="absolute right-2 top-1/2 -translate-y-1/2 p-2 bg-yellow-400/90 text-black rounded-full shadow-lg opacity-0 group-hover:opacity-100 transition hover:bg-yellow-300 animate-pulse"
                     >
                       <ChevronRight className="w-5 h-5" />
                     </button>
@@ -364,8 +391,8 @@ const ProductDetails = ({
 
                 {/* Discount Badge */}
                 {discount > 0 && (
-                  <div className="absolute top-4 left-4 bg-red-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
-                    -{discount}%
+                  <div className="absolute top-4 left-4 bg-gradient-to-r from-red-500 to-orange-500 text-white px-4 py-2 rounded-full text-sm font-bold animate-bounce shadow-lg">
+                    🔥 -{discount}% OFF! 🔥
                   </div>
                 )}
 
@@ -373,10 +400,10 @@ const ProductDetails = ({
                 {hasVideo && (
                   <button
                     onClick={() => setShowVideoModal(true)}
-                    className="absolute bottom-4 right-4 flex items-center gap-2 bg-black/70 text-white px-4 py-2 rounded-full hover:bg-black/90 transition"
+                    className="absolute bottom-4 right-4 flex items-center gap-2 bg-gradient-to-r from-purple-600 to-pink-600 text-white px-4 py-2 rounded-full hover:from-purple-700 hover:to-pink-700 transition animate-pulse shadow-lg"
                   >
                     <Play className="w-4 h-4 fill-white" />
-                    <span className="text-sm font-medium">Watch Video</span>
+                    <span className="text-sm font-bold">🎬 Watch Video</span>
                   </button>
                 )}
               </div>
@@ -463,8 +490,8 @@ const ProductDetails = ({
               )}
 
               {/* Title */}
-              <h1 className="text-xl md:text-2xl lg:text-3xl font-bold text-gray-900 leading-tight">
-                {title}
+              <h1 className="text-xl md:text-2xl lg:text-3xl font-bold bg-gradient-to-r from-yellow-400 via-green-400 to-blue-400 bg-clip-text text-transparent leading-tight animate-pulse drop-shadow-lg">
+                💰 {title} 💰
               </h1>
 
               {/* Ratings & Sales */}
@@ -482,31 +509,31 @@ const ProductDetails = ({
               </div>
 
               {/* Price & Delivery Row */}
-              <div className="mt-4 p-4 bg-gradient-to-r from-orange-50 to-yellow-50 rounded-xl">
+              <div className="mt-4 p-4 bg-gradient-to-r from-yellow-400/20 via-green-400/20 to-blue-400/20 rounded-xl border-2 border-yellow-400/50 animate-glow backdrop-blur-sm">
                 <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
                   {/* Price */}
                   <div className="flex items-baseline gap-3 flex-wrap">
-                    <span className="text-2xl md:text-3xl font-bold text-orange-600">
-                      UGX {sale_price?.toLocaleString('en-UG')}
+                    <span className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-yellow-400 to-green-400 bg-clip-text text-transparent animate-pulse drop-shadow-lg">
+                      💰 UGX {sale_price?.toLocaleString('en-UG')} 💰
                     </span>
                     {discount > 0 && (
                       <>
-                        <span className="text-base text-gray-400 line-through">
+                        <span className="text-base text-gray-300 line-through">
                           UGX {regular_price?.toLocaleString('en-UG')}
                         </span>
-                        <span className="bg-red-500 text-white text-xs px-2 py-0.5 rounded font-medium">
-                          -{discount}%
+                        <span className="bg-gradient-to-r from-red-500 to-orange-500 text-white text-xs px-3 py-1 rounded-full font-bold animate-bounce">
+                          🔥 -{discount}% OFF! 🔥
                         </span>
                       </>
                     )}
                   </div>
                   
                   {/* Estimated Delivery - Next to Price */}
-                  <div className="flex items-center gap-2 text-sm bg-white/60 px-3 py-2 rounded-lg">
-                    <Clock className="w-4 h-4 text-blue-600" />
+                  <div className="flex items-center gap-2 text-sm bg-black/60 px-3 py-2 rounded-lg border border-blue-400/50">
+                    <Clock className="w-4 h-4 text-blue-400 animate-pulse" />
                     <div>
-                      <span className="text-gray-500">Delivery by </span>
-                      <span className="font-semibold text-gray-800">
+                      <span className="text-yellow-300">🚚 Delivery by </span>
+                      <span className="font-bold text-green-400 animate-bounce">
                         {estimatedDelivery.toLocaleDateString('en-US', { 
                           month: 'short', 
                           day: 'numeric' 
