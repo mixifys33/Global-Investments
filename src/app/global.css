@@ -262,6 +262,100 @@ button { cursor: pointer; font-family: inherit; }
     background: linear-gradient(45deg, rgba(34, 197, 94, 0.2), rgba(59, 130, 246, 0.2), rgba(147, 51, 234, 0.2));
   }
 }
+@keyframes neon-glow {
+  0%, 100% { 
+    box-shadow: 0 0 20px rgba(6, 182, 212, 0.5), 0 0 40px rgba(6, 182, 212, 0.3), 0 0 60px rgba(6, 182, 212, 0.1);
+  }
+  50% { 
+    box-shadow: 0 0 30px rgba(6, 182, 212, 0.8), 0 0 60px rgba(6, 182, 212, 0.5), 0 0 90px rgba(6, 182, 212, 0.2);
+  }
+}
+@keyframes cosmic-pulse {
+  0%, 100% { 
+    box-shadow: 0 0 20px rgba(139, 92, 246, 0.4), 0 0 40px rgba(217, 70, 239, 0.3);
+    transform: scale(1);
+  }
+  50% { 
+    box-shadow: 0 0 40px rgba(139, 92, 246, 0.6), 0 0 80px rgba(217, 70, 239, 0.4);
+    transform: scale(1.02);
+  }
+}
+@keyframes premium-shine {
+  0% { transform: translateX(-100%) skewX(-12deg); }
+  100% { transform: translateX(200%) skewX(-12deg); }
+}
+@keyframes floating-orb {
+  0%, 100% { 
+    transform: translateY(0px) translateX(0px) scale(1);
+    opacity: 0.6;
+  }
+  25% { 
+    transform: translateY(-20px) translateX(10px) scale(1.1);
+    opacity: 0.8;
+  }
+  50% { 
+    transform: translateY(-10px) translateX(-15px) scale(0.9);
+    opacity: 1;
+  }
+  75% { 
+    transform: translateY(-25px) translateX(5px) scale(1.05);
+    opacity: 0.7;
+  }
+}
+@keyframes sparkle-dance {
+  0%, 100% { 
+    transform: rotate(0deg) scale(1);
+    opacity: 0.8;
+  }
+  25% { 
+    transform: rotate(90deg) scale(1.2);
+    opacity: 1;
+  }
+  50% { 
+    transform: rotate(180deg) scale(0.8);
+    opacity: 0.6;
+  }
+  75% { 
+    transform: rotate(270deg) scale(1.1);
+    opacity: 0.9;
+  }
+}
+@keyframes rainbow-border {
+  0% { border-color: #ff0080; box-shadow: 0 0 20px #ff0080; }
+  14% { border-color: #ff8c00; box-shadow: 0 0 20px #ff8c00; }
+  28% { border-color: #ffd700; box-shadow: 0 0 20px #ffd700; }
+  42% { border-color: #00ff00; box-shadow: 0 0 20px #00ff00; }
+  57% { border-color: #00ffff; box-shadow: 0 0 20px #00ffff; }
+  71% { border-color: #0080ff; box-shadow: 0 0 20px #0080ff; }
+  85% { border-color: #8000ff; box-shadow: 0 0 20px #8000ff; }
+  100% { border-color: #ff0080; box-shadow: 0 0 20px #ff0080; }
+}
+@keyframes text-glow {
+  0%, 100% { 
+    text-shadow: 0 0 10px currentColor, 0 0 20px currentColor;
+  }
+  50% { 
+    text-shadow: 0 0 20px currentColor, 0 0 40px currentColor, 0 0 60px currentColor;
+  }
+}
+@keyframes morph-blob {
+  0%, 100% { 
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+    transform: rotate(0deg) scale(1);
+  }
+  25% { 
+    border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%;
+    transform: rotate(90deg) scale(1.1);
+  }
+  50% { 
+    border-radius: 50% 40% 60% 30% / 70% 50% 40% 50%;
+    transform: rotate(180deg) scale(0.9);
+  }
+  75% { 
+    border-radius: 40% 70% 50% 60% / 40% 70% 60% 30%;
+    transform: rotate(270deg) scale(1.05);
+  }
+}
 
 /* ── Animation classes ── */
 .animate-blob           { animation: blob 7s infinite; }
@@ -290,6 +384,15 @@ button { cursor: pointer; font-family: inherit; }
 .animate-crazy-spin     { animation: crazy-spin 3s ease-in-out infinite; }
 .animate-money-bounce   { animation: money-bounce 2s ease-in-out infinite; }
 .animate-glow          { box-shadow: 0 0 30px rgba(255,215,0,0.4), 0 0 60px rgba(0,255,255,0.2); }
+.animate-gradient-border { animation: gradient-border 3s ease-in-out infinite; }
+.animate-neon-glow      { animation: neon-glow 2s ease-in-out infinite; }
+.animate-cosmic-pulse   { animation: cosmic-pulse 3s ease-in-out infinite; }
+.animate-premium-shine  { animation: premium-shine 2s ease-in-out infinite; }
+.animate-floating-orb   { animation: floating-orb 6s ease-in-out infinite; }
+.animate-sparkle-dance  { animation: sparkle-dance 4s ease-in-out infinite; }
+.animate-rainbow-border { animation: rainbow-border 3s linear infinite; }
+.animate-text-glow      { animation: text-glow 2s ease-in-out infinite; }
+.animate-morph-blob     { animation: morph-blob 8s ease-in-out infinite; }
 .animate-wave-1        { animation: wave-1 4s ease-in-out infinite, wave-flow 6s ease-in-out infinite; }
 .animate-wave-2        { animation: wave-2 5s ease-in-out infinite reverse, wave-pulse 3s ease-in-out infinite; }
 .animate-wave-3        { animation: wave-3 6s ease-in-out infinite, wave-flow 8s ease-in-out infinite reverse; }

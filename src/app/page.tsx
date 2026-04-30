@@ -11,6 +11,8 @@ import EventsSection from "@/shared/components/sections/EventsSection";
 import OffersSection from "@/shared/components/sections/OffersSection";
 import Footer from "@/shared/components/Footer";
 import Link from "next/link";
+import StunningLayout from "@/shared/components/layouts/StunningLayout";
+import StunningCard from "@/shared/components/cards/StunningCard";
 import {
   TrendingUp, ArrowRight, BarChart3, Sparkles, PieChart,
   Heart, X, Zap, Tag, Shield, Clock, RotateCcw, Star,
@@ -110,117 +112,101 @@ export default function Page() {
 
   if (userLoading) {
     return (
-      <div className="min-h-screen flex items-center justify-center animate-gradient" style={{ 
-        background: "linear-gradient(135deg, #ff0080, #ff8c00, #ffd700, #00ff00, #00ffff, #0080ff, #8000ff)",
-        backgroundSize: "400% 400%"
-      }}>
-        <div className="flex flex-col items-center gap-6">
-          <div className="w-20 h-20 rounded-3xl flex items-center justify-center shadow-2xl animate-bounce border-4 border-yellow-400" style={{ background: "linear-gradient(135deg, #ffd700, #ff8c00)" }}>
-            <Briefcase className="w-10 h-10 text-white animate-pulse" />
-          </div>
-          <div className="text-center">
-            <div className="w-12 h-12 border-4 border-white border-t-transparent rounded-full animate-spin mx-auto mb-3" />
-            <p className="text-2xl font-black text-white drop-shadow-lg animate-pulse">💰 Loading Money... 💰</p>
-          </div>
+      <StunningLayout variant="cosmic" showWaves={true} showOrbs={true} showParticles={true}>
+        <div className="min-h-screen flex items-center justify-center">
+          <StunningCard variant="cosmic" size="lg" animated={true} glowing={true} floating={true} className="text-center">
+            <div className="flex flex-col items-center gap-6">
+              <div className="relative">
+                <div className="w-24 h-24 rounded-3xl bg-gradient-to-br from-yellow-400 via-orange-400 to-red-400 flex items-center justify-center shadow-2xl animate-morph-blob">
+                  <Briefcase className="w-12 h-12 text-white animate-sparkle-dance" />
+                </div>
+                <div className="absolute -top-2 -right-2 w-6 h-6 bg-gradient-to-r from-pink-400 to-purple-400 rounded-full animate-ping"></div>
+              </div>
+              <div className="space-y-3">
+                <div className="w-16 h-16 border-4 border-white/30 border-t-yellow-400 rounded-full animate-spin mx-auto" />
+                <h2 className="text-3xl font-black bg-gradient-to-r from-yellow-400 via-orange-400 to-red-400 bg-clip-text text-transparent animate-text-glow">
+                  Loading Your Wealth...
+                </h2>
+                <p className="text-white/80 font-medium animate-pulse">Preparing magical investments ✨</p>
+              </div>
+            </div>
+          </StunningCard>
         </div>
-      </div>
+      </StunningLayout>
     );
   }
 
   return (
-    <div className="min-h-screen pb-20 md:pb-0 animate-gradient" style={{ 
-      background: "linear-gradient(135deg, #ffd700 0%, #ff8c00 20%, #ff0080 40%, #8000ff 60%, #0080ff 80%, #00ffff 100%)",
-      backgroundSize: "400% 400%"
-    }}>
-
+    <StunningLayout variant="gradient" showWaves={true} showOrbs={true} showParticles={true}>
       {/* Hero — only for guests */}
       {!user && <Hero />}
 
-      {/* Welcome banner for logged-in users - FLASHY */}
+      {/* Welcome banner for logged-in users - STUNNING */}
       {user && showWelcome && (
-        <div className="relative overflow-hidden animate-gradient border-b-4 border-yellow-400" style={{ background: "linear-gradient(135deg, #ff0080, #ff00ff, #8000ff, #0080ff)", backgroundSize: "400% 400%" }}>
-          <div className="absolute inset-0 opacity-20 animate-pulse" style={{ backgroundImage: "linear-gradient(rgba(255,255,255,0.5) 2px, transparent 2px), linear-gradient(90deg, rgba(255,255,255,0.5) 2px, transparent 2px)", backgroundSize: "30px 30px" }} />
-          
-          {/* Floating money emojis */}
-          <div className="absolute top-2 left-10 text-2xl animate-float opacity-40">💰</div>
-          <div className="absolute top-1 right-20 text-xl animate-float animation-delay-2000 opacity-30">💎</div>
-          <div className="absolute top-3 left-1/2 text-lg animate-float animation-delay-4000 opacity-35">💸</div>
-          
-          <div className="relative max-w-7xl mx-auto px-4 py-4 flex items-center justify-between gap-3">
-            <div className="flex items-center gap-3 min-w-0">
-              <div className="w-10 h-10 rounded-xl flex-shrink-0 flex items-center justify-center shadow-xl animate-bounce" style={{ background: "linear-gradient(135deg, #ffd700, #ff8c00)" }}>
-                <Sparkles className="w-5 h-5 text-gray-900 animate-spin" />
+        <StunningCard variant="neon" className="m-4 border-0">
+          <div className="flex items-center justify-between gap-4">
+            <div className="flex items-center gap-4 min-w-0">
+              <div className="relative">
+                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-yellow-400 to-orange-400 flex items-center justify-center shadow-xl animate-floating-orb">
+                  <Sparkles className="w-6 h-6 text-purple-900 animate-sparkle-dance" />
+                </div>
+                <div className="absolute -top-1 -right-1 w-3 h-3 bg-green-400 rounded-full animate-ping"></div>
               </div>
-              <span className="text-base font-black text-white truncate drop-shadow-lg animate-neon-pulse">
-                {typedText}
-                {isTyping && <span className="animate-pulse text-yellow-300 ml-1">|</span>}
-              </span>
+              <div className="min-w-0">
+                <span className="text-lg font-black bg-gradient-to-r from-yellow-400 to-orange-400 bg-clip-text text-transparent animate-text-glow block truncate">
+                  {typedText}
+                  {isTyping && <span className="animate-pulse text-cyan-400 ml-1">|</span>}
+                </span>
+                <p className="text-cyan-300/80 text-sm font-medium">Ready to make some money? 💰</p>
+              </div>
             </div>
             <div className="flex items-center gap-2 flex-shrink-0">
-              <Link href="/portfolio" className="p-2 rounded-xl hover:bg-white/20 text-white hover:scale-110 transition-all shadow-lg" style={{ background: "rgba(255,255,255,0.1)" }}>
-                <PieChart className="w-5 h-5 animate-pulse" />
+              <Link href="/portfolio" className="p-3 rounded-xl bg-white/10 hover:bg-white/20 text-cyan-300 hover:text-white transition-all transform hover:scale-110 animate-neon-glow">
+                <PieChart className="w-5 h-5" />
               </Link>
-              <Link href="/watchlist" className="p-2 rounded-xl hover:bg-white/20 text-white hover:scale-110 transition-all shadow-lg" style={{ background: "rgba(255,255,255,0.1)" }}>
-                <Heart className="w-5 h-5 animate-pulse" />
+              <Link href="/wishlist" className="p-3 rounded-xl bg-white/10 hover:bg-white/20 text-cyan-300 hover:text-white transition-all transform hover:scale-110 animate-neon-glow">
+                <Heart className="w-5 h-5" />
               </Link>
-              <button onClick={() => setShowWelcome(false)} className="p-2 rounded-xl hover:bg-white/20 text-white hover:scale-110 transition-all shadow-lg" style={{ background: "rgba(255,255,255,0.1)" }}>
+              <button onClick={() => setShowWelcome(false)} className="p-3 rounded-xl bg-white/10 hover:bg-white/20 text-cyan-300 hover:text-white transition-all transform hover:scale-110">
                 <X className="w-4 h-4" />
               </button>
             </div>
           </div>
-        </div>
+        </StunningCard>
       )}
 
       {/* Events & Offers */}
       <EventsSection minEventsToShow={5} />
       <OffersSection minOffersToShow={5} />
 
-      {/* Category pills - SUPER COLORFUL with MOBILE ENHANCEMENTS */}
-      <section className="w-full px-4 sm:px-6 lg:px-8 py-10 relative overflow-hidden" style={{ background: "linear-gradient(135deg, #fff5f5, #fffbeb, #f0fdf4, #eff6ff, #faf5ff)" }}>
-        {/* Mobile-specific floating money background - MORE INTENSE */}
-        <div className="absolute inset-0 pointer-events-none opacity-15 lg:opacity-10">
-          <div className="absolute top-5 left-5 text-4xl lg:text-6xl animate-float">💰</div>
-          <div className="absolute top-10 right-10 text-3xl lg:text-5xl animate-float animation-delay-2000">💎</div>
-          <div className="absolute bottom-5 left-1/4 text-2xl lg:text-4xl animate-float animation-delay-4000">💸</div>
-          <div className="absolute top-1/3 right-1/4 text-3xl lg:text-5xl animate-float">🪙</div>
-          {/* Mobile-only extra emojis */}
-          <div className="lg:hidden absolute top-1/2 left-10 text-2xl animate-float animation-delay-2000">🚀</div>
-          <div className="lg:hidden absolute bottom-10 right-10 text-xl animate-float animation-delay-4000">⚡</div>
-        </div>
-        
-        <div className="max-w-7xl mx-auto relative z-10">
-          <div className="flex items-center justify-between mb-6">
-            <div className="flex items-center gap-3">
-              <div className="w-12 h-12 lg:w-12 lg:h-12 rounded-2xl bg-gradient-to-br from-pink-500 to-purple-600 flex items-center justify-center shadow-xl animate-bounce">
-                <Tag className="w-6 h-6 text-white" />
+      {/* Category pills - STUNNING */}
+      <section className="w-full px-4 sm:px-6 lg:px-8 py-12">
+        <div className="max-w-7xl mx-auto">
+          <div className="flex items-center justify-center mb-8">
+            <StunningCard variant="premium" size="sm" animated={true} glowing={true} className="inline-flex items-center gap-3">
+              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-yellow-400 to-orange-400 flex items-center justify-center animate-sparkle-dance">
+                <Tag className="w-5 h-5 text-purple-900" />
               </div>
               <div>
-                <h2 className="text-xl sm:text-2xl lg:text-3xl font-black animate-gradient" style={{ 
-                  background: "linear-gradient(135deg, #ff0080, #ff8c00, #ffd700)",
-                  backgroundSize: "200% auto",
-                  WebkitBackgroundClip: "text",
-                  WebkitTextFillColor: "transparent",
-                  backgroundClip: "text"
-                }}>
-                  💰 Investment Categories
+                <h2 className="text-2xl font-black bg-gradient-to-r from-yellow-400 via-orange-400 to-red-400 bg-clip-text text-transparent animate-text-glow">
+                  Investment Categories
                 </h2>
-                <p className="text-xs sm:text-sm font-bold text-purple-600">Pick your money maker! 🚀</p>
+                <p className="text-sm font-bold text-orange-600">Pick your money maker! 🚀</p>
               </div>
-            </div>
+            </StunningCard>
           </div>
           
-          {/* Mobile gets BIGGER, more colorful cards */}
-          <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-3 sm:gap-4">
+          <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-4">
             {INVESTMENT_CATEGORIES.map((cat, i) => (
               <Link key={cat.label} href={cat.href}
-                className="group flex flex-col items-center gap-2 animate-fade-in-up hover:scale-110 transition-all duration-300"
-                style={{ animationDelay: `${i * 0.05}s` }}>
-                <div className={`w-20 h-20 sm:w-16 sm:h-16 lg:w-20 lg:h-20 rounded-3xl bg-gradient-to-br ${cat.color} flex items-center justify-center shadow-xl group-hover:shadow-2xl group-hover:rotate-12 transition-all duration-300 border-4 border-white animate-glow-pulse relative overflow-hidden`}>
-                  {/* Mobile gets extra sparkles */}
-                  <div className="sm:hidden absolute top-1 right-1 w-2 h-2 bg-yellow-300 rounded-full animate-ping" />
-                  <cat.icon className="w-10 h-10 sm:w-8 sm:h-8 lg:w-10 lg:h-10 text-white drop-shadow-lg" />
-                </div>
-                <span className="text-xs sm:text-xs lg:text-sm font-black text-gray-800 group-hover:text-purple-700 text-center transition-colors leading-tight drop-shadow-sm">{cat.label}</span>
+                className="group animate-fade-in-up"
+                style={{ animationDelay: `${i * 0.1}s` }}>
+                <StunningCard variant="glass" size="sm" animated={true} className="text-center transform group-hover:scale-110 transition-all duration-300">
+                  <div className={`w-16 h-16 mx-auto mb-3 rounded-2xl bg-gradient-to-br ${cat.color} flex items-center justify-center shadow-xl animate-floating-orb`}>
+                    <cat.icon className="w-8 h-8 text-white" />
+                  </div>
+                  <span className="text-sm font-bold text-white group-hover:text-yellow-300 transition-colors">{cat.label}</span>
+                </StunningCard>
               </Link>
             ))}
           </div>
