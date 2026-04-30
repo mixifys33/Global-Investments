@@ -82,47 +82,67 @@ const Login = () => {
         <svg className="absolute inset-0 w-full h-full" viewBox="0 0 1200 800" preserveAspectRatio="none">
           <defs>
             <linearGradient id="wave-gradient-1" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stopColor="rgba(59, 130, 246, 0.3)" />
-              <stop offset="50%" stopColor="rgba(147, 51, 234, 0.3)" />
-              <stop offset="100%" stopColor="rgba(34, 197, 94, 0.3)" />
+              <stop offset="0%" stopColor="rgba(59, 130, 246, 0.6)" />
+              <stop offset="50%" stopColor="rgba(147, 51, 234, 0.6)" />
+              <stop offset="100%" stopColor="rgba(34, 197, 94, 0.6)" />
             </linearGradient>
             <linearGradient id="wave-gradient-2" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stopColor="rgba(34, 197, 94, 0.2)" />
-              <stop offset="50%" stopColor="rgba(59, 130, 246, 0.2)" />
-              <stop offset="100%" stopColor="rgba(147, 51, 234, 0.2)" />
+              <stop offset="0%" stopColor="rgba(34, 197, 94, 0.4)" />
+              <stop offset="50%" stopColor="rgba(59, 130, 246, 0.4)" />
+              <stop offset="100%" stopColor="rgba(147, 51, 234, 0.4)" />
             </linearGradient>
             <linearGradient id="wave-gradient-3" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stopColor="rgba(147, 51, 234, 0.1)" />
-              <stop offset="50%" stopColor="rgba(34, 197, 94, 0.1)" />
-              <stop offset="100%" stopColor="rgba(59, 130, 246, 0.1)" />
+              <stop offset="0%" stopColor="rgba(147, 51, 234, 0.3)" />
+              <stop offset="50%" stopColor="rgba(34, 197, 94, 0.3)" />
+              <stop offset="100%" stopColor="rgba(59, 130, 246, 0.3)" />
+            </linearGradient>
+            <linearGradient id="wave-gradient-4" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stopColor="rgba(255, 215, 0, 0.2)" />
+              <stop offset="50%" stopColor="rgba(255, 20, 147, 0.2)" />
+              <stop offset="100%" stopColor="rgba(0, 255, 255, 0.2)" />
             </linearGradient>
           </defs>
           
+          {/* Wave 1 - Most dramatic */}
           <path 
-            d="M0,400 C300,300 600,500 1200,400 L1200,800 L0,800 Z" 
+            d="M0,400 C300,200 600,600 1200,400 L1200,800 L0,800 Z" 
             fill="url(#wave-gradient-1)"
             className="animate-wave-1"
           />
           
+          {/* Wave 2 - Medium movement */}
           <path 
-            d="M0,500 C400,400 800,600 1200,500 L1200,800 L0,800 Z" 
+            d="M0,500 C400,300 800,700 1200,500 L1200,800 L0,800 Z" 
             fill="url(#wave-gradient-2)"
             className="animate-wave-2"
           />
           
+          {/* Wave 3 - Subtle but visible */}
           <path 
-            d="M0,600 C200,550 800,650 1200,600 L1200,800 L0,800 Z" 
+            d="M0,600 C200,400 800,800 1200,600 L1200,800 L0,800 Z" 
             fill="url(#wave-gradient-3)"
             className="animate-wave-3"
           />
+          
+          {/* Wave 4 - Extra accent wave */}
+          <path 
+            d="M0,350 C500,150 700,550 1200,350 L1200,800 L0,800 Z" 
+            fill="url(#wave-gradient-4)"
+            className="animate-wave-1"
+            style={{ animationDelay: '1s' }}
+          />
         </svg>
         
+        {/* Enhanced floating particles */}
         <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute top-20 left-10 w-2 h-2 bg-blue-400 rounded-full animate-float opacity-60"></div>
-          <div className="absolute top-40 right-20 w-3 h-3 bg-purple-400 rounded-full animate-float-reverse opacity-40"></div>
-          <div className="absolute bottom-32 left-1/4 w-2 h-2 bg-green-400 rounded-full animate-float opacity-50 delay-300"></div>
-          <div className="absolute top-1/3 right-1/3 w-1 h-1 bg-yellow-400 rounded-full animate-pulse opacity-70"></div>
-          <div className="absolute bottom-1/3 right-10 w-2 h-2 bg-pink-400 rounded-full animate-float opacity-30 delay-500"></div>
+          <div className="absolute top-20 left-10 w-3 h-3 bg-blue-400 rounded-full animate-float opacity-80 shadow-lg"></div>
+          <div className="absolute top-40 right-20 w-4 h-4 bg-purple-400 rounded-full animate-float-reverse opacity-60 shadow-lg"></div>
+          <div className="absolute bottom-32 left-1/4 w-3 h-3 bg-green-400 rounded-full animate-float opacity-70 delay-300 shadow-lg"></div>
+          <div className="absolute top-1/3 right-1/3 w-2 h-2 bg-yellow-400 rounded-full animate-pulse opacity-90 shadow-lg"></div>
+          <div className="absolute bottom-1/3 right-10 w-3 h-3 bg-pink-400 rounded-full animate-float opacity-50 delay-500 shadow-lg"></div>
+          <div className="absolute top-1/2 left-1/3 w-2 h-2 bg-cyan-400 rounded-full animate-pulse opacity-70 delay-700 shadow-lg"></div>
+          <div className="absolute top-60 right-1/2 w-2 h-2 bg-orange-400 rounded-full animate-float opacity-60 delay-1000 shadow-lg"></div>
+          <div className="absolute bottom-40 left-1/2 w-3 h-3 bg-indigo-400 rounded-full animate-float-reverse opacity-50 delay-1200 shadow-lg"></div>
         </div>
       </div>
 

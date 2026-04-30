@@ -191,60 +191,102 @@ const handleOtpKeyDown  = (index:number, e:React.KeyboardEvent<HTMLInputElement>
  };
 
   return (
-    <div className="w-full py-10 min-h-[85vh] relative overflow-hidden bg-gradient-to-br from-purple-900 via-blue-900 to-green-900 animate-gradient-x">
-      {/* CRAZY Animated money background */}
-      <div className="absolute inset-0 pointer-events-none">
-        {/* Floating money symbols */}
-        <div className="absolute top-10 left-10 text-6xl animate-money-bounce text-yellow-400 drop-shadow-lg">💰</div>
-        <div className="absolute top-20 right-20 text-5xl animate-pulse text-green-400 drop-shadow-lg">💎</div>
-        <div className="absolute bottom-20 left-1/4 text-4xl animate-crazy-spin text-blue-400 drop-shadow-lg">📈</div>
-        <div className="absolute top-1/3 right-1/3 text-3xl animate-bounce text-yellow-300 drop-shadow-lg delay-300">💵</div>
-        <div className="absolute bottom-1/3 right-10 text-5xl animate-pulse text-green-300 drop-shadow-lg delay-500">🤑</div>
-        <div className="absolute top-1/2 left-20 text-4xl animate-spin text-purple-400 drop-shadow-lg delay-700">💸</div>
+    <div className="w-full py-10 min-h-[85vh] relative overflow-hidden bg-gradient-to-br from-purple-900 via-blue-900 to-green-900">
+      {/* Moving Wave Background */}
+      <div className="absolute inset-0">
+        <svg className="absolute inset-0 w-full h-full" viewBox="0 0 1200 800" preserveAspectRatio="none">
+          <defs>
+            <linearGradient id="signup-wave-gradient-1" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stopColor="rgba(59, 130, 246, 0.6)" />
+              <stop offset="50%" stopColor="rgba(147, 51, 234, 0.6)" />
+              <stop offset="100%" stopColor="rgba(34, 197, 94, 0.6)" />
+            </linearGradient>
+            <linearGradient id="signup-wave-gradient-2" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stopColor="rgba(34, 197, 94, 0.4)" />
+              <stop offset="50%" stopColor="rgba(59, 130, 246, 0.4)" />
+              <stop offset="100%" stopColor="rgba(147, 51, 234, 0.4)" />
+            </linearGradient>
+            <linearGradient id="signup-wave-gradient-3" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stopColor="rgba(147, 51, 234, 0.3)" />
+              <stop offset="50%" stopColor="rgba(34, 197, 94, 0.3)" />
+              <stop offset="100%" stopColor="rgba(59, 130, 246, 0.3)" />
+            </linearGradient>
+            <linearGradient id="signup-wave-gradient-4" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stopColor="rgba(255, 215, 0, 0.2)" />
+              <stop offset="50%" stopColor="rgba(255, 20, 147, 0.2)" />
+              <stop offset="100%" stopColor="rgba(0, 255, 255, 0.2)" />
+            </linearGradient>
+          </defs>
+          
+          {/* Wave 1 - Most dramatic */}
+          <path 
+            d="M0,400 C300,200 600,600 1200,400 L1200,800 L0,800 Z" 
+            fill="url(#signup-wave-gradient-1)"
+            className="animate-wave-1"
+          />
+          
+          {/* Wave 2 - Medium movement */}
+          <path 
+            d="M0,500 C400,300 800,700 1200,500 L1200,800 L0,800 Z" 
+            fill="url(#signup-wave-gradient-2)"
+            className="animate-wave-2"
+          />
+          
+          {/* Wave 3 - Subtle but visible */}
+          <path 
+            d="M0,600 C200,400 800,800 1200,600 L1200,800 L0,800 Z" 
+            fill="url(#signup-wave-gradient-3)"
+            className="animate-wave-3"
+          />
+          
+          {/* Wave 4 - Extra accent wave */}
+          <path 
+            d="M0,350 C500,150 700,550 1200,350 L1200,800 L0,800 Z" 
+            fill="url(#signup-wave-gradient-4)"
+            className="animate-wave-1"
+            style={{ animationDelay: '1s' }}
+          />
+        </svg>
         
-        {/* Moving gradient orbs */}
-        <div className="absolute top-0 left-0 w-96 h-96 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full opacity-20 animate-float"></div>
-        <div className="absolute bottom-0 right-0 w-80 h-80 bg-gradient-to-r from-green-400 to-blue-500 rounded-full opacity-20 animate-float-reverse"></div>
-        <div className="absolute top-1/2 left-1/2 w-64 h-64 bg-gradient-to-r from-purple-400 to-pink-500 rounded-full opacity-20 animate-pulse"></div>
-        
-        {/* Sparkle effects */}
-        <div className="absolute top-1/4 left-1/4 w-2 h-2 bg-yellow-300 rounded-full animate-ping"></div>
-        <div className="absolute top-3/4 right-1/4 w-3 h-3 bg-green-300 rounded-full animate-ping delay-300"></div>
-        <div className="absolute bottom-1/4 left-3/4 w-2 h-2 bg-blue-300 rounded-full animate-ping delay-500"></div>
+        {/* Enhanced floating particles */}
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute top-20 left-10 w-3 h-3 bg-blue-400 rounded-full animate-float opacity-80 shadow-lg"></div>
+          <div className="absolute top-40 right-20 w-4 h-4 bg-purple-400 rounded-full animate-float-reverse opacity-60 shadow-lg"></div>
+          <div className="absolute bottom-32 left-1/4 w-3 h-3 bg-green-400 rounded-full animate-float opacity-70 delay-300 shadow-lg"></div>
+          <div className="absolute top-1/3 right-1/3 w-2 h-2 bg-yellow-400 rounded-full animate-pulse opacity-90 shadow-lg"></div>
+          <div className="absolute bottom-1/3 right-10 w-3 h-3 bg-pink-400 rounded-full animate-float opacity-50 delay-500 shadow-lg"></div>
+          <div className="absolute top-1/2 left-1/3 w-2 h-2 bg-cyan-400 rounded-full animate-pulse opacity-70 delay-700 shadow-lg"></div>
+          <div className="absolute top-60 right-1/2 w-2 h-2 bg-orange-400 rounded-full animate-float opacity-60 delay-1000 shadow-lg"></div>
+          <div className="absolute bottom-40 left-1/2 w-3 h-3 bg-indigo-400 rounded-full animate-float-reverse opacity-50 delay-1200 shadow-lg"></div>
+        </div>
       </div>
 
-      <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-center mb-4 bg-gradient-to-r from-yellow-400 via-green-400 to-blue-400 bg-clip-text text-transparent animate-pulse drop-shadow-2xl">
-        💰 JOIN THE MONEY REVOLUTION! 💰
-      </h1>
+      <div className="relative z-10">
+        <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-center mb-4 bg-gradient-to-r from-blue-400 via-purple-400 to-green-400 bg-clip-text text-transparent">
+          Join Global Investments
+        </h1>
 
-      <p className="text-center text-xl font-bold py-3 text-yellow-300 animate-bounce drop-shadow-lg">
-        🚀 Create Your Wealth-Building Account! 🚀
-      </p>
+        <p className="text-center text-xl font-medium py-3 text-blue-100">
+          Create your investment account today
+        </p>
 
       <div className="w-full flex justify-center">
-        <div className="md:w-[480px] p-8 bg-gradient-to-br from-black/80 via-purple-900/80 to-blue-900/80 backdrop-blur-lg shadow-2xl rounded-2xl border-2 border-yellow-400/50 relative overflow-hidden animate-glow">
-          {/* Crazy animated border */}
-          <div className="absolute top-0 left-0 right-0 h-2 bg-gradient-to-r from-yellow-400 via-green-400 to-blue-400 animate-gradient-x" />
-          <div className="absolute bottom-0 left-0 right-0 h-2 bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 animate-gradient-x" />
+        <div className="md:w-[480px] p-8 bg-black/20 backdrop-blur-xl shadow-2xl rounded-2xl border border-white/10 relative overflow-hidden">
+          {/* Animated border glow */}
+          <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-blue-500/20 via-purple-500/20 to-green-500/20 animate-gradient-border"></div>
+          <div className="absolute inset-[1px] rounded-2xl bg-black/40 backdrop-blur-xl"></div>
           
-          {/* Money rain effect */}
-          <div className="absolute inset-0 pointer-events-none">
-            <div className="absolute top-2 left-10 text-2xl animate-bounce text-yellow-400">💰</div>
-            <div className="absolute top-4 right-12 text-xl animate-pulse text-green-400">💵</div>
-            <div className="absolute top-6 left-1/2 text-lg animate-spin text-blue-400">💎</div>
-          </div>
+          <div className="relative z-10">
+            <h3 className="text-2xl sm:text-3xl font-bold text-center mb-4 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+              Create Account
+            </h3>
 
-          <h3 className="text-2xl sm:text-3xl font-bold text-center mb-4 bg-gradient-to-r from-yellow-400 to-green-400 bg-clip-text text-transparent animate-pulse drop-shadow-lg">
-            🔥 CREATE WEALTH ACCOUNT 🔥
-          </h3>
-
-
-          <p className="text-center text-yellow-300 mb-6 font-bold animate-bounce">
-          Already have an account? {" "}
-            <Link href={"/login"} className="text-green-400 hover:text-green-300 font-bold underline animate-pulse">
-            🚀 SIGN IN TO RICHES! 🚀
-            </Link>
-          </p>
+            <p className="text-center text-blue-200 mb-6">
+            Already have an account? {" "}
+              <Link href={"/login"} className="text-green-400 hover:text-green-300 font-medium underline transition-colors">
+              Sign In
+              </Link>
+            </p>
 
           <GoogleButton
             mode="signup"
@@ -273,10 +315,10 @@ const handleOtpKeyDown  = (index:number, e:React.KeyboardEvent<HTMLInputElement>
             </div>
           )}
 
-          <div className="flex items-center my-6 text-yellow-300 text-sm font-bold">
-            <div className="flex-1 border-t-2 border-yellow-400 animate-pulse" />
-            <span className="px-4 bg-gradient-to-r from-yellow-400 to-green-400 bg-clip-text text-transparent">💎 or continue with email 💎</span>
-            <div className="flex-1 border-t-2 border-yellow-400 animate-pulse" />
+          <div className="flex items-center my-6 text-blue-200 text-sm">
+            <div className="flex-1 border-t border-white/20" />
+            <span className="px-4 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent font-medium">or continue with email</span>
+            <div className="flex-1 border-t border-white/20" />
           </div>
 
 
@@ -284,28 +326,42 @@ const handleOtpKeyDown  = (index:number, e:React.KeyboardEvent<HTMLInputElement>
 
                   <form onSubmit={handleSubmit(onSubmit)}>
            {/* name */}
-           <label className="block text-yellow-300 mb-2 font-bold animate-pulse">👤 Full Name 👤</label>
+           <label className="block text-blue-200 mb-2 font-medium flex items-center gap-2">
+             <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+               <path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd" />
+             </svg>
+             Full Name
+           </label>
             <input
               type="text"
-              placeholder="Enter your money-making name..."
-              className="w-full p-4 border-2 border-yellow-400/50 bg-black/50 text-white placeholder-gray-300 outline-0 rounded-xl focus:border-yellow-400 focus:ring-4 focus:ring-yellow-400/30 transition-all duration-300 mb-4 backdrop-blur-sm animate-glow"
+              placeholder="Enter your full name"
+              className="w-full p-4 border border-white/20 bg-white/5 text-white placeholder-gray-300 outline-0 rounded-xl focus:border-blue-400 focus:ring-2 focus:ring-blue-400/30 transition-all duration-300 mb-4 backdrop-blur-sm"
               {...register("name", {
                 required: "Name is required",
 
               })}
             />
             {errors.name && (
-              <p className="text-red-400 text-sm mb-4 font-bold animate-bounce">
-                ⚠️ {String(errors.name.message)} ⚠️
+              <p className="text-red-400 text-sm mb-4 flex items-center gap-2">
+                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
+                </svg>
+                {String(errors.name.message)}
               </p>
             )}
 
             {/* Email */}
-            <label className="block text-yellow-300 mb-2 font-bold animate-pulse">💰 Email Address 💰</label>
+            <label className="block text-blue-200 mb-2 font-medium flex items-center gap-2">
+              <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
+                <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
+              </svg>
+              Email Address
+            </label>
             <input
               type="email"
-              placeholder="Enter your wealth-building email..."
-              className="w-full p-4 border-2 border-yellow-400/50 bg-black/50 text-white placeholder-gray-300 outline-0 rounded-xl focus:border-yellow-400 focus:ring-4 focus:ring-yellow-400/30 transition-all duration-300 mb-4 backdrop-blur-sm animate-glow"
+              placeholder="Enter your email address"
+              className="w-full p-4 border border-white/20 bg-white/5 text-white placeholder-gray-300 outline-0 rounded-xl focus:border-blue-400 focus:ring-2 focus:ring-blue-400/30 transition-all duration-300 mb-4 backdrop-blur-sm"
               {...register("email", {
                 required: "Email is required",
                 pattern: {
@@ -315,18 +371,26 @@ const handleOtpKeyDown  = (index:number, e:React.KeyboardEvent<HTMLInputElement>
               })}
             />
             {errors.email && (
-              <p className="text-red-400 text-sm mb-4 font-bold animate-bounce">
-                ⚠️ {String(errors.email.message)} ⚠️
+              <p className="text-red-400 text-sm mb-4 flex items-center gap-2">
+                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
+                </svg>
+                {String(errors.email.message)}
               </p>
             )}
 
             {/* Password */}
-            <label className="block text-yellow-300 mb-2 font-bold animate-pulse">🔐 Password 🔐</label>
+            <label className="block text-blue-200 mb-2 font-medium flex items-center gap-2">
+              <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                <path fillRule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clipRule="evenodd" />
+              </svg>
+              Password
+            </label>
             <div className="relative mb-6">
               <input
                 type={passwordVisible ? "text" : "password"}
-                placeholder="Create your secret wealth code (min. 6 chars)..."
-                className="w-full p-4 border-2 border-yellow-400/50 bg-black/50 text-white placeholder-gray-300 outline-0 rounded-xl focus:border-yellow-400 focus:ring-4 focus:ring-yellow-400/30 transition-all duration-300 pr-12 backdrop-blur-sm animate-glow"
+                placeholder="Create a password (min. 6 characters)"
+                className="w-full p-4 border border-white/20 bg-white/5 text-white placeholder-gray-300 outline-0 rounded-xl focus:border-blue-400 focus:ring-2 focus:ring-blue-400/30 transition-all duration-300 pr-12 backdrop-blur-sm"
                 {...register("password", {
                   required: "Password is required",
                   minLength: {
@@ -339,14 +403,17 @@ const handleOtpKeyDown  = (index:number, e:React.KeyboardEvent<HTMLInputElement>
               <button
                 type="button"
                 onClick={() => setPasswordVisible(!passwordVisible)}
-                className="absolute inset-y-0 right-3 flex items-center text-yellow-400 hover:text-yellow-300 animate-pulse"
+                className="absolute inset-y-0 right-3 flex items-center text-blue-300 hover:text-blue-200 transition-colors"
               >
                 {passwordVisible ? <Eye /> : <EyeOff />}
               </button>
 
               {errors.password && (
-                <p className="text-red-400 text-sm mt-2 font-bold animate-bounce">
-                  ⚠️ {String(errors.password.message)} ⚠️
+                <p className="text-red-400 text-sm mt-2 flex items-center gap-2">
+                  <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
+                  </svg>
+                  {String(errors.password.message)}
                 </p>
               )}
             </div>
@@ -357,13 +424,16 @@ const handleOtpKeyDown  = (index:number, e:React.KeyboardEvent<HTMLInputElement>
             <button
             type="submit"
             disabled={signupMutation.isPending}
-            className="w-full text-lg font-bold py-4 rounded-xl bg-gradient-to-r from-yellow-400 via-green-400 to-blue-400 text-black hover:from-yellow-300 hover:via-green-300 hover:to-blue-300 transition-all duration-300 disabled:opacity-70 disabled:cursor-not-allowed shadow-2xl animate-pulse transform hover:scale-105 flex justify-center items-center gap-2"
+            className="w-full flex items-center justify-center gap-2 py-4 px-6 rounded-xl font-bold transition-all duration-300 disabled:opacity-70 disabled:cursor-not-allowed shadow-lg text-base bg-gradient-to-r from-blue-500 via-purple-500 to-green-500 hover:from-blue-600 hover:via-purple-600 hover:to-green-600 text-white transform hover:scale-[1.02]"
           >
             {showSpinner ? (
-              <div className="w-6 h-6 border-3 border-t-transparent border-black rounded-full animate-spin"></div>
+              <div className="w-6 h-6 border-2 border-t-transparent border-white rounded-full animate-spin"></div>
             ) : (
-              <span className="flex items-center gap-2 animate-bounce">
-                {signupButtonText || "🚀 CREATE WEALTH ACCOUNT! 🚀"}
+              <span className="flex items-center gap-2">
+                <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd" />
+                </svg>
+                {signupButtonText || "Create Account"}
               </span>
             )}
           </button>
