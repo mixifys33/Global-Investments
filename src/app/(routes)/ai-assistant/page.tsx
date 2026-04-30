@@ -521,12 +521,12 @@ const EasyAIPage = () => {
   }
 
   return (
-    <div className="fixed inset-0 z-[100] flex" style={{ background: "linear-gradient(135deg, #f8fafc, #fff1f2, #fffbeb)" }}>
-      {/* Subtle floating money emojis */}
-      <div className="absolute inset-0 pointer-events-none opacity-3">
-        <div className="absolute top-20 left-10 text-4xl animate-float">💰</div>
-        <div className="absolute top-40 right-20 text-3xl animate-float animation-delay-2000">💎</div>
-        <div className="absolute bottom-20 left-1/4 text-2xl animate-float animation-delay-4000">💸</div>
+    <div className="fixed inset-0 z-[100] flex bg-slate-50">
+      {/* Subtle background pattern */}
+      <div className="absolute inset-0 pointer-events-none opacity-[0.01]">
+        <div className="absolute top-20 left-10 text-2xl">💰</div>
+        <div className="absolute top-40 right-20 text-xl">💎</div>
+        <div className="absolute bottom-20 left-1/4 text-lg">📈</div>
       </div>
       {/* Action Notification */}
       {actionNotification && (
@@ -550,22 +550,22 @@ const EasyAIPage = () => {
         transform transition-transform duration-300 ease-in-out
         ${mobileSidebarOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}
         ${!sidebarOpen && 'lg:w-0 lg:overflow-hidden'}
-      `} style={{ background: "linear-gradient(135deg, #1f2937, #374151, #4b5563)" }}>
+      `} style={{ background: "linear-gradient(135deg, #1e293b, #334155)" }}>
         {/* Sidebar Header */}
-        <div className="flex-shrink-0 p-4 border-b border-gray-600">
+        <div className="flex-shrink-0 p-4 border-b border-slate-600">
           <div className="flex items-center justify-between">
-            <div className="flex items-center gap-2">
-              <div className="w-9 h-9 rounded-xl flex items-center justify-center shadow-lg" style={{ background: "linear-gradient(135deg, #0f766e, #14b8a6)" }}>
+            <div className="flex items-center gap-3">
+              <div className="w-9 h-9 rounded-lg flex items-center justify-center bg-blue-600 shadow-sm">
                 <Sparkles className="w-5 h-5 text-white" />
               </div>
               <div>
-                <h1 className="font-black text-white">💰 Atlas AI</h1>
-                <p className="text-xs text-gray-300 font-medium">Investment Assistant</p>
+                <h1 className="font-semibold text-white">Atlas AI</h1>
+                <p className="text-xs text-slate-300">Investment Assistant</p>
               </div>
             </div>
             <button 
               onClick={() => setMobileSidebarOpen(false)}
-              className="lg:hidden p-1.5 hover:bg-gray-800 rounded-lg"
+              className="lg:hidden p-1.5 hover:bg-slate-700 rounded-lg text-slate-400"
             >
               <X className="w-5 h-5" />
             </button>
@@ -576,36 +576,35 @@ const EasyAIPage = () => {
         <div className="flex-shrink-0 p-3">
           <button
             onClick={createNewSession}
-            className="w-full flex items-center gap-2 px-4 py-2.5 rounded-xl transition font-black text-sm text-white shadow-lg hover:scale-105"
-            style={{ background: "linear-gradient(135deg, #0f766e, #14b8a6)" }}
+            className="w-full flex items-center gap-2 px-4 py-2.5 rounded-lg bg-blue-600 hover:bg-blue-700 transition font-medium text-sm text-white shadow-sm"
           >
             <Plus className="w-4 h-4" />
-            💰 New Investment Chat
+            New Chat
           </button>
         </div>
 
         {/* Chat Sessions - Scrollable */}
-        <div className="flex-1 overflow-y-auto px-3 min-h-0" style={{ background: "rgba(0,0,0,0.1)" }}>
-          <p className="text-xs text-gray-300 px-2 py-2 font-bold sticky top-0" style={{ background: "linear-gradient(135deg, #1f2937, #374151)" }}>💎 Recent Chats</p>
+        <div className="flex-1 overflow-y-auto px-3 min-h-0">
+          <p className="text-xs text-slate-400 px-2 py-2 font-medium sticky top-0 bg-slate-800/50">Recent Chats</p>
           <div className="space-y-1 pb-3">
             {sessions.map(session => (
               <div
                 key={session.id}
                 className={`group flex items-center gap-2 px-3 py-2 rounded-lg cursor-pointer transition ${
-                  activeSessionId === session.id ? 'bg-gray-700' : 'hover:bg-gray-800'
+                  activeSessionId === session.id ? 'bg-slate-700' : 'hover:bg-slate-700/50'
                 }`}
                 onClick={() => { setActiveSessionId(session.id); setMobileSidebarOpen(false) }}
               >
-                <MessageSquare className="w-4 h-4 text-gray-400 flex-shrink-0" />
+                <MessageSquare className="w-4 h-4 text-slate-400 flex-shrink-0" />
                 <div className="flex-1 min-w-0">
-                  <p className="text-sm truncate">{session.title}</p>
-                  <p className="text-xs text-gray-500">{formatDate(session.updatedAt)}</p>
+                  <p className="text-sm text-white truncate">{session.title}</p>
+                  <p className="text-xs text-slate-400">{formatDate(session.updatedAt)}</p>
                 </div>
                 <button
                   onClick={(e) => { e.stopPropagation(); deleteSession(session.id) }}
-                  className="opacity-0 group-hover:opacity-100 p-1 hover:bg-gray-600 rounded"
+                  className="opacity-0 group-hover:opacity-100 p-1 hover:bg-slate-600 rounded text-slate-400"
                 >
-                  <Trash2 className="w-3.5 h-3.5 text-gray-400" />
+                  <Trash2 className="w-3.5 h-3.5" />
                 </button>
               </div>
             ))}
@@ -613,39 +612,39 @@ const EasyAIPage = () => {
         </div>
 
         {/* Sidebar Footer */}
-        <div className="flex-shrink-0 p-3 border-t border-gray-700 space-y-2">
+        <div className="flex-shrink-0 p-3 border-t border-slate-600 space-y-2">
           {sessions.length > 0 && (
             <button
               onClick={clearAllSessions}
-              className="w-full flex items-center justify-center gap-2 px-3 py-2 text-xs text-gray-400 hover:text-white hover:bg-gray-800 rounded-lg transition"
+              className="w-full flex items-center justify-center gap-2 px-3 py-2 text-xs text-slate-400 hover:text-white hover:bg-slate-700 rounded-lg transition"
             >
               <Trash2 className="w-3.5 h-3.5" />
               Clear all
             </button>
           )}
           {user && (
-            <div className="flex items-center gap-2 px-3 py-2 bg-gray-800 rounded-lg">
-              <div className="w-7 h-7 bg-gradient-to-br from-orange-500 to-pink-500 rounded-full flex items-center justify-center text-xs font-bold">
+            <div className="flex items-center gap-2 px-3 py-2 bg-slate-700 rounded-lg">
+              <div className="w-7 h-7 bg-gradient-to-br from-blue-500 to-indigo-500 rounded-full flex items-center justify-center text-xs font-semibold text-white">
                 {user.name?.charAt(0).toUpperCase() || 'U'}
               </div>
               <div className="flex-1 min-w-0">
-                <p className="text-xs font-medium truncate">{user.name}</p>
+                <p className="text-xs font-medium text-white truncate">{user.name}</p>
               </div>
             </div>
           )}
           <Link 
             href="/" 
-            className="flex items-center justify-center gap-2 px-3 py-2 text-sm text-gray-300 hover:text-white hover:bg-gray-800 rounded-lg transition"
+            className="flex items-center justify-center gap-2 px-3 py-2 text-sm text-slate-300 hover:text-white hover:bg-slate-700 rounded-lg transition"
           >
             <ShoppingBag className="w-4 h-4" />
-            Back to Investments
+            Back to Platform
           </Link>
           <Link 
             href="/compare" 
-            className="flex items-center justify-center gap-2 px-3 py-2 text-sm text-gray-300 hover:text-white hover:bg-gray-800 rounded-lg transition"
+            className="flex items-center justify-center gap-2 px-3 py-2 text-sm text-slate-300 hover:text-white hover:bg-slate-700 rounded-lg transition"
           >
             <Package className="w-4 h-4" />
-            Portfolio Analysis
+            Compare Products
           </Link>
         </div>
       </aside>
@@ -653,39 +652,39 @@ const EasyAIPage = () => {
       {/* Main Content */}
       <main className="flex-1 flex flex-col min-w-0 h-full">
         {/* Header - Fixed */}
-        <header className="flex-shrink-0 bg-white border-b border-gray-200 px-3 sm:px-4 py-2.5 flex items-center gap-2">
+        <header className="flex-shrink-0 bg-white border-b border-slate-200 px-3 sm:px-4 py-3 flex items-center gap-3">
           <button
             onClick={() => setMobileSidebarOpen(true)}
-            className="lg:hidden p-2 hover:bg-gray-100 rounded-lg"
+            className="lg:hidden p-2 hover:bg-slate-100 rounded-lg text-slate-600"
           >
             <Menu className="w-5 h-5" />
           </button>
           <button
             onClick={() => setSidebarOpen(!sidebarOpen)}
-            className="hidden lg:flex p-2 hover:bg-gray-100 rounded-lg"
+            className="hidden lg:flex p-2 hover:bg-slate-100 rounded-lg text-slate-600"
           >
             {sidebarOpen ? <ChevronLeft className="w-5 h-5" /> : <ChevronRight className="w-5 h-5" />}
           </button>
-          <div className="flex items-center gap-2 flex-1 min-w-0">
-            <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center flex-shrink-0">
+          <div className="flex items-center gap-3 flex-1 min-w-0">
+            <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-lg flex items-center justify-center flex-shrink-0">
               <Sparkles className="w-4 h-4 text-white" />
             </div>
             <div className="min-w-0">
-              <h2 className="font-semibold text-gray-900 text-sm sm:text-base">Atlas AI Assistant</h2>
-              <p className="text-xs text-gray-500 hidden sm:block">Investment guidance & analysis</p>
+              <h2 className="font-semibold text-slate-900 text-sm sm:text-base">Atlas AI Assistant</h2>
+              <p className="text-xs text-slate-500 hidden sm:block">Investment guidance & analysis</p>
             </div>
           </div>
           
           {cart.length > 0 && (
-            <Link href="/cart" className="relative p-2 text-gray-600 hover:bg-gray-100 rounded-lg">
+            <Link href="/cart" className="relative p-2 text-slate-600 hover:bg-slate-100 rounded-lg">
               <ShoppingCart className="w-5 h-5" />
-              <span className="absolute -top-0.5 -right-0.5 bg-orange-500 text-white text-xs w-4 h-4 rounded-full flex items-center justify-center text-[10px]">
+              <span className="absolute -top-0.5 -right-0.5 bg-blue-500 text-white text-xs w-4 h-4 rounded-full flex items-center justify-center text-[10px]">
                 {cart.length}
               </span>
             </Link>
           )}
           
-          <Link href="/" className="p-2 text-gray-600 hover:bg-gray-100 rounded-lg">
+          <Link href="/" className="p-2 text-slate-600 hover:bg-slate-100 rounded-lg">
             <ShoppingBag className="w-5 h-5" />
           </Link>
         </header>
@@ -696,21 +695,15 @@ const EasyAIPage = () => {
             /* Welcome Screen */
             <div className="h-full flex flex-col items-center justify-center p-4 sm:p-6">
               <div className="max-w-xl w-full text-center">
-                <div className="w-16 h-16 sm:w-20 sm:h-20 mx-auto mb-4 sm:mb-6 rounded-2xl sm:rounded-3xl flex items-center justify-center shadow-2xl border-4 border-yellow-400" style={{ background: "linear-gradient(135deg, #0f766e, #14b8a6, #06b6d4)" }}>
-                  <Sparkles className="w-8 h-8 sm:w-10 sm:h-10 text-white animate-pulse" />
+                <div className="w-16 h-16 sm:w-20 sm:h-20 mx-auto mb-4 sm:mb-6 rounded-xl bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center shadow-lg">
+                  <Sparkles className="w-8 h-8 sm:w-10 sm:h-10 text-white" />
                 </div>
 
-                <h1 className="text-2xl sm:text-3xl font-black text-gray-900 mb-2">
-                  Welcome to <span className="animate-gradient" style={{ 
-                    background: "linear-gradient(135deg, #0f766e, #14b8a6, #06b6d4)",
-                    backgroundSize: "200% auto",
-                    WebkitBackgroundClip: "text",
-                    WebkitTextFillColor: "transparent",
-                    backgroundClip: "text"
-                  }}>💰 Atlas AI</span>
+                <h1 className="text-2xl sm:text-3xl font-bold text-slate-900 mb-2">
+                  Welcome to <span className="text-blue-600">Atlas AI</span>
                 </h1>
-                <p className="text-gray-600 mb-6 text-sm sm:text-base font-medium">
-                  Your intelligent investment assistant for Global Investments 💎
+                <p className="text-slate-600 mb-6 text-sm sm:text-base">
+                  Your intelligent investment assistant for Global Investments
                 </p>
 
                 {/* Features Grid */}
@@ -726,22 +719,22 @@ const EasyAIPage = () => {
                     {
                       icon: <Package className="w-5 h-5" />,
                       label: "Compare",
-                      color: "text-purple-600",
-                      hoverBorder: "hover:border-purple-200",
+                      color: "text-indigo-600",
+                      hoverBorder: "hover:border-indigo-200",
                       href: "/compare",
                     },
                     {
                       icon: <TrendingUp className="w-5 h-5" />,
                       label: "Trending",
-                      color: "text-orange-600",
-                      hoverBorder: "hover:border-orange-200",
+                      color: "text-emerald-600",
+                      hoverBorder: "hover:border-emerald-200",
                       prompt: "What investment opportunities are trending on Global Investments right now?",
                     },
                     {
                       icon: <Headphones className="w-5 h-5" />,
                       label: "Support",
-                      color: "text-cyan-600",
-                      hoverBorder: "hover:border-cyan-200",
+                      color: "text-slate-600",
+                      hoverBorder: "hover:border-slate-200",
                       prompt: "I need help with my order or account. Can you assist me?",
                     },
                   ].map((f, i) => (
@@ -749,20 +742,20 @@ const EasyAIPage = () => {
                       <Link
                         key={i}
                         href={f.href}
-                        className={`flex flex-col items-center gap-2 p-3 bg-white rounded-xl border border-gray-100 ${f.hoverBorder} hover:shadow-md transition-all duration-200 group cursor-pointer`}
+                        className={`flex flex-col items-center gap-2 p-3 bg-white rounded-xl border border-slate-100 ${f.hoverBorder} hover:shadow-sm transition-all duration-200 group cursor-pointer`}
                       >
                         <div className={`${f.color} group-hover:scale-110 transition-transform`}>{f.icon}</div>
-                        <span className="text-xs font-semibold text-gray-700">{f.label}</span>
+                        <span className="text-xs font-medium text-slate-700">{f.label}</span>
                       </Link>
                     ) : (
                       <button
                         key={i}
                         onClick={() => f.prompt && sendMessage(f.prompt)}
                         disabled={isLoading}
-                        className={`flex flex-col items-center gap-2 p-3 bg-white rounded-xl border border-gray-100 ${f.hoverBorder} hover:shadow-md transition-all duration-200 group cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed w-full`}
+                        className={`flex flex-col items-center gap-2 p-3 bg-white rounded-xl border border-slate-100 ${f.hoverBorder} hover:shadow-sm transition-all duration-200 group cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed w-full`}
                       >
                         <div className={`${f.color} group-hover:scale-110 transition-transform`}>{f.icon}</div>
-                        <span className="text-xs font-semibold text-gray-700">{f.label}</span>
+                        <span className="text-xs font-medium text-slate-700">{f.label}</span>
                       </button>
                     )
                   ))}
@@ -777,24 +770,24 @@ const EasyAIPage = () => {
                         <Link
                           key={index}
                           href={prompt.href}
-                          className="flex items-center gap-2 p-3 bg-white border border-gray-200 rounded-xl hover:border-purple-300 hover:bg-purple-50 text-left transition text-sm"
+                          className="flex items-center gap-2 p-3 bg-white border border-slate-200 rounded-xl hover:border-blue-300 hover:bg-blue-50 text-left transition text-sm"
                         >
-                          <div className="w-8 h-8 bg-gray-100 rounded-lg flex items-center justify-center text-gray-600 flex-shrink-0">
+                          <div className="w-8 h-8 bg-slate-100 rounded-lg flex items-center justify-center text-slate-600 flex-shrink-0">
                             {prompt.icon}
                           </div>
-                          <span className="text-gray-700 truncate">{prompt.text}</span>
+                          <span className="text-slate-700 truncate">{prompt.text}</span>
                         </Link>
                       ) : (
                         <button
                           key={index}
                           onClick={() => sendMessage(prompt.text)}
                           disabled={isLoading}
-                          className="flex items-center gap-2 p-3 bg-white border border-gray-200 rounded-xl hover:border-blue-300 hover:bg-blue-50 text-left transition disabled:opacity-50 text-sm"
+                          className="flex items-center gap-2 p-3 bg-white border border-slate-200 rounded-xl hover:border-blue-300 hover:bg-blue-50 text-left transition disabled:opacity-50 text-sm"
                         >
-                          <div className="w-8 h-8 bg-gray-100 rounded-lg flex items-center justify-center text-gray-600 flex-shrink-0">
+                          <div className="w-8 h-8 bg-slate-100 rounded-lg flex items-center justify-center text-slate-600 flex-shrink-0">
                             {prompt.icon}
                           </div>
-                          <span className="text-gray-700 truncate">{prompt.text}</span>
+                          <span className="text-slate-700 truncate">{prompt.text}</span>
                         </button>
                       )
                     ))}
@@ -809,18 +802,18 @@ const EasyAIPage = () => {
                 <div key={message.id}>
                   <div className={`flex gap-2 sm:gap-3 ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}>
                     {message.role === 'assistant' && (
-                      <div className="w-8 h-8 sm:w-9 sm:h-9 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center flex-shrink-0">
+                      <div className="w-8 h-8 sm:w-9 sm:h-9 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-lg flex items-center justify-center flex-shrink-0">
                         <Sparkles className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
                       </div>
                     )}
 
                     <div className={`max-w-[85%] sm:max-w-[80%] ${message.role === 'user' ? 'order-first' : ''}`}>
-                      <div className={`rounded-2xl px-3 sm:px-4 py-2.5 sm:py-3 ${
+                      <div className={`rounded-xl px-3 sm:px-4 py-2.5 sm:py-3 ${
                         message.role === 'user'
                           ? 'bg-blue-600 text-white rounded-br-sm'
                           : message.isError
                           ? 'bg-red-50 border border-red-200 text-red-800 rounded-bl-sm'
-                          : 'bg-white border border-gray-200 text-gray-800 rounded-bl-sm shadow-sm'
+                          : 'bg-white border border-slate-200 text-slate-800 rounded-bl-sm shadow-sm'
                       }`}>
                         {message.role === 'user' ? (
                           <div>
@@ -841,10 +834,10 @@ const EasyAIPage = () => {
 
                         {/* Intent Badge + Web Search */}
                         {message.role === 'assistant' && (message.usedWebSearch || message.intent) && (
-                          <div className="flex items-center gap-2 mt-2 pt-2 border-t border-gray-100 flex-wrap">
+                          <div className="flex items-center gap-2 mt-2 pt-2 border-t border-slate-100 flex-wrap">
                             {message.intent && getIntentBadge(message.intent)}
                             {message.usedWebSearch && (
-                              <span className="inline-flex items-center gap-1 text-xs text-green-600 font-medium">
+                              <span className="inline-flex items-center gap-1 text-xs text-emerald-600 font-medium">
                                 <Globe className="w-3 h-3" />
                                 Live data
                               </span>
@@ -856,7 +849,7 @@ const EasyAIPage = () => {
                         {message.action?.type === 'add_to_cart' && message.action.data && (
                           <button
                             onClick={() => handleAddToCart(message.action!.data)}
-                            className="mt-2 flex items-center gap-1.5 px-3 py-1.5 bg-green-600 text-white rounded-lg hover:bg-green-700 transition text-xs"
+                            className="mt-2 flex items-center gap-1.5 px-3 py-1.5 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition text-xs"
                           >
                             <ShoppingCart className="w-3.5 h-3.5" />
                             Add to Cart
@@ -866,7 +859,7 @@ const EasyAIPage = () => {
 
                       {/* Message Footer */}
                       <div className={`flex items-center gap-2 mt-1 ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}>
-                        <span className="flex items-center gap-1 text-xs text-gray-400">
+                        <span className="flex items-center gap-1 text-xs text-slate-400">
                           <Clock className="w-3 h-3" />
                           {formatTime(message.timestamp)}
                         </span>
@@ -883,7 +876,7 @@ const EasyAIPage = () => {
                     </div>
 
                     {message.role === 'user' && (
-                      <div className="w-8 h-8 sm:w-9 sm:h-9 bg-gradient-to-br from-orange-500 to-pink-500 rounded-xl flex items-center justify-center flex-shrink-0">
+                      <div className="w-8 h-8 sm:w-9 sm:h-9 bg-gradient-to-br from-slate-500 to-slate-600 rounded-lg flex items-center justify-center flex-shrink-0">
                         <User className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
                       </div>
                     )}
@@ -975,17 +968,17 @@ const EasyAIPage = () => {
               {/* Loading */}
               {isLoading && (
                 <div className="flex gap-2 sm:gap-3 justify-start">
-                  <div className="w-8 h-8 sm:w-9 sm:h-9 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center">
+                  <div className="w-8 h-8 sm:w-9 sm:h-9 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-lg flex items-center justify-center">
                     <Sparkles className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
                   </div>
-                  <div className="bg-white border border-gray-200 rounded-2xl rounded-bl-sm px-4 py-3 shadow-sm">
+                  <div className="bg-white border border-slate-200 rounded-xl rounded-bl-sm px-4 py-3 shadow-sm">
                     <div className="flex items-center gap-2">
                       <div className="flex gap-1">
                         <span className="w-2 h-2 bg-blue-600 rounded-full animate-bounce" style={{ animationDelay: '0ms' }} />
                         <span className="w-2 h-2 bg-blue-600 rounded-full animate-bounce" style={{ animationDelay: '150ms' }} />
                         <span className="w-2 h-2 bg-blue-600 rounded-full animate-bounce" style={{ animationDelay: '300ms' }} />
                       </div>
-                      <span className="text-sm text-gray-500">Thinking...</span>
+                      <span className="text-sm text-slate-500">Thinking...</span>
                     </div>
                   </div>
                 </div>
@@ -997,7 +990,7 @@ const EasyAIPage = () => {
         </div>
 
         {/* Input Area - Fixed at bottom with safe area padding */}
-        <div className="flex-shrink-0 border-t border-gray-200 bg-white p-3 sm:p-4 pb-4 sm:pb-4">
+        <div className="flex-shrink-0 border-t border-slate-200 bg-white p-3 sm:p-4 pb-4 sm:pb-4">
           <div className="max-w-3xl mx-auto">
             {/* Image Preview */}
             {imagePreview && (
@@ -1005,7 +998,7 @@ const EasyAIPage = () => {
                 <img 
                   src={imagePreview} 
                   alt="Selected" 
-                  className="h-20 w-20 object-cover rounded-xl border border-gray-200"
+                  className="h-20 w-20 object-cover rounded-xl border border-slate-200"
                 />
                 <button
                   onClick={clearImageSelection}
@@ -1028,7 +1021,7 @@ const EasyAIPage = () => {
               <button
                 onClick={() => fileInputRef.current?.click()}
                 disabled={isLoading || isUploadingImage}
-                className="p-2.5 sm:p-3 text-gray-500 hover:text-blue-600 hover:bg-blue-50 rounded-xl transition disabled:opacity-50 flex-shrink-0"
+                className="p-2.5 sm:p-3 text-slate-500 hover:text-blue-600 hover:bg-blue-50 rounded-xl transition disabled:opacity-50 flex-shrink-0"
                 title="Upload image"
               >
                 {isUploadingImage ? (
@@ -1047,7 +1040,7 @@ const EasyAIPage = () => {
                   placeholder={selectedImage ? "Add a message about this image..." : "Ask Atlas AI anything..."}
                   disabled={isLoading}
                   rows={1}
-                  className="w-full px-3 sm:px-4 py-2.5 sm:py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none disabled:bg-gray-50 text-sm"
+                  className="w-full px-3 sm:px-4 py-2.5 sm:py-3 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none disabled:bg-slate-50 text-sm"
                   style={{ minHeight: '44px', maxHeight: '100px' }}
                   onInput={(e) => {
                     const target = e.target as HTMLTextAreaElement
@@ -1064,7 +1057,7 @@ const EasyAIPage = () => {
                 <Send className="w-5 h-5" />
               </button>
             </div>
-            <p className="text-[10px] sm:text-xs text-gray-400 mt-2 text-center">
+            <p className="text-[10px] sm:text-xs text-slate-400 mt-2 text-center">
               Upload images for investment analysis • Atlas AI uses real-time market data
             </p>
           </div>

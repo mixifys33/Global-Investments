@@ -191,50 +191,35 @@ const handleOtpKeyDown  = (index:number, e:React.KeyboardEvent<HTMLInputElement>
  };
 
   return (
-    <div className="w-full py-10 min-h-[85vh] relative overflow-hidden" style={{ background: "linear-gradient(135deg, #f8fafc, #fff1f2, #fffbeb)" }}>
-      {/* Subtle floating money emojis */}
-      <div className="absolute inset-0 pointer-events-none opacity-5">
-        <div className="absolute top-20 left-10 text-6xl animate-float">💰</div>
-        <div className="absolute top-40 right-20 text-5xl animate-float animation-delay-2000">💎</div>
-        <div className="absolute bottom-20 left-1/4 text-4xl animate-float animation-delay-4000">💸</div>
+    <div className="w-full py-10 min-h-[85vh] relative overflow-hidden bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
+      {/* Subtle geometric patterns */}
+      <div className="absolute inset-0 pointer-events-none opacity-[0.02]">
+        <div className="absolute top-20 left-10 text-4xl">💰</div>
+        <div className="absolute top-40 right-20 text-3xl">💎</div>
+        <div className="absolute bottom-20 left-1/4 text-2xl">📈</div>
       </div>
 
-      <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-center mb-2 animate-gradient" style={{ 
-        fontFamily: "'Plus Jakarta Sans', sans-serif",
-        background: "linear-gradient(135deg, #0f766e, #14b8a6, #06b6d4)",
-        backgroundSize: "200% auto",
-        WebkitBackgroundClip: "text",
-        WebkitTextFillColor: "transparent",
-        backgroundClip: "text"
-      }}>
-        💰 Join Global Investments
+      <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-center mb-2 text-slate-800">
+        Join Global Investments
       </h1>
 
-      <p className="text-center text-lg font-medium py-3 text-gray-600">
-        Home • Sign Up • Start Your Journey
+      <p className="text-center text-base font-medium py-3 text-slate-600">
+        Create your investment account today
       </p>
 
       <div className="w-full flex justify-center">
-        <div className="md:w-[480px] p-8 bg-white shadow-xl rounded-2xl border-2 border-teal-100 relative overflow-hidden">
-          {/* Subtle sparkles */}
-          <div className="absolute top-4 right-4 w-2 h-2 bg-yellow-400 rounded-full animate-ping opacity-60" />
-          <div className="absolute bottom-6 left-6 w-1.5 h-1.5 bg-teal-400 rounded-full animate-ping animation-delay-2000 opacity-50" />
+        <div className="md:w-[480px] p-8 bg-white shadow-lg rounded-xl border border-slate-200 relative overflow-hidden">
+          {/* Subtle accent */}
+          <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-600 to-indigo-600" />
 
-          <h3 className="text-xl sm:text-2xl md:text-3xl font-black text-center mb-2 animate-gradient" style={{ 
-            fontFamily: "'Plus Jakarta Sans', sans-serif",
-            background: "linear-gradient(135deg, #059669, #0891b2, #7c3aed)",
-            backgroundSize: "200% auto",
-            WebkitBackgroundClip: "text",
-            WebkitTextFillColor: "transparent",
-            backgroundClip: "text"
-          }}>
-            Sign Up for Global Investments
+          <h3 className="text-xl sm:text-2xl font-semibold text-center mb-2 text-slate-800">
+            Create Account
           </h3>
 
 
-          <p className="text-center text-gray-500 mb-4">
-          Or already a member? {" "}
-            <Link href={"/login"} className="text-blue-500">
+          <p className="text-center text-slate-500 mb-6">
+          Already have an account? {" "}
+            <Link href={"/login"} className="text-blue-600 hover:text-blue-700 font-medium">
             Sign In
             </Link>
           </p>
@@ -266,10 +251,10 @@ const handleOtpKeyDown  = (index:number, e:React.KeyboardEvent<HTMLInputElement>
             </div>
           )}
 
-          <div className="flex items-center my-5 text-gray-400 text-sm">
-            <div className="flex-1 border-t border-gray-300" />
-            <span className="px-3">or Sign in with Email</span>
-            <div className="flex-1 border-t border-gray-300" />
+          <div className="flex items-center my-6 text-slate-400 text-sm">
+            <div className="flex-1 border-t border-slate-200" />
+            <span className="px-4">or continue with email</span>
+            <div className="flex-1 border-t border-slate-200" />
           </div>
 
 
@@ -277,32 +262,28 @@ const handleOtpKeyDown  = (index:number, e:React.KeyboardEvent<HTMLInputElement>
 
                   <form onSubmit={handleSubmit(onSubmit)}>
            {/* name */}
-           <label className="block text-gray-700 mb-1">Name</label>
+           <label className="block text-slate-700 mb-2 font-medium">Full Name</label>
             <input
               type="text"
-              placeholder="e.g. John Smith"
-              className="w-full p-2 border border-gray-300 outline-0 rounded mb-1"
+              placeholder="Enter your full name"
+              className="w-full p-3 border border-slate-300 outline-0 rounded-lg focus:border-blue-500 focus:ring-2 focus:ring-blue-100 transition-colors mb-4"
               {...register("name", {
                 required: "Name is required",
 
               })}
             />
             {errors.name && (
-              <p className="text-red-500 text-sm">
+              <p className="text-red-500 text-sm mb-4">
                 {String(errors.name.message)}
               </p>
             )}
 
-
-
-
-
             {/* Email */}
-            <label className="block text-gray-700 mb-1">Email</label>
+            <label className="block text-slate-700 mb-2 font-medium">Email Address</label>
             <input
               type="email"
-              placeholder="e.g. investor@globalinvestments.com"
-              className="w-full p-2 border border-gray-300 outline-0 rounded mb-1"
+              placeholder="Enter your email"
+              className="w-full p-3 border border-slate-300 outline-0 rounded-lg focus:border-blue-500 focus:ring-2 focus:ring-blue-100 transition-colors mb-4"
               {...register("email", {
                 required: "Email is required",
                 pattern: {
@@ -312,18 +293,18 @@ const handleOtpKeyDown  = (index:number, e:React.KeyboardEvent<HTMLInputElement>
               })}
             />
             {errors.email && (
-              <p className="text-red-500 text-sm">
+              <p className="text-red-500 text-sm mb-4">
                 {String(errors.email.message)}
               </p>
             )}
 
             {/* Password */}
-            <label className="block text-gray-700 mb-1">Password</label>
-            <div className="relative">
+            <label className="block text-slate-700 mb-2 font-medium">Password</label>
+            <div className="relative mb-6">
               <input
                 type={passwordVisible ? "text" : "password"}
-                placeholder="Min. 6 characters "
-                className="w-full p-2 border border-gray-300 outline-0 rounded mb-1"
+                placeholder="Create a password (min. 6 characters)"
+                className="w-full p-3 border border-slate-300 outline-0 rounded-lg focus:border-blue-500 focus:ring-2 focus:ring-blue-100 transition-colors pr-12"
                 {...register("password", {
                   required: "Password is required",
                   minLength: {
@@ -336,13 +317,13 @@ const handleOtpKeyDown  = (index:number, e:React.KeyboardEvent<HTMLInputElement>
               <button
                 type="button"
                 onClick={() => setPasswordVisible(!passwordVisible)}
-                className="absolute inset-y-0 right-3 flex items-center text-gray-400"
+                className="absolute inset-y-0 right-3 flex items-center text-slate-400 hover:text-slate-600"
               >
                 {passwordVisible ? <Eye /> : <EyeOff />}
               </button>
 
               {errors.password && (
-                <p className="text-red-500 text-sm">
+                <p className="text-red-500 text-sm mt-2">
                   {String(errors.password.message)}
                 </p>
               )}
@@ -354,14 +335,13 @@ const handleOtpKeyDown  = (index:number, e:React.KeyboardEvent<HTMLInputElement>
             <button
             type="submit"
             disabled={signupMutation.isPending}
-            className="w-full text-base sm:text-lg font-black py-3 rounded-2xl shadow-xl transition-all duration-300 ease-in-out hover:scale-105 disabled:opacity-70 disabled:cursor-not-allowed border-2 border-teal-200 flex justify-center items-center gap-2"
-            style={{ background: "linear-gradient(135deg, #0f766e, #14b8a6, #06b6d4)" }}
+            className="w-full text-base font-semibold py-3 rounded-lg bg-gradient-to-r from-blue-600 to-indigo-600 text-white hover:from-blue-700 hover:to-indigo-700 transition-all duration-200 disabled:opacity-70 disabled:cursor-not-allowed shadow-lg flex justify-center items-center gap-2"
           >
             {showSpinner ? (
-              <div className="w-6 h-6 border-4 border-t-transparent border-white rounded-full animate-spin"></div>
+              <div className="w-5 h-5 border-2 border-t-transparent border-white rounded-full animate-spin"></div>
             ) : (
-              <span className="text-white flex items-center gap-2">
-                💰 {signupButtonText || "Sign Up & Start Investing"}
+              <span className="flex items-center gap-2">
+                {signupButtonText || "Create Account"}
               </span>
             )}
           </button>

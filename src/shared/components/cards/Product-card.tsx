@@ -106,234 +106,195 @@ const ProductCard = ({ product, isEvent }: { product: any; isEvent?: boolean }) 
 
   return (
     <>
-      <div className="group relative rounded-3xl overflow-hidden border-4 border-yellow-400 shadow-2xl hover:shadow-pink-500/50 transition-all duration-300 flex flex-col animate-glow-pulse" style={{ background: "linear-gradient(135deg, #ffffff, #fff5f5, #fffbeb)" }}>
+      <div className="group relative rounded-xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col bg-white">
 
-        {/* Image - COLORFUL FRAME */}
-        <div className="relative overflow-hidden aspect-square" style={{ background: "linear-gradient(135deg, #ff0080, #ff8c00, #ffd700, #00ff00)" }}>
-          <div className="absolute inset-1 rounded-2xl overflow-hidden bg-white">
-            <Link href={`/product/${product?.slug || product?.id}`}>
-              {safeImgSrc ? (
-                <Image
-                  src={safeImgSrc}
-                  alt={product?.title || "Product"}
-                  fill
-                  className="object-cover group-hover:scale-110 transition-transform duration-500"
-                  sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 20vw"
-                  unoptimized={!isImageKit}
-                  onError={() => setImgError(true)}
-                />
-              ) : (
-                <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100">
-                  <ShoppingBag className="w-12 h-12 text-gray-300" />
-                </div>
-              )}
-            </Link>
+        {/* Image */}
+        <div className="relative overflow-hidden aspect-square bg-slate-50">
+          <Link href={`/product/${product?.slug || product?.id}`}>
+            {safeImgSrc ? (
+              <Image
+                src={safeImgSrc}
+                alt={product?.title || "Product"}
+                fill
+                className="object-cover group-hover:scale-105 transition-transform duration-300"
+                sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 20vw"
+                unoptimized={!isImageKit}
+                onError={() => setImgError(true)}
+              />
+            ) : (
+              <div className="w-full h-full flex items-center justify-center bg-slate-100">
+                <ShoppingBag className="w-12 h-12 text-slate-300" />
+              </div>
+            )}
+          </Link>
 
-            {/* Gradient overlay on hover - COLORFUL */}
-            <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" style={{ background: "linear-gradient(135deg, rgba(255,0,128,0.3), rgba(255,140,0,0.3), rgba(255,215,0,0.3))" }} />
-          </div>
+          {/* Subtle overlay on hover */}
+          <div className="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
 
-          {/* Floating money emojis */}
-          <div className="absolute top-2 left-2 text-lg opacity-60 animate-float pointer-events-none">💰</div>
-          <div className="absolute top-3 right-3 text-base opacity-50 animate-float animation-delay-2000 pointer-events-none">💎</div>
-
-          {/* FLASHY Badges */}
+          {/* Badges */}
           <div className="absolute top-3 left-3 flex flex-col gap-1 z-10">
             {discount >= 10 && (
-              <span className="flex items-center gap-1 text-white text-xs font-black px-2 py-1 rounded-xl shadow-xl animate-bounce border-2 border-white" style={{ background: "linear-gradient(135deg, #ff0080, #ff00ff)" }}>
-                <Flame className="w-3 h-3 animate-pulse" />💸 -{discount}%
+              <span className="flex items-center gap-1 text-white text-xs font-semibold px-2 py-1 rounded-md bg-red-500 shadow-sm">
+                -{discount}%
               </span>
             )}
             {isEvent && (
-              <span className="text-white text-xs font-black px-2 py-1 rounded-xl shadow-xl animate-wiggle border-2 border-white" style={{ background: "linear-gradient(135deg, #ffd700, #ff8c00)" }}>
-                🔥 HOT DEAL
+              <span className="text-white text-xs font-semibold px-2 py-1 rounded-md bg-orange-500 shadow-sm">
+                Flash Sale
               </span>
             )}
             {product?.stock === 0 && (
-              <span className="bg-gray-700 text-white text-xs font-black px-2 py-1 rounded-xl border-2 border-white">
-                😭 SOLD OUT
+              <span className="bg-slate-600 text-white text-xs font-semibold px-2 py-1 rounded-md">
+                Out of Stock
               </span>
             )}
             {product?.stock > 0 && product?.stock <= 5 && (
-              <span className="text-gray-900 text-xs font-black px-2 py-1 rounded-xl shadow-xl animate-pulse border-2 border-white" style={{ background: "linear-gradient(135deg, #ffd700, #ffff00)" }}>
-                ⚡ ONLY {product.stock} LEFT!
+              <span className="text-slate-800 text-xs font-semibold px-2 py-1 rounded-md bg-yellow-400 shadow-sm">
+                Only {product.stock} left
               </span>
             )}
           </div>
 
-          {/* Quick actions - COLORFUL */}
-          <div className="absolute top-3 right-3 flex flex-col gap-2 z-10 opacity-0 group-hover:opacity-100 translate-x-3 group-hover:translate-x-0 transition-all duration-300">
+          {/* Quick actions */}
+          <div className="absolute top-3 right-3 flex flex-col gap-2 z-10 opacity-0 group-hover:opacity-100 translate-x-2 group-hover:translate-x-0 transition-all duration-300">
             <button
               onClick={() => isWishListed
                 ? removeFromWishlist(product.id, user, location, deviceInfo)
                 : addToWishlist({ ...product, quantity: 1 }, user, location, deviceInfo)}
-              className={`w-10 h-10 rounded-2xl shadow-2xl flex items-center justify-center transition-all duration-200 hover:scale-125 active:scale-95 border-2 border-white animate-bounce ${
+              className={`w-9 h-9 rounded-lg shadow-md flex items-center justify-center transition-all duration-200 hover:scale-110 ${
                 isWishListed
-                  ? 'text-white'
-                  : 'text-gray-600 hover:text-white'
+                  ? 'bg-red-500 text-white'
+                  : 'bg-white text-slate-600 hover:text-red-500'
               }`}
-              style={{ background: isWishListed ? "linear-gradient(135deg, #ff0080, #ff00ff)" : "linear-gradient(135deg, #ffffff, #fff5f5)" }}
             >
-              <Heart className={`w-4 h-4 ${isWishListed ? 'fill-current animate-pulse' : ''}`} />
+              <Heart className={`w-4 h-4 ${isWishListed ? 'fill-current' : ''}`} />
             </button>
             <button
               onClick={handleCompare}
               title={isCompared ? "Remove from compare" : !canAddMore ? "Compare list full (max 4)" : "Add to compare"}
-              className={`w-10 h-10 rounded-2xl shadow-2xl flex items-center justify-center transition-all duration-200 hover:scale-125 active:scale-95 border-2 border-white ${
+              className={`w-9 h-9 rounded-lg shadow-md flex items-center justify-center transition-all duration-200 hover:scale-110 ${
                 isCompared
-                  ? 'text-white'
+                  ? 'bg-blue-500 text-white'
                   : !canAddMore
-                  ? 'text-gray-300 cursor-not-allowed'
-                  : 'text-gray-600 hover:text-white'
+                  ? 'bg-slate-100 text-slate-300 cursor-not-allowed'
+                  : 'bg-white text-slate-600 hover:text-blue-500'
               }`}
-              style={{ background: isCompared ? "linear-gradient(135deg, #8000ff, #0080ff)" : !canAddMore ? "#f3f4f6" : "linear-gradient(135deg, #ffffff, #f0f9ff)" }}
             >
               <GitCompare className="w-4 h-4" />
             </button>
             <button
               onClick={() => setOpen(true)}
-              className="w-10 h-10 rounded-2xl shadow-2xl flex items-center justify-center text-gray-600 hover:text-white hover:scale-125 active:scale-95 transition-all duration-200 border-2 border-white"
-              style={{ background: "linear-gradient(135deg, #ffffff, #f0fdf4)" }}
+              className="w-9 h-9 rounded-lg shadow-md flex items-center justify-center bg-white text-slate-600 hover:text-blue-500 hover:scale-110 transition-all duration-200"
             >
               <Eye className="w-4 h-4" />
             </button>
           </div>
 
-          {/* Event timer - FLASHY */}
+          {/* Event timer */}
           {isEvent && timeLeft && (
-            <div className="absolute bottom-3 left-3 right-3 text-white text-xs font-black text-center py-2 rounded-2xl shadow-xl border-2 border-white animate-pulse" style={{ background: "linear-gradient(135deg, #ff0080, #8000ff)" }}>
-              ⏱ {timeLeft} left! 🔥
+            <div className="absolute bottom-3 left-3 right-3 text-white text-xs font-semibold text-center py-2 rounded-lg bg-red-500/90 backdrop-blur-sm">
+              {timeLeft} left
             </div>
           )}
         </div>
 
-        {/* Info - COLORFUL */}
-        <div className="flex flex-col flex-1 p-4 relative overflow-hidden" style={{ background: "linear-gradient(135deg, #ffffff, #fff5f5, #fffbeb)" }}>
-          {/* Sparkle effects */}
-          <div className="absolute top-2 right-2 w-2 h-2 bg-yellow-400 rounded-full animate-ping opacity-60" />
-          <div className="absolute bottom-4 left-3 w-1.5 h-1.5 bg-pink-400 rounded-full animate-ping animation-delay-2000 opacity-50" />
-
-          {/* Shop name - FLASHY */}
+        {/* Info */}
+        <div className="flex flex-col flex-1 p-4">
+          {/* Shop name */}
           {product?.Shop?.name && (
             <Link href={`/shop/${product?.Shop?.id}`}
-              className="inline-flex items-center gap-1 text-xs font-black hover:scale-105 truncate mb-2 uppercase tracking-wide transition-all px-2 py-1 rounded-full shadow-md border-2 border-purple-200" style={{ background: "linear-gradient(135deg, #8000ff, #0080ff)", color: "white" }}>
-              <Crown className="w-3 h-3 animate-bounce" />
+              className="inline-flex items-center gap-1 text-xs font-medium text-slate-500 hover:text-blue-600 truncate mb-2 transition-colors">
               {product.Shop.name}
             </Link>
           )}
 
-          {/* Title - COLORFUL */}
+          {/* Title */}
           <Link href={`/product/${product?.slug || product?.id}`}>
-            <h3 className="text-sm font-black line-clamp-2 leading-snug hover:scale-105 transition-all mb-3 drop-shadow-sm animate-gradient" style={{ 
-              fontFamily: "'Plus Jakarta Sans', sans-serif",
-              background: "linear-gradient(135deg, #ff0080, #ff8c00, #ffd700)",
-              backgroundSize: "200% auto",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-              backgroundClip: "text"
-            }}>
+            <h3 className="text-sm font-semibold line-clamp-2 leading-snug text-slate-800 hover:text-blue-600 transition-colors mb-3">
               {product?.title}
             </h3>
           </Link>
 
-          {/* Stars - GOLDEN */}
+          {/* Stars */}
           {rating > 0 && (
             <div className="flex items-center gap-2 mb-3">
               <div className="flex">
                 {[1,2,3,4,5].map((s) => (
-                  <Star key={s} className={`w-4 h-4 ${s <= fullStars ? 'fill-yellow-400 text-yellow-400 animate-pulse' : 'text-gray-200 fill-gray-200'}`} />
+                  <Star key={s} className={`w-3 h-3 ${s <= fullStars ? 'fill-yellow-400 text-yellow-400' : 'text-slate-200 fill-slate-200'}`} />
                 ))}
               </div>
-              <span className="text-xs text-gray-600 font-bold bg-yellow-100 px-2 py-0.5 rounded-full">⭐ {rating.toFixed(1)}</span>
+              <span className="text-xs text-slate-500 font-medium">{rating.toFixed(1)}</span>
             </div>
           )}
 
-          {/* Price - MEGA FLASHY */}
+          {/* Price */}
           <div className="flex items-center justify-between mt-auto mb-4">
             <div className="flex flex-col gap-1">
               <div className="flex items-baseline gap-2">
-                <span className="text-lg font-black animate-gradient" style={{ 
-                  fontFamily: "'Space Grotesk', sans-serif",
-                  background: "linear-gradient(135deg, #00ff00, #00ffff, #0080ff)",
-                  backgroundSize: "200% auto",
-                  WebkitBackgroundClip: "text",
-                  WebkitTextFillColor: "transparent",
-                  backgroundClip: "text"
-                }}>
-                  💰 {formatPrice(product?.sale_price)}
+                <span className="text-lg font-bold text-slate-900">
+                  {formatPrice(product?.sale_price)}
                 </span>
                 {discount > 0 && (
-                  <span className="text-xs text-gray-400 line-through font-medium bg-gray-100 px-1 py-0.5 rounded">
+                  <span className="text-xs text-slate-400 line-through">
                     {formatPrice(product?.regular_price)}
                   </span>
                 )}
               </div>
               {discount > 0 && (
-                <span className="text-xs font-black text-green-600 animate-pulse">💸 You save {formatPrice(product?.regular_price - product?.sale_price)}!</span>
+                <span className="text-xs font-medium text-green-600">Save {formatPrice(product?.regular_price - product?.sale_price)}</span>
               )}
             </div>
             {product?.totalSales > 0 && (
-              <span className="text-xs text-white font-black px-2 py-1 rounded-full shadow-md animate-bounce" style={{ background: "linear-gradient(135deg, #00ff00, #00ffff)" }}>
-                🔥 {product.totalSales} sold
+              <span className="text-xs text-slate-500 bg-slate-100 px-2 py-1 rounded-md">
+                {product.totalSales} sold
               </span>
             )}
           </div>
 
-          {/* Add to cart - MEGA BUTTON */}
+          {/* Add to cart */}
           <button
             onClick={() => isInCart
               ? removeFromCart(product.id, user, location, deviceInfo)
               : addToCart({ ...product, quantity: 1 }, user, location, deviceInfo)}
             disabled={product?.stock === 0}
-            className={`w-full flex items-center justify-center gap-2 py-3 rounded-2xl text-sm font-black transition-all duration-200 active:scale-95 shadow-xl border-3 ${
+            className={`w-full flex items-center justify-center gap-2 py-3 rounded-lg text-sm font-semibold transition-all duration-200 ${
               product?.stock === 0
-                ? 'bg-gray-100 text-gray-400 cursor-not-allowed border-gray-200'
+                ? 'bg-slate-100 text-slate-400 cursor-not-allowed'
                 : isInCart
-                ? 'text-white border-white animate-pulse'
-                : 'text-white border-white hover:scale-105 animate-glow-pulse'
+                ? 'bg-red-500 text-white hover:bg-red-600'
+                : 'bg-blue-600 text-white hover:bg-blue-700'
             }`}
-            style={product?.stock !== 0 ? { 
-              background: isInCart 
-                ? "linear-gradient(135deg, #ff0080, #ff00ff)" 
-                : "linear-gradient(135deg, #00ff00, #00ffff, #0080ff)" 
-            } : {}}
           >
             {product?.stock === 0 ? (
-              <>😭 Out of Stock</>
+              <>Out of Stock</>
             ) : isInCart ? (
               <>
-                <Zap className="w-4 h-4 animate-bounce" />
-                💸 Remove from Cart
+                <Zap className="w-4 h-4" />
+                Remove from Cart
               </>
             ) : (
               <>
-                <ShoppingBag className="w-4 h-4 animate-bounce" />
-                💰 Add to Cart NOW!
+                <ShoppingBag className="w-4 h-4" />
+                Add to Cart
               </>
             )}
           </button>
 
-          {/* Compare button - COLORFUL */}
+          {/* Compare button */}
           <button
             onClick={handleCompare}
             disabled={!isCompared && !canAddMore}
             title={!isCompared && !canAddMore ? "Compare list full — remove a product first" : ""}
-            className={`w-full flex items-center justify-center gap-2 py-2.5 rounded-2xl text-xs font-black transition-all duration-200 active:scale-95 mt-2 shadow-lg border-2 ${
+            className={`w-full flex items-center justify-center gap-2 py-2.5 rounded-lg text-xs font-medium transition-all duration-200 mt-2 ${
               isCompared
-                ? 'text-white border-white animate-pulse'
+                ? 'bg-blue-50 text-blue-600 border border-blue-200'
                 : !canAddMore
-                ? 'bg-gray-50 text-gray-300 border-gray-100 cursor-not-allowed'
-                : 'text-white border-white hover:scale-105'
+                ? 'bg-slate-50 text-slate-300 cursor-not-allowed'
+                : 'bg-slate-50 text-slate-600 hover:bg-slate-100 border border-slate-200'
             }`}
-            style={isCompared 
-              ? { background: "linear-gradient(135deg, #8000ff, #0080ff)" }
-              : !canAddMore 
-              ? {} 
-              : { background: "linear-gradient(135deg, #ff8c00, #ffd700)" }
-            }
           >
             <GitCompare className="w-4 h-4" />
-            {isCompared ? '✅ Comparing!' : !canAddMore ? 'Compare Full (4/4)' : '⚡ Compare Now'}
+            {isCompared ? 'Comparing' : !canAddMore ? 'Compare Full (4/4)' : 'Compare'}
           </button>
         </div>
       </div>
