@@ -43,12 +43,12 @@ const EasyAIPage = () => {
   const { user } = useUser()
 
   return (
-    <StunningLayout variant="cosmic" showWaves={true} showOrbs={true} showParticles={true}>
+    <div className="min-h-screen bg-gradient-to-br from-violet-900 via-purple-900 to-fuchsia-900">
       <div className="container mx-auto p-4">
         <h1 className="text-white text-2xl font-bold">AI Assistant</h1>
         <p className="text-white/80">This is a test page</p>
       </div>
-    </StunningLayout>
+    </div>
   )
 }
 
