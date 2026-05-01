@@ -29,6 +29,7 @@ const Signup = () => {
   const [showSpinner, setShowSpinner] = useState(false);
   const [googleError, setGoogleError] = useState<string | null>(null);
   const [googleSuccess, setGoogleSuccess] = useState<string | null>(null);
+  const [serverSuccess, setServerSuccess] = useState<string | null>(null);
   const [registrationType, setRegistrationType] = useState<'email' | 'phone'>('email');
 
   const router = useRouter();
@@ -71,12 +72,14 @@ const Signup = () => {
       if (formData.registrationType === 'phone') {
         // Phone registration - no OTP required, redirect directly to login
         const successMessage = data.message || "Registration successful! You can now login.";
+        setServerSuccess(successMessage);
         setTimeout(() => {
           router.push("/login");
         }, 1500);
       } else {
         // Email registration - requires OTP verification
         const successMessage = data.message || "Registration successful! OTP sent to your email.";
+        setServerSuccess(successMessage);
         setUserData(formData);
         setShowOtp(true);
         setCanResend(false);
@@ -309,6 +312,12 @@ const Signup = () => {
                 </div>
               )}
 
+              {serverSuccess && (
+                <div className="mt-3 p-3 bg-green-500/20 border border-green-400/50 rounded-xl backdrop-blur-sm">
+                  <p className="text-green-300 text-sm font-medium">{serverSuccess}</p>
+                </div>
+              )}
+
               <div className="flex items-center my-6 text-blue-200 text-sm">
                 <div className="flex-1 border-t border-white/20" />
                 <span className="px-4 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent font-medium">
@@ -499,7 +508,7 @@ const Signup = () => {
                         <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                           <path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd" />
                         </svg>
-                        {signupButtonText || (registrationType === 'phone' ? "Create Account (No Verification)" : "Create Account")}
+                        {signupButtonText || (registrationType === 'phone' ? "📱 Create Account (No Verification)" : "📧 Create Account & Send OTP")}
                       </span>
                     )}
                   </button>
